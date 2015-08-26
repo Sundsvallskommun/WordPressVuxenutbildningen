@@ -32,11 +32,10 @@
 		 * 
 		 */
 		public function __construct() {
-
 			// Add a dayly interval
       // wp_clear_scheduled_hook( 'sk_vuxenutbildning_import_courses' );
 			if( !wp_next_scheduled( 'sk_vuxenutbildning_import_courses' ) ) {
-				$start = strtotime( date('Y-m-d') . '04:30:00' );
+				$start = strtotime( date('Y-m-d') . '04:30:00' . '+ 1 days');
 				wp_schedule_event( $start, 'daily', 'sk_vuxenutbildning_import_courses' );
 			} 
 
