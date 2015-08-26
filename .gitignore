@@ -1,0 +1,6 @@
+**node_modules
+**.sass-cache
+**alvis
+.DS_Store
+npm-debug.log
+alvis.xml

@@ -1,0 +1,7 @@
+
+.idea/
+.project
+.settings/
+bower_components/
+node_modules/
+!assets/js/lib/jscroll
