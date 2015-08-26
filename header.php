@@ -29,11 +29,7 @@
 				</p>
 			</div>
 		<![endif]-->
-
-		<?php //require_once( dirname( __FILE__ ) .'/assets/images/icons.svg' ); ?>
-		<?php //require_once( dirname( __FILE__ ) .'/assets/of/of-assets/images/icons.svg' ); ?>
 		<?php require_once( get_template_directory() .'/assets/of/of-assets/images/icons.svg' ); ?>
-		<?php //require_once( get_template_directory() .'/assets/of/of-assets/images/checkbox.svg' ); ?>
 		
 		<?php /*<div id="fb-root"></div>
 		<script>(function(d, s, id) {

@@ -2,18 +2,12 @@
 /*
 Template Name: Sökresultat kurser
 */
-?>
 
-<?php
-//global $wp_query;
 $tmp_query = $wp_query;
-//$wp_query = null;
 $wp_query = SKChildTheme\get_course_search_result( $_POST );
 
 $collected_terms = get_option( 'vuxenutbildning_categorized_terms', array() );
 
-//echo '<pre>' . print_r( $collected_terms, true ) . '</pre>';
-//die();
 $prev_args = get_transient( 'course_search_arguments' );
 
 if( isset( $prev_args['tax_query'][0]['terms'] ) ) {
@@ -23,8 +17,6 @@ if( isset( $prev_args['tax_query'][0]['terms'] ) ) {
 } else {
   $search_categories = array();
 }
-
-
 
 ?>
 
@@ -122,8 +114,6 @@ if( isset( $prev_args['tax_query'][0]['terms'] ) ) {
           <?php endwhile; // end of the loop. ?>
       </ul>
 
-      <!--<div class="nav-previous alignright"><?php next_posts_link( __( 'Nästa sida &raquo;', 'sk' ) ); ?></div>
-      <div class="nav-next alignleft"><?php previous_posts_link( __( '&laquo; Föregående sida', 'sk' ) ); ?></div>-->
       <?php
         $big = 999999999; // This needs to be an unlikely integer
 

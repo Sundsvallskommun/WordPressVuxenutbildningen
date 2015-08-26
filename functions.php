@@ -61,8 +61,6 @@ wp_localize_script( 'child-js', 'ajax_object', array(
   ) 
 ); // setting ajaxurl and nonce
 
-
-    //wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/assets/js/lib/modernizr-2.8.1.min.js', array( 'jquery', 'jquery-ui-datepicker' ) );
 }
 
 add_action( 'admin_enqueue_scripts', 'sk_child_enque_admin_script' );

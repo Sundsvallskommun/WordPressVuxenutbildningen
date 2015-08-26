@@ -26,7 +26,6 @@
 				<script>
 						var ajax_url = '<?php bloginfo( 'url' ); ?>/wp-admin/admin-ajax.php';
 				</script>
-				<!--<script src="<?php echo get_stylesheet_directory_uri();?>/assets/js/app<?php echo PRODUCTION_MODE ? '.min' : ''; ?>.js"></script>-->
 				<?php wp_footer(); ?>
 		</body>
 </html>

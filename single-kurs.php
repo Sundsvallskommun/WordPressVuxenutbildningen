@@ -11,8 +11,6 @@ $todays_date = current_time( 'mysql' );
 $nav_args = array(
   'theme_location' => 'main-menu',
   'container' => '',
-  //'container' => 'nav',
-  //'container_class' => 'of-sidebar-menu-advanced js-mobile-menu',
   'walker' => new SK_Walker_Sidebar_Menu(),
   'echo' => false
 );
@@ -74,14 +72,10 @@ if ( has_boxes( 'sidebar_boxes', 'get_field' ) ) {
             <table class="of-table of-table-even-odd" cellpadding="0" cellspacing="0">
               <thead>
                 <tr>
-                  <!--<th><?php _e( 'Period', 'sk' ); ?></th>-->
                   <th><?php _e( 'Sökbar', 'sk' ); ?></th>
                   <th><?php _e( 'Sökbar till', 'sk' ); ?></th>
                   <th><?php _e( 'Startdatum', 'sk' ); ?></th>
-                  <!--<th><?php _e( 'Skola', 'sk' ); ?></th>-->
                   <th><?php _e( 'Ort', 'sk' ); ?></th>
-                  <!--<th><?php _e( 'Veckor', 'sk' ); ?></th>
-                  <th><?php _e( 'Terminer', 'sk' ); ?></th>-->
                   <th></th>
                 </tr>
               </thead>
@@ -91,24 +85,17 @@ if ( has_boxes( 'sidebar_boxes', 'get_field' ) ) {
                   <?php if( strtotime( $todays_date ) <= strtotime( $course_start['datum'] ) ) : ?>
 
                     <tr>
-                      <!--<td data-of-tr="<?php _e( 'Period', 'sk' ); ?>"><?php echo $course_start['period']; ?></td>-->
+                      
                       <td data-of-tr="<?php _e( 'Sökbar', 'sk' ); ?>"><?php echo $course_start['sokbar']; ?></td>
                       <td data-of-tr="<?php _e( 'Sökbar till', 'sk' ); ?>"><?php echo $course_start['sokbarTill']; ?></td>
                       <td data-of-tr="<?php _e( 'Startdatum', 'sk' ); ?>"><?php echo $course_start['datum']; ?></td>
-                      <!--<td data-of-tr="<?php _e( 'Skola', 'sk' ); ?>"><?php echo $course_start['skola']; ?></td>-->
                       <td data-of-tr="<?php _e( 'Ort', 'sk' ); ?>"><?php echo $course_start['ort']; ?></td>
-                      <!--<td data-of-tr="<?php _e( 'Veckor', 'sk' ); ?>"><?php echo $course_start['veckor']; ?></td>
-                      <td data-of-tr="<?php _e( 'Terminer', 'sk' ); ?>"><?php echo $course_start['terminer']; ?></td>-->
                       <td data-of-tr="<?php _e( 'Lägg i kurskorg', 'sk' ); ?>">
-                       
                           <?php if( strtotime( $todays_date ) <= strtotime( $course_start['sokbarTill'] ) ) : ?>
                             <a href="https://sundsvall.alvis.gotit.se/student/laggtillkorg.aspx?add=<?php echo $course_start['id']; ?>" target="_blank" class="add-to-basket">
                               <?php _e( 'Lägg i kurskorg', 'sk' ); ?>
-                          
-                            <!--<i class="of-icon"><?php icon( 'external' ); ?></i>-->
                             </a>
                           <?php endif; ?>
-                        
                           <img class="add-to-basket-spinner" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ajax-loader.gif" style="display: none;" />
                       </td>
                     </tr>
