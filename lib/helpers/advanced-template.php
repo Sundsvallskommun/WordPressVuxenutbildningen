@@ -718,7 +718,7 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
                 <?php 
                   foreach( $collected_terms['niva'] as $item ) : 
                     // exclude yrkesutbildning 
-                    if( mb_strtolower( $item ) != 'yrkesutbildning') :
+                    if( mb_strtolower( $item ) != 'yrkeshögskola') :
                 ?>
                   <label class="checkbox-inline"><input type="checkbox" <?php if( isset( $filter['filter-meta-skolform'] ) ) checked( in_array( $item, $filter['filter-meta-skolform'] ) ? $item : '' , $item );?> value="<?php echo $item ?>" name="filter-meta-skolform"> <?php echo $item ?></label>
                 <?php endif; ?>

@@ -50,7 +50,7 @@
 
 			// Use this one only on local tests. It forces a
 			// run on every page update.
-			// add_action('init', array( $this, 'import' ));
+			//add_action('init', array( $this, 'import' ));
 
 		}
 
@@ -230,8 +230,8 @@
 
 			// Remove this in production
 			
-			if( file_exists( get_stylesheet_directory() . '/alvis.xml' ) ) {
-				return file_get_contents( get_stylesheet_directory() . '/alvis.xml' );
+			if( file_exists( get_stylesheet_directory() . '/alvis/alvis.xml' ) ) {
+				return file_get_contents( get_stylesheet_directory() . '/alvis/alvis.xml' );
 			}
 			
 			// Load options
@@ -447,7 +447,7 @@
 				'GR' => 'Grundskola',
 				'LV' => 'Lärvux',
 				'SI' => 'SFI',
-				'YH' => 'Yrkesutbildning',
+				'YH' => 'Yrkeshögskola',
 			);
 
 			$collected_terms = get_option( 'vuxenutbildning_categorized_terms', array() );
@@ -613,7 +613,6 @@
       $next_run = date_i18n( 'Y-m-d H:i:s', $timestamp ); 
 
 	    ?>
-
 
 	      <div class="wrap">         
 	          <h2><?php _e( 'Inställningar för Alvis kursimport', 'sk' ); ?></h2>
