@@ -15,7 +15,7 @@
 
 	namespace SKChildTheme;
 
-	set_time_limit( 300 ); // 10 minutes
+	set_time_limit( 600 ); // set timelimit to 10 minutes
 
 	class SK_Alvis_XML_Import {
 
@@ -33,7 +33,7 @@
 		 */
 		public function __construct() {
 			// Add a dayly interval
-      // wp_clear_scheduled_hook( 'sk_vuxenutbildning_import_courses' );
+      //wp_clear_scheduled_hook( 'sk_vuxenutbildning_import_courses' );
 			if( !wp_next_scheduled( 'sk_vuxenutbildning_import_courses' ) ) {
 				$start = strtotime( date('Y-m-d') . '04:30:00' . '+ 1 days');
 				wp_schedule_event( $start, 'daily', 'sk_vuxenutbildning_import_courses' );
@@ -53,7 +53,6 @@
 			// add_action('init', array( $this, 'import' ));
 
 		}
-
 
 		/**
      * Add the weekly cron interval to cron schedule list.
@@ -90,11 +89,11 @@
 
     		if( isset( $result['result'] ) && $result['result'] == true ) {
     			
-    			update_option( 'course_import_status', 'OK - ' . date('Y-m-d H:i:s') );
+    			update_option( 'course_import_status', 'OK - ' . date_i18n('Y-m-d H:i:s') );
 
     		} else {
     			
-    			update_option( 'course_import_status', 'ERROR - ' . date('Y-m-d H:i:s') );
+    			update_option( 'course_import_status', 'ERROR - ' . date_i18n('Y-m-d H:i:s') );
 
     		}
 
@@ -175,7 +174,7 @@
 			if( ! $xml_content || is_array( $xml_content ) ) {
 				
 				// Update failed
-				update_option( 'course_import_status', 'ERROR - ' . date('Y-m-d H:i:s') );
+				update_option( 'course_import_status', 'ERROR - ' . date_i18n('Y-m-d H:i:s') );
 
 				return $xml_content;
 
@@ -206,7 +205,7 @@
 			}
 
 			// Import ran smoothly
-			update_option( 'course_import_status', 'OK - ' . date( 'Y-m-d H:i:s' ) );
+			update_option( 'course_import_status', 'OK - ' . date_i18n( 'Y-m-d H:i:s' ) );
 
 			if( $this->is_manual_import ) {
 
@@ -611,7 +610,7 @@
 	  	$ftp_password = isset( $options['ftp_password'] ) ? $options['ftp_password'] : '';
 	  	
 	  	$timestamp = wp_next_scheduled( 'sk_vuxenutbildning_import_courses' );
-      $next_run = gmdate( 'Y-m-d H:i:s', $timestamp ); 
+      $next_run = date_i18n( 'Y-m-d H:i:s', $timestamp ); 
 
 	    ?>
 
@@ -621,7 +620,10 @@
 			      <table class="widefat">
 		          <tbody>
 		            <tr>
-		              <td class="desc" colspan="3"><?php printf( __('Nästa automatiska import sker: %s', 'sk' ), $next_run ); ?></td>
+		              <td class="desc" colspan="3">
+		              	<p><?php printf( __('Senaste importen: %s', 'sk' ), get_option( 'course_import_status' ) ); ?></p>
+		              	<p><?php printf( __('Nästa automatiska import sker: %s', 'sk' ), $next_run ); ?></p>
+		              </td>
 		            </tr>
 		          </tbody>
 		        </table>	          
