@@ -372,7 +372,6 @@ function get_course_block( $postdata = array() ) {
      unset( $_SESSION['postdata'] );
    }
 
-
   $is_course_search = false;
   $is_points_order = false;
   $show_only_appliable = false;
@@ -637,15 +636,18 @@ function the_courselist_filter(){
   $collected_terms = get_option( 'vuxenutbildning_categorized_terms', array() );
   $title = get_sub_field( 'courselist_title', $post->ID );
 
-
   // exclude terms from select amnesomrade, add new items in array to exclude, lowercase
   $exclude_terms_amnesomrade = array( 'yrkesinriktade utbildningar' );
 
-  // default value for filter
-  $filter = array('filter-type' => array( 'educations' ) );
+
+  // default value for filter, values set in acf content block
+  $activate_tab = get_sub_field( 'courselist_activate_tab', $post->ID );
+  $filter = array('filter-type' => array( $activate_tab ) );
   
-  if(isset($_SESSION['search_history']))
+  if(isset($_SESSION['search_history']) ){
     $session_history = $_SESSION['search_history'];
+  }
+
 
   if( !empty( $session_history ) ){
     $filter = array();
@@ -656,6 +658,84 @@ function the_courselist_filter(){
     }
 
   }
+
+   $post_form_id = false;
+      if(isset($_SESSION['search_history'])){
+        foreach( $_SESSION['search_history'] as $key => $value ){
+          if( $value['name'] == 'post_id' ){
+            $post_form_id = $value['value'];
+          }
+        }
+      }
+        
+
+  // no session set, check for default values for current page      
+  if( isset( $post_form_id ) && $post_form_id != $post->ID ){
+    
+    $defaults = array();
+    $in_categories = get_sub_field( 'courselist_categories', $post->ID );
+    
+    // which tab is set as default for current search container.
+    // get values and save as pre default settings
+    
+    if( $activate_tab == 'educations'){
+      $defaults['filter-type'][] = 'educations';
+      $defaults['post_id'][] = $post->ID;
+      if(!empty( $in_categories )){
+        $i = 0;
+        foreach( $in_categories as $in_cat ) {
+          $term = get_term( $in_cat, 'kurskategorier' );
+            foreach( $collected_terms['niva'] as $collected_term ){
+              if( $term->name == $collected_term ){
+                $defaults['filter-metapackage-skolform'][] = $term->name;
+              }  
+            }  
+          $i++;
+        }
+
+      }
+    }
+
+    if( $activate_tab == 'courses'){
+      $defaults['filter-type'][] = 'courses';
+      $defaults['post_id'][] = $post->ID;
+
+      if(!empty( $in_categories )){
+        $i = 0;
+        foreach( $in_categories as $in_cat ) {
+          $term = get_term( $in_cat, 'kurskategorier' );
+            foreach( $collected_terms['niva'] as $collected_term ){
+              if( $term->name == $collected_term ){
+                $defaults['filter-meta-skolform'][] = $term->name;
+              }  
+            }
+
+            foreach( $collected_terms['amnesomrade'] as $collected_term ){
+              if( $term->name == $collected_term ){
+                $defaults['filter-taxonomy-amnesomrade'][] = $term->name;
+              }  
+            }
+
+            foreach( $collected_terms['studieform'] as $collected_term ){
+              if( $term->name == $collected_term ){
+                $defaults['filter-meta-kurskategori'][] = $term->name;
+              }  
+            }            
+            
+            $i++;
+
+        }
+
+      }
+      
+    }
+
+    // save defaults to filter
+    $filter = $defaults;
+
+  }
+
+
 
 // sniff for older IE
 $ie_fix = true;
@@ -673,7 +753,6 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
 
  <div class="sk-courselist-filter">
     <form id="form-single-courses">
-
     <?php 
       // we dont use placeholder for older version of IE, value gets placeholder value on search
       if( $ie_fix == true ) : 
@@ -704,9 +783,14 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
 
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane <?php echo isset( $filter['filter-type'] ) && $filter['filter-type'][0] == 'educations' ? 'active' : '';?>" id="course-occupation">
-              <label class="checkbox-inline"><input type="checkbox" <?php if( isset( $filter['filter-metapackage-skolform'] ) ) checked( in_array( 'Gymnasienivå', $filter['filter-metapackage-skolform'] ) ? 'Gymnasienivå' : '' , 'Gymnasienivå' );?> name="filter-metapackage-skolform" value="Gymnasienivå">Gymnasienivå</label>
-              <!--<label class="checkbox-inline"><input type="checkbox" name="filter-course-package">Lärlingsnivå</label>-->
-              <label class="checkbox-inline"><input type="checkbox" <?php if( isset( $filter['filter-metapackage-skolform'] ) ) checked( in_array( 'Yrkeshögskola', $filter['filter-metapackage-skolform'] ) ? 'Yrkeshögskola' : '' , 'Yrkeshögskola' );?> name="filter-metapackage-skolform" value="Yrkeshögskola">Yrkeshögskola</label>
+              
+              <?php 
+                $exclude_niva_from_courses = array('grundskola');
+                foreach( $collected_terms['niva'] as $item ) : 
+                  if(! in_array( mb_strtolower( $item ), $exclude_niva_from_courses )) :
+                  ?>
+                <label class="checkbox-inline"><input type="checkbox" <?php if( isset( $filter['filter-metapackage-skolform'] ) ) checked( in_array( $item, $filter['filter-metapackage-skolform'] ) ? $item : '' , $item );?> value="<?php echo $item ?>" name="filter-metapackage-skolform"> <?php echo $item ?></label>
+              <?php endif; endforeach; ?>
 
             </div><!-- #course-occupation -->
 
@@ -784,9 +868,10 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
 
     
         </div><!-- tabpanel -->
+        <input type="hidden" id="post_id" name="post_id" value="<?php echo $post->ID ?>" >
       </form>  
     </div><!-- #sk-courselist-filter -->
-
+  
 <?php
 }
 

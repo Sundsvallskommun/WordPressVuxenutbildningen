@@ -18,6 +18,7 @@
 		public function __construct() {
 			add_action( 'sk_default_box_types', array( $this, 'default_box_types' ) );
 			add_action( 'init', array( $this, 'scroll_ended' ), 99 );
+			add_action( 'wp_footer', array( $this, 'footer_script'), 999 );
 
 			// Add ajax services
 			add_action( 'wp_ajax_search_courses', array( $this, 'search_courses' ) );
@@ -27,7 +28,43 @@
 			add_action( 'wp_ajax_nopriv_delete_session', array( $this, 'delete_session' ) );			
 
 
+
 		}
+
+		/**
+		 * Script in footer to trigger a search with pre default values
+		 *
+		 * @since 1.0.0 
+		 * 
+		 * @return null
+		 */
+		public function footer_script(){
+			global $post;
+			
+			$post_form_id = false;
+			// check for previous form id
+			if(isset($_SESSION['search_history'])){
+  		  foreach( $_SESSION['search_history'] as $key => $value ){
+	    		if( $value['name'] == 'post_id' ){
+	      		$post_form_id = $value['value'];
+	    		}
+  			}
+			}
+			
+			// on mismatch or empty form id, do a search based on pre settings.
+			if( isset( $post_form_id ) && $post_form_id != $post->ID ) :
+			
+ 		 ?>
+		  	<script type="text/javascript">
+					(function ($) {
+					   $(function() {
+					    $( '#btn-courselist-filter' ).click();
+					     });
+					}(jQuery));
+				</script>
+		<?php
+			endif;
+	}
 
 		/**
 		 * Ajax method for delete history session
@@ -69,10 +106,10 @@
 			}
 
 			if(isset($_SESSION['search_history']))
-				$transient_history = $_SESSION['search_history'];
+				$search_history = $_SESSION['search_history'];
 			
-			if( !empty( $transient_history ) )
-				$post_data = $transient_history;
+			if( !empty( $search_history ) )
+				$post_data = $search_history;
 
 			// save as session for history go back button
 			$_SESSION['search_history'] = $post_data;

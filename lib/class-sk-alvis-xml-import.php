@@ -37,7 +37,7 @@
 			if( !wp_next_scheduled( 'sk_vuxenutbildning_import_courses' ) ) {
 				$start = strtotime( date('Y-m-d') . '04:30:00' . '+ 1 days');
 				wp_schedule_event( $start, 'daily', 'sk_vuxenutbildning_import_courses' );
-			} 
+			}
 
 			add_action( 'sk_vuxenutbildning_import_courses', array( $this, 'import' ) );
 
@@ -50,7 +50,7 @@
 
 			// Use this one only on local tests. It forces a
 			// run on every page update.
-			//add_action('init', array( $this, 'import' ));
+			// add_action('init', array( $this, 'import' ));
 
 		}
 
@@ -230,8 +230,8 @@
 
 			// Remove this in production
 			
-			if( file_exists( get_stylesheet_directory() . '/alvis/alvis.xml' ) ) {
-				return file_get_contents( get_stylesheet_directory() . '/alvis/alvis.xml' );
+			if( file_exists( get_stylesheet_directory() . '/alvis/alvis_new.xml' ) ) {
+				return file_get_contents( get_stylesheet_directory() . '/alvis/alvis_new.xml' );
 			}
 			
 			// Load options
@@ -443,7 +443,7 @@
 		private function update_course_terms( $post_id, $course ) {
 
 			$level_array = array(
-				'GY' => 'Gymnasie',
+				'GY' => 'Gymnasienivå',
 				'GR' => 'Grundskola',
 				'LV' => 'Lärvux',
 				'SI' => 'SFI',

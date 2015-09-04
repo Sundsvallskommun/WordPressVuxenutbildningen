@@ -75,8 +75,6 @@
       });
 
 
-
-
       $( '#btn-courselist-filter' ).click();
 
       return false;
