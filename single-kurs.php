@@ -82,10 +82,8 @@ if ( has_boxes( 'sidebar_boxes', 'get_field' ) ) {
               <tbody>
                 <?php $course_starts = unserialize( $post_meta['kursstarter'][0] ); ?>
                 <?php foreach( $course_starts as $course_start ) : ?>
-                  <?php if( strtotime( $todays_date ) <= strtotime( $course_start['datum'] ) ) : ?>
-
+                  <?php if( strtotime( $todays_date ) <= strtotime( $course_start['sokbarTill'] ) ) : ?>
                     <tr>
-                      
                       <td data-of-tr="<?php _e( 'Sökbar', 'sk' ); ?>"><?php echo $course_start['sokbar']; ?></td>
                       <td data-of-tr="<?php _e( 'Sökbar till', 'sk' ); ?>"><?php echo $course_start['sokbarTill']; ?></td>
                       <td data-of-tr="<?php _e( 'Startdatum', 'sk' ); ?>"><?php echo $course_start['datum']; ?></td>
