@@ -34,20 +34,6 @@
 		 */
 		public function __construct() {
 			
-			/*
-			$array_date[] = array('datum' => '2014-10-01');
-			$array_date[] = array('datum' => '2014-09-01');
-			$array_date[] = array('datum' => '2014-09-01');
-			$array_date[] = array('datum' => '2014-12-01');
-
-			$temp = usort($array_date, array( $this, 'sortFunction'));
-
-			\util::debug( array_reverse( $array_date ) );
-*/
-
-		//	echo date('Y-m-d H:i:s', 1410134400);
-		//	
-		//	
 			// Add a dayly interval
       //wp_clear_scheduled_hook( 'sk_vuxenutbildning_import_courses' );
 			if( !wp_next_scheduled( 'sk_vuxenutbildning_import_courses' ) ) {
@@ -64,10 +50,7 @@
 
     	add_action( 'wp_ajax_manual_course_import', array( $this, 'manual_import' ) );
 
-    	//add_action( 'init', array($this, 'remove_unused_terms'));
-
-			// Use this one only on local tests. It forces a
-			// run on every page update.
+			// Use this one only on local tests. It forces a run on every page update.
 			// add_action('init', array( $this, 'import' ));
 
 		}
@@ -121,36 +104,8 @@
 
     }
 
-
-    /**
-     * Delete all terms in taxonomy kurskategorier
-     *
-     * @since 1.0.0 
-     * 
-     * @return none
-     * 
-     */
-    private function delete_terms(){
-    	global $wpdb;
-    	
-    	$sql = "DELETE FROM $wpdb->terms WHERE term_id IN
-				( SELECT * FROM 
-					( SELECT $wpdb->terms.term_id FROM $wpdb->terms
-				    	JOIN $wpdb->term_taxonomy ON $wpdb->term_taxonomy.term_id = $wpdb->terms.term_id
-				    	WHERE taxonomy = 'kurskategorier'
-					) as T
-				);
-				";
-
-			$wpdb->query( $sql );
-
-    }
-
-
     /**
      * Delete all posts and postmeta in post type kurs
-     *
-     * CURRENTLY NOT IN USE
      *
      * @since 1.0.0 
      * 
