@@ -554,6 +554,28 @@ function sortFunction( $a, $b ) {
 			}
 
 			wp_set_post_terms( $post_id, $terms_array, 'kurskategorier' );
+
+				
+				// update post content with hidden data to be searchable like alvis.
+				$post = get_post( $post_id );
+			 	$content = $post->post_content;
+
+			 	// print post categories into content in hidden element to be searchable in free search.
+			 	$hidden_meta = '<!-- searchable meta --> <div style="display:none">';
+			 	foreach( array_unique( $terms_array ) as $term_id ){
+			 		$term = get_term( $term_id, $this->taxonomy );
+			 		$hidden_meta .= $term->name . ' ';
+			 	}
+			 	$hidden_meta .= '</div><!-- end searchable meta-->';
+
+			 	//arguments
+			 	$post_data = array(
+			    'ID'           => $post_id,
+			    'post_content' => $content . $hidden_meta
+			  );
+
+				//update the post into the database
+			 	wp_update_post( $post_data );
 			
 			update_option( 'vuxenutbildning_categorized_terms', $collected_terms );
 
