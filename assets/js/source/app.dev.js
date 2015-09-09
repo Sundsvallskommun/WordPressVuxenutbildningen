@@ -157,6 +157,8 @@
 
       $.post( ajax_object.ajaxurl, data, function( response ) {
 
+        $('.sum-search-result-header').remove(); // remove element when ajax triggered to prevent duplicates.
+
         $('.sk-courselist-posts-block').empty();
         $('.sk-courselist-posts-block').append(response);
         $('.sk-courselist-posts-block .jscroll').jscroll({
