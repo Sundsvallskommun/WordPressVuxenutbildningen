@@ -340,8 +340,8 @@ function the_faq_block() {
         </form>
       </div><!-- .faq-filter-checkbox -->
     </div>
-
   </div>
+
 
   <?php
 }
@@ -558,6 +558,14 @@ function get_course_block( $postdata = array() ) {
   }
 
 
+  if( $show_only_appliable === true ) {
+    $meta_query []= array(
+      'key'     => 'is_searchable',
+      'value'   => 'true',
+      'compare' => '='
+    );
+  }
+
   if( !$ajax_call && ! $is_points_order ) { // Is points order fugly hack to resolve problem with sorting. Here be monkeys!
     $filter['sort_meta_key'] = '';
     $filter['sort_orderby'] = 'post_title';
@@ -578,47 +586,6 @@ function get_course_block( $postdata = array() ) {
 
   $result = new \WP_Query( $args );
 
-  // Remove courses that do not have open application
-  if( $show_only_appliable === true ) {
-
-    $today = date( 'Y-m-d', strtotime( current_time( 'mysql' ) ) );
-
-    if( !empty( $result->posts ) ) {
-
-      foreach( $result->posts as $key => $course_post ) {
-
-        $has_valid_startdates = false;
-
-        $course_starts = get_post_meta( $course_post->ID, 'kursstarter', true );
-
-        if( !empty( $course_starts ) && is_array( $course_starts ) && count( $course_starts ) > 0 ) {
-
-          foreach( $course_starts as $start ) {
-
-            if( !empty( $start['sokbarTill'] ) && $start['sokbarTill'] >= $today ) {
-
-              $result->posts[$key]->is_appliable = true;
-              $has_valid_startdates = true;
-
-            }
-
-          }
-        }
-
-        if( !$has_valid_startdates ) {
-          $result->posts[$key]->is_appliable = false;
-        }
-
-        if( $result->posts[$key]->is_appliable === false ) {
-          unset( $result->posts[$key] );
-        }      
-
-      }
-
-    }
-
-  }
-
   return $result;
 
 }
@@ -633,7 +600,7 @@ function get_course_block( $postdata = array() ) {
  */
 function the_courselist_filter(){
   global $post;
-  $collected_terms = get_option( 'vuxenutbildning_categorized_terms', array() );
+  $collected_terms = get_option( 'vuxenutbildning_categorized_terms');
   $title = get_sub_field( 'courselist_title', $post->ID );
 
   // exclude terms from select amnesomrade, add new items in array to exclude, lowercase
@@ -888,16 +855,23 @@ function the_courselist_block( $with_search_fields = false, $post_data = false )
   global $post, $wpdb, $flexible_index, $wp_query;
   $courses = get_course_block( $post_data );
   $collected_terms = get_option( 'vuxenutbildning_categorized_terms', array() );
+  ?>
+  <div class="sum-search-result-header"><p><?php printf(__('Sökningen resulterade i totalt %s träffar.'), $courses->found_posts ); ?></p></div>
+  <?php
 
-  if ( empty( $courses->posts ) ) : 
-    ?>
+  if ( empty( $courses->posts ) ) : ?>
 
   <div class="sk-main sk-courselist-posts-block">
     <div class="jscroll">
       <ul class="sk-grid-list">
-        <li><?php _e('Det finns inga fler resultat att visa', 'sk') ?></li>
+      <li class="sum-search-result-ended-footer" style="float: left; width: 100%; text-align: center;">
+            <div class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced" disabled="disabled">
+              <span><?php printf(__('Visar <span id="sum-current">%s</span> träffar av totalt <span id="sum-total">%s</span>. Det finns inga fler träffar att visa.'), $courses->post_count, $courses->found_posts ); ?></span>
+            </div>    
+          </li>
         <li style=""><a class="next-scroll-block" href="<?php echo get_bloginfo('url'); ?>/?scroll-ended"></a></li>
       </ul>
+
     </div>
   </div>
 
@@ -943,12 +917,21 @@ function the_courselist_block( $with_search_fields = false, $post_data = false )
             </article>
         </li>
         <?php endforeach; ?>
+          <li style=""><a class="next-scroll-block" href="<?php echo get_bloginfo('url'); ?>/page/<?php echo $courses->query['paged'] + 1;  ?>"></a></li>
+          <li class="sum-search-result-footer" style="width: 100%; text-align: center;">
+            <a href="#" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced btn-courselist-filter-reload" onclick="scroll_trigger();">
+              <span><?php printf(__('Visar <span id="sum-current">%s</span> träffar av totalt %s. Scrolla eller klicka här för att ladda fler'), $courses->post_count, $courses->found_posts ); ?></span>
+            </a>    
+          </li>
+        </ul>
 
-        <li style=""><a class="next-scroll-block" href="<?php echo get_bloginfo('url'); ?>/page/<?php echo $courses->query['paged'] + 1;  ?>"></a></li>
-
-      </ul>
     </div><!-- .jscroll -->
+
+
   </div><!-- .sk-main sk-courselist-posts-block -->
+  
+  
+
   <?php
 }
 

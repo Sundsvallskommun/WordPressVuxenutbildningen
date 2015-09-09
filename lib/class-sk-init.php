@@ -53,7 +53,6 @@
 			
 			// on mismatch or empty form id, do a search based on pre settings.
 			if( isset( $post_form_id ) && $post_form_id != $post->ID ) :
-			
  		 ?>
 		  	<script type="text/javascript">
 					(function ($) {
@@ -62,8 +61,13 @@
 					     });
 					}(jQuery));
 				</script>
-		<?php
-			endif;
+		<?php endif; ?>
+		  	<script type="text/javascript">
+		  		function scroll_trigger(){
+		  			$('html, body').animate({scrollTop:$(document).height()}, 'slow');
+		  		}
+				</script>
+			<?php
 	}
 
 		/**

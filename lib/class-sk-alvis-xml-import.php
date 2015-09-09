@@ -19,6 +19,7 @@
 
 	class SK_Alvis_XML_Import {
 
+		private $taxonomy = 'kurskategorier';
 		private $import_date;
 		private $import_time;
 		private $num_courses = 0;
@@ -32,6 +33,21 @@
 		 * 
 		 */
 		public function __construct() {
+			
+			/*
+			$array_date[] = array('datum' => '2014-10-01');
+			$array_date[] = array('datum' => '2014-09-01');
+			$array_date[] = array('datum' => '2014-09-01');
+			$array_date[] = array('datum' => '2014-12-01');
+
+			$temp = usort($array_date, array( $this, 'sortFunction'));
+
+			\util::debug( array_reverse( $array_date ) );
+*/
+
+		//	echo date('Y-m-d H:i:s', 1410134400);
+		//	
+		//	
 			// Add a dayly interval
       //wp_clear_scheduled_hook( 'sk_vuxenutbildning_import_courses' );
 			if( !wp_next_scheduled( 'sk_vuxenutbildning_import_courses' ) ) {
@@ -47,6 +63,8 @@
     	}
 
     	add_action( 'wp_ajax_manual_course_import', array( $this, 'manual_import' ) );
+
+    	//add_action( 'init', array($this, 'remove_unused_terms'));
 
 			// Use this one only on local tests. It forces a
 			// run on every page update.
@@ -140,7 +158,6 @@
      * 
      */
     private function delete_posts(){
-    	/*
     	global $wpdb;
     	// Delete post meta
     	$sql = "DELETE FROM $wpdb->postmeta WHERE post_id IN (
@@ -156,7 +173,6 @@
 			// Delete posts
     	$sql = "DELETE FROM $wpdb->posts WHERE post_type = 'kurs';";
 			$wpdb->query( $sql );
-			*/
     }    
 
     /**
@@ -180,9 +196,11 @@
 
 			}
 
-			// xml exists, delete option and remove all terms and insert new to prevent empty unused terms
+			// xml exists, delete option and update with new values from xml
 			delete_option( 'vuxenutbildning_categorized_terms' );
-			self::delete_terms();
+
+			// delete posts and insert all as new from xml.
+			self::delete_posts();
 
 
 			// Run import
@@ -204,6 +222,8 @@
 
 			}
 
+			$this->remove_unused_terms();
+
 			// Import ran smoothly
 			update_option( 'course_import_status', 'OK - ' . date_i18n( 'Y-m-d H:i:s' ) );
 
@@ -216,7 +236,28 @@
 				);
 
 			}
-			
+
+		}
+
+		/**
+		 * Remove terms that arent connected to any course, remove empty terms.
+		 * 
+		 * @return [type] [description]
+		 */
+		public function remove_unused_terms(){
+
+			$terms = get_terms( $this->taxonomy, array( 'hide_empty' => false ) );
+
+			if( !empty( $terms ) ){
+				foreach( $terms as $term ){
+						// remove term if empty
+						if( $term->count == 0 ){
+							if( wp_delete_term( $term->term_id, $this->taxonomy ) ){
+								// place for insert a log	when needed
+							}
+						}
+				}
+			}
 
 		}
 
@@ -230,8 +271,8 @@
 
 			// Remove this in production
 			
-			if( file_exists( get_stylesheet_directory() . '/alvis/alvis_new.xml' ) ) {
-				return file_get_contents( get_stylesheet_directory() . '/alvis/alvis_new.xml' );
+			if( file_exists( get_stylesheet_directory() . '/alvis/_alvis_new.xml' ) ) {
+				return file_get_contents( get_stylesheet_directory() . '/alvis/_alvis_new.xml' );
 			}
 			
 			// Load options
@@ -380,6 +421,7 @@
 		private function update_course_metadata( $post_id, $course, $course_id, $course_package ) {
 
 			//\util::debug( $course );
+			$today = date_i18n('Y-m-d H:i:s');
 
 			update_post_meta( $post_id, 'kursid', (int) $course_id );
 			update_post_meta( $post_id, 'kurspaket', (string) $course_package );
@@ -425,12 +467,27 @@
 
 			}
 
+			// need to sort course start dates because there is no default ordering in xml, first array is not always the closest date.
+			usort($course_starts, array($this, 'sortFunction' ) );
+
 			if( isset( $course_starts[0]['datum'] ) ) {
 				update_post_meta( $post_id, 'nearest_start_date', strtotime( $course_starts[0]['datum'] ) );
 			}
+
+			if( !empty( $course_starts[0]['sokbarTill'] ) && strtotime( $course_starts[0]['sokbarTill'] ) >= strtotime( $today ) ) {
+				update_post_meta( $post_id, 'is_searchable', 'true' );
+			}else{
+				update_post_meta( $post_id, 'is_searchable', 'false' );
+			}
+
 			update_post_meta( $post_id, 'kursstarter', $course_starts );
 
 		}
+
+
+function sortFunction( $a, $b ) {
+  return strtotime( $b["datum"] ) - strtotime( $a["datum"] );
+}
 
 
 		/**

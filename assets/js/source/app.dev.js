@@ -1,5 +1,13 @@
 (function ($) {
   "use strict";
+
+  // needed to wrap inside a button, couldnt get it work. 
+  var loading_html = '';
+  loading_html += '<div class="jscroll-preloader">';
+  loading_html += '<a href="#" class="of-btn" id="btn-courselist-filter">';
+  loading_html += '<span class="of-preloader" role="progressbar"><b></b></span></div>';
+  loading_html += '</a>';
+  loading_html += '</div>';
   
   $.fn.course_filter_search = function() {  
     var form = $(this).closest('form');
@@ -25,36 +33,59 @@
 
     $.post( ajax_object.ajaxurl, data, function( response ) {
       
-
-
+      $('.sum-search-result-header').remove(); // remove element when ajax triggered to prevent duplicates.
+      
       $('.sk-courselist-posts-block').empty();
       $('.sk-courselist-posts-block').append(response);
         
         $('.sk-courselist-posts-block .jscroll').jscroll({
           contentSelector: 'ul.sk-grid-list',
-          loadingHtml: '',
+          loadingHtml: loading_html,
           nextSelector: 'a.next-scroll-block',
-          refresh: true
+          refresh: true,
+          callback: jscrollEnded
         });
 
-        
-    }).error(function(){
+    }).success(function(){
+    })
+    .error(function(){
       alert ("Problem calling: " + action + "\nCode: " + this.status + "\nException: " + this.statusText);
     });
 
   };
 
-  $(function() {
+  function jscrollEnded(){
+    $(this).closest('.sk-courselist-posts-block').find('.sum-search-result-footer').hide(); // remove element when ajax triggered to prevent duplicates.
+    $(this).find('.sum-search-result-footer').show(); 
+
+    /*
+    if( $(this).find('.sum-search-result-ended-footer #sum-current').length == $(this).find('.sum-search-result-ended-footer #sum-total').length ){
+     $('html, body').animate({scrollTop:$(document).height()}, 'slow');    
+    }
+    */
+
+    if( $(this).find('.sum-search-result-ended-footer').length > 0 ){
+      $(this).find('.sum-search-result-ended-footer #sum-current').text($('.sk-courselist-posts-block article').length); 
+      $(this).find('.sum-search-result-ended-footer #sum-total').text($('.sk-courselist-posts-block article').length); 
+    }
+    else{
+      $(this).find('.sum-search-result-footer #sum-current').text($('.sk-courselist-posts-block article').length); 
+    }
     
-    //$("body").scrollTop($("body").scrollTop() + 3000);
+  }
+
+  $(function() {
 
     $('.jscroll').jscroll({
       contentSelector: 'ul.sk-grid-list',
-      loadingHtml: '',
+      loadingHtml: loading_html,
       nextSelector: 'a.next-scroll-block',
       refresh: true,
       debug: false,
+      callback: jscrollEnded
     });
+
+
 
     $( '#clear-courselist-filter' ).on('click', function() {
 
@@ -73,7 +104,6 @@
       }).error(function(){
         alert ("Problem calling: " + action + "\nCode: " + this.status + "\nException: " + this.statusText);
       });
-
 
       $( '#btn-courselist-filter' ).click();
 
@@ -106,22 +136,10 @@
       form.find('#filter-taxonomy-amnesomrade option[value=""]').prop("selected", true);
       form.find('#filter-sortorder option[value="sort-alpha"]').prop("selected", true);
       
-
-
       if( $(this).attr('id') == 'educations-tab' ) {
-
         $('#filter-search-type').val('educations');
-
-        /*
-        $('#course-occupation input[type=checkbox]').each( function( element ) {
-          //$(this).prop('checked', true);
-        });
-        */
-
       } else {
-
         $('#filter-search-type').val('courses');
-
       }
 
       var post_object = $('#form-single-courses').serializeArray();
@@ -143,11 +161,15 @@
         $('.sk-courselist-posts-block').append(response);
         $('.sk-courselist-posts-block .jscroll').jscroll({
           contentSelector: 'ul.sk-grid-list',
-          loadingHtml: '',
+          loadingHtml: loading_html,
           nextSelector: 'a.next-scroll-block',
-          refresh: true
+          refresh: true,
+          callback: jscrollEnded
         });      
-        
+
+
+      }).success(function(){
+
       }).error(function(){
         alert ("Problem calling: " + action + "\nCode: " + this.status + "\nException: " + this.statusText);
       });

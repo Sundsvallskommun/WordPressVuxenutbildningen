@@ -1256,3 +1256,38 @@ ul.of-breadcrumbs > li:first-child a {
 .apply-at-alvis-wrapper {
   margin-top: 10px;
 }
+
+/**
+ * Generic
+ */
+.jscroll-preloader {
+  width: 100%;
+  float: left;
+  text-align: center;
+}
+
+.jscroll-preloader a,
+.jscroll-preloader a:hover {
+  background-color: #ffffff;
+  cursor: default;
+}
+
+.jscroll-preloader a span {
+  background-color: #0064ad !important;
+}
+
+.sum-search-result-ended-footer .of-btn:hover {
+  background-color: #0064ad;
+}
+
+.sum-search-result-header {
+  background-color: #f9f9f9;
+  border: 1px solid #c2c2c2;
+  border-radius: 2px;
+  margin-bottom: 25px;
+  padding: 5px 10px;
+}
+.sum-search-result-header p {
+  margin: 0;
+  font-style: italic;
+}
