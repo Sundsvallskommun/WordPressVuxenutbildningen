@@ -416,7 +416,7 @@ function get_course_block( $postdata = array() ) {
       
       if(!empty( $value['name'] ) && strstr($value['name'], '-meta-') ) {
         switch ($value['value']) {
-          case 'Gymnasie':
+          case 'Gymnasienivå':
             $value['value'] = 'GY';
             break;
 
@@ -943,8 +943,10 @@ function the_courselist_block( $with_search_fields = false, $post_data = false )
             </article>
         </li>
         <?php endforeach; ?>
-          <li style=""><a class="next-scroll-block" href="<?php echo get_bloginfo('url'); ?>/page/<?php echo $courses->query['paged'] + 1;  ?>"></a></li>
-        </ul>
+
+        <li style=""><a class="next-scroll-block" href="<?php echo get_bloginfo('url'); ?>/page/<?php echo $courses->query['paged'] + 1;  ?>"></a></li>
+
+      </ul>
     </div><!-- .jscroll -->
   </div><!-- .sk-main sk-courselist-posts-block -->
   <?php
