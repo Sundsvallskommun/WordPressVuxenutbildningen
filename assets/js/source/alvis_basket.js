@@ -18,6 +18,10 @@ jQuery( '.add-to-basket' ).click( function( event ) {
 
 	}, function( response ) {
 
+		if( response.result == false ){
+			alert( 'Error message: ' + response.message );
+		}
+
 	}, 'json' );
 
 });

@@ -155,7 +155,6 @@
 				}
 
 				$_SESSION['course_basket']['courses'][$course_id] = $course;
-				echo '<pre>' . print_r( $_SESSION['course_basket'], true ) . '</pre>';
 				wp_send_json( array(
 					'result' => true,
 					'message' => 'OK'

@@ -80,9 +80,15 @@ if ( has_boxes( 'sidebar_boxes', 'get_field' ) ) {
                 </tr>
               </thead>
               <tbody>
+
                 <?php $course_starts = unserialize( $post_meta['kursstarter'][0] ); ?>
-                <?php foreach( $course_starts as $course_start ) : ?>
-                  <?php if( strtotime( $todays_date ) <= strtotime( $course_start['sokbarTill'] ) ) : ?>
+                <?php 
+                  $flag = false;
+                  foreach( $course_starts as $course_start ) : ?>
+                  <?php 
+                    if( strtotime( $todays_date ) <= strtotime( $course_start['sokbarTill'] ) ) : 
+                      $flag = true;
+                  ?>
                     <tr>
                       <td data-of-tr="<?php _e( 'Sökbar', 'sk' ); ?>"><?php echo $course_start['sokbar']; ?></td>
                       <td data-of-tr="<?php _e( 'Sökbar till', 'sk' ); ?>"><?php echo $course_start['sokbarTill']; ?></td>
@@ -97,8 +103,14 @@ if ( has_boxes( 'sidebar_boxes', 'get_field' ) ) {
                           <img class="add-to-basket-spinner" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ajax-loader.gif" style="display: none;" />
                       </td>
                     </tr>
+                <?php endif; endforeach; ?>
+                  <?php if( isset( $flag ) && $flag === false ) : ?>
+                    <tr>
+                      <td colspan="5"><i><?php _e('Det finns för närvarande inga aktuella startdatum för denna kurs.', 'sk') ?></i></td>
+                    </tr>
                   <?php endif; ?>
-                <?php endforeach; ?>
+
+
               </tbody>
             </table>
             <form id="course-form">
