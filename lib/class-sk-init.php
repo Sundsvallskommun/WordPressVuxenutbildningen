@@ -20,6 +20,9 @@
 			add_action( 'init', array( $this, 'scroll_ended' ), 99 );
 			add_action( 'wp_footer', array( $this, 'footer_script'), 999 );
 
+			// chrome fix for 4.3
+			add_action('admin_enqueue_scripts', array( $this, 'chrome_fix' ) );
+
 			// Add ajax services
 			add_action( 'wp_ajax_search_courses', array( $this, 'search_courses' ) );
 			add_action( 'wp_ajax_nopriv_search_courses', array( $this, 'search_courses' ) );
@@ -27,8 +30,19 @@
 			add_action( 'wp_ajax_delete_session', array( $this, 'delete_session' ) );
 			add_action( 'wp_ajax_nopriv_delete_session', array( $this, 'delete_session' ) );			
 
+		}
 
 
+		/**
+		 * Hotfix for bug that messing up admin menu in Chrome version 45 and WP 4.3
+		 *
+		 * @since 1.0.0 
+		 * 
+		 * @return null
+		 */
+		public function chrome_fix() {
+			if ( strpos( $_SERVER['HTTP_USER_AGENT'], 'Chrome' ) !== false )
+  			wp_add_inline_style( 'wp-admin', '#adminmenu { transform: translateZ(0); }' );
 		}
 
 		/**
