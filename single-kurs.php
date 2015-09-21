@@ -139,9 +139,6 @@ if ( has_boxes( 'sidebar_boxes', 'get_field' ) ) {
   </div>
 
 </div>
-
-<iframe id="alvis-container" src="https://sundsvall.alvis.gotit.se/student/kurskatalog.aspx" style="width: 100%; display: none;"></iframe>
-
 <script>
   var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
   var course_basket_link = '<?php echo site_url() . "/kurskorg"; ?>';
