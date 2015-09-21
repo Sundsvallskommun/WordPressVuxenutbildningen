@@ -446,9 +446,14 @@ function get_course_block( $postdata = array() ) {
 
 
 
-      if( $value['name'] == 'filter-search' ) {
-         $filter['free_search'] = $value['value'];
+      if( $value['name'] == 'filter-search-education' ) {
+         $filter['free_search_education'] = $value['value'];
       }
+
+    if( $value['name'] == 'filter-search-courses' ) {
+         $filter['free_search_courses'] = $value['value'];
+      }
+
 
       if( $value['name'] == 'filter-taxonomy-amnesomrade' ) {
         
@@ -572,6 +577,13 @@ function get_course_block( $postdata = array() ) {
     $filter['sort_order'] = 'ASC';
   }
 
+
+  if( $is_course_search == true ){
+    $filter['free_search'] = $filter['free_search_courses'];
+  }else{
+    $filter['free_search'] = $filter['free_search_education'];
+  }
+    
   $args = array(
     'posts_per_page'  => empty( $posts_per_page ) ? 5 : $posts_per_page,
     'post_type'       => 'kurs',
@@ -705,7 +717,7 @@ function the_courselist_filter(){
 
 
 // sniff for older IE
-$ie_fix = true;
+$ie_fix = false;
 if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
   $ie_fix = true;
 }
@@ -720,18 +732,7 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
 
  <div class="sk-courselist-filter">
     <form id="form-single-courses">
-    <?php 
-      // we dont use placeholder for older version of IE, value gets placeholder value on search
-      if( $ie_fix == true ) : 
-    ?>
-      <label for="course-filter-search"><?php _e( 'Ange sökord', 'sk' ); ?></label>
-      <input type="text" id="course-filter-search" name="filter-search" value="">
-    <?php else : ?>
-      <input type="text" id="course-filter-search" name="filter-search" placeholder="<?php _e('Ange sökord', 'sk') ?>" value="">
-    <?php endif; ?>
-      
         <div role="tabpanel">
-
           <ul class="nav nav-tabs search-education-tabs" role="tablist">
             <li role="presentation" class="<?php echo isset( $filter['filter-type'] ) && $filter['filter-type'][0] == 'educations' ? 'active' : '';?>" id="educations-tab"><a href="#course-occupation" aria-controls="course-occupation" role="tab" data-toggle="tab"><?php _e('Yrkesutbildningar', 'sk') ?></a></li>
             <li role="presentation" id="courses-tab" class="<?php echo isset( $filter['filter-type'] ) && $filter['filter-type'][0] == 'courses' ? 'active' : '';?>"><a href="#course-single" aria-controls="course-single" role="tab" data-toggle="tab"><?php _e('Kurser', 'sk') ?></a></li>
@@ -751,6 +752,15 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane <?php echo isset( $filter['filter-type'] ) && $filter['filter-type'][0] == 'educations' ? 'active' : '';?>" id="course-occupation">
               
+              <div class="form-group">
+              <?php if( $ie_fix == true ) : ?>
+                <label for="education-filter-search"><?php _e( 'Ange sökord', 'sk' ); ?></label> 
+                <input type="text" id="education-filter-search" class="filter-search" name="filter-search-education" value="<?php echo isset( $filter['filter-search-education'][0] ) ? $filter['filter-search-education'][0] : '' ?>">
+              <?php else : ?>
+                <input type="text" id="education-filter-search" class="filter-search" name="filter-search-education" placeholder="<?php _e('Ange sökord', 'sk') ?>" value="<?php echo !empty( $filter['filter-search-education'][0] ) ? $filter['filter-search-education'][0] : '' ?>">
+              <?php endif; ?>
+              </div><!-- .form-group -->
+
               <?php 
                 $exclude_niva_from_courses = array('grundskola');
                 foreach( $collected_terms['niva'] as $item ) : 
@@ -762,6 +772,15 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
             </div><!-- #course-occupation -->
 
             <div role="tabpanel" class="tab-pane <?php echo isset( $filter['filter-type'] ) && $filter['filter-type'][0] == 'courses' ? 'active' : '';?>" id="course-single">
+              <div class="form-group">
+              <?php if( $ie_fix == true ) : ?>
+                <label for="course-filter-search"><?php _e( 'Ange sökord', 'sk' ); ?></label>
+                <input type="text" id="course-filter-search" class="filter-search" name="filter-search-courses" value="<?php echo isset( $filter['filter-search-courses'][0] ) ? $filter['filter-search-courses'][0] : '' ?>">
+              <?php else : ?>
+                <input type="text" id="course-filter-search" class="filter-search" name="filter-search-courses" placeholder="<?php _e('Ange sökord', 'sk') ?>" value="<?php echo isset( $filter['filter-search-courses'][0] ) ? $filter['filter-search-courses'][0] : '' ?>">
+              <?php endif; ?>
+              </div><!-- .form-group -->
+
               <?php if( !empty( $collected_terms['niva'] ) ) : ?>
                 <div class="form-group">
 
@@ -818,7 +837,7 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
             <a id="btn-courselist-filter" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced" href="#">
               <span><?php _e('Sök/filtrera', 'sk'); ?></span>
             </a>
-            <a id="clear-courselist-filter" class="of-btn of-btn-inline of-btn-gra of-btn-spaced" href="#">
+            <a id="clear-courselist-filter" class="of-btn of-btn-inline of-btn-spaced" href="#">
               <span><?php _e('Återställ', 'sk'); ?></span>
             </a>
             <div class="filter-sortorder-wrap">

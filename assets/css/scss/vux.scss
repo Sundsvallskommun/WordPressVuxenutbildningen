@@ -629,6 +629,31 @@ ul.of-breadcrumbs > li:first-child a {
 }
 
 
+.course-basket-wrapper {
+  .apply-at-alvis-wrapper{
+    ul{
+      list-style-type: none;
+
+    }
+  }
+
+  .alert-blank {
+    background-color: #ffffff;
+    border-color: #eeeeee;
+    color: #333333;
+
+    .glyphicon{
+      color: #3C763D;
+    }
+  }
+
+.course-basket-table{
+  margin-bottom: 40px;
+}
+
+}
+
+
 /**
  * Generic
  */

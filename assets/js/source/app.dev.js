@@ -110,9 +110,9 @@
       return false;
     });
 
-    $('#course-filter-search').keypress(function (e) {
+    $('.filter-search').keypress(function (e) {
       if (e.which == 13) {
-        $( '#btn-courselist-filter' ).click();    
+        $( '#btn-courselist-filter' ).click();
         return false;  
       }
     });
