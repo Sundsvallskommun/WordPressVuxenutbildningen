@@ -43,10 +43,8 @@
 
 			add_action( 'sk_vuxenutbildning_import_courses', array( $this, 'import' ) );
 
-			// Add a link to menu for admins to set import options.
-    	if( is_admin() && current_user_can( 'activate_plugins' ) ) {
-      	add_action( 'admin_menu', array( $this, 'add_course_import_options' ) );
-    	}
+			// Add a link to menu for editor and admins to set import options.
+			add_action( 'admin_menu', array( $this, 'add_course_import_options' ) );
 
     	add_action( 'wp_ajax_manual_course_import', array( $this, 'manual_import' ) );
 
@@ -623,7 +621,7 @@ function sortFunction( $a, $b ) {
 	   */
 	  public function add_course_import_options() {
 
-	    add_options_page( __( 'Inställningar för Alvis kursimport', 'sk' ), __( 'Kursimport', 'sk' ), 'manage_options', 'sk_course_import_options', array( $this, 'course_import_options') );
+	    add_options_page( __( 'Inställningar för Alvis kursimport', 'sk' ), __( 'Kursimport', 'sk' ), 'edit_pages', 'sk_course_import_options', array( $this, 'course_import_options') );
 
 	  }
 
@@ -659,7 +657,8 @@ function sortFunction( $a, $b ) {
 		              </td>
 		            </tr>
 		          </tbody>
-		        </table>	          
+		        </table>	
+		        <?php if( current_user_can( 'activate_plugins' ) ) : ?>          
 	          <form method="post" action="options.php">
 	              <?php wp_nonce_field('update-options') ?>
 
@@ -715,9 +714,10 @@ function sortFunction( $a, $b ) {
 	              <input type="hidden" name="action" value="update" />
 	              <input type="hidden" name="page_options" value="sk_course_import_options" />
 	          </form>
-
-	          <br />
+						<?php endif; ?>
+	          
 	          <h3>Manuell Kursimport</h3>
+	          <p><?php _e('Observera att import av kurser kan ta upp till flera minuter att genomföra.', 'sk'); ?></p>
 	          <div class="form-group">
 	          	<input type="button" class="button button-secondary" value="Importera!" id="manual-course-import" />
 	          	<div id="manual-import-result" style="display:none;">
