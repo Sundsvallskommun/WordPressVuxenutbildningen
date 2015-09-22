@@ -579,9 +579,11 @@ function get_course_block( $postdata = array() ) {
 
 
   if( $is_course_search == true ){
-    $filter['free_search'] = $filter['free_search_courses'];
+    if( isset( $filter['free_search_courses'] ) )
+      $filter['free_search'] = $filter['free_search_courses'];
   }else{
-    $filter['free_search'] = $filter['free_search_education'];
+    if( isset( $filter['free_search_education'] ) )
+      $filter['free_search'] = $filter['free_search_education'];
   }
     
   $args = array(
