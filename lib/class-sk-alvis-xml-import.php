@@ -87,11 +87,9 @@
     	if( is_array( $result ) ) {
 
     		if( isset( $result['result'] ) && $result['result'] == true ) {
-    			
     			update_option( 'course_import_status', 'OK - ' . date_i18n('Y-m-d H:i:s') );
 
     		} else {
-    			
     			update_option( 'course_import_status', 'ERROR - ' . date_i18n('Y-m-d H:i:s') );
 
     		}
@@ -180,12 +178,14 @@
 			// Import ran smoothly
 			update_option( 'course_import_status', 'OK - ' . date_i18n( 'Y-m-d H:i:s' ) );
 
+
 			if( $this->is_manual_import ) {
 
 				return array(
 					'result' => true,
 					'message' => 'OK',
 					'num_courses' => $this->num_courses,
+					'import_status' => get_option( 'course_import_status' )
 				);
 
 			}
@@ -592,7 +592,7 @@ function sortFunction( $a, $b ) {
     	$strlen = mb_strlen($string, $encoding);
     	$firstChar = mb_substr($string, 0, 1, $encoding);
     	$then = mb_substr($string, 1, $strlen - 1, $encoding);
-    	
+
     	return mb_strtoupper($firstChar, $encoding) . $then;
 		}
 
@@ -669,7 +669,7 @@ function sortFunction( $a, $b ) {
 		          <tbody>
 		            <tr>
 		              <td class="desc" colspan="3">
-		              	<p><?php printf( __('Senaste importen: %s', 'sk' ), get_option( 'course_import_status' ) ); ?></p>
+		              	<p><?php printf( __('Senaste importen: <span id="latest-import-time">%s</span>', 'sk' ), get_option( 'course_import_status' ) ); ?></p>
 		              	<p><?php printf( __('Nästa automatiska import sker: %s', 'sk' ), $next_run ); ?></p>
 		              </td>
 		            </tr>

@@ -16,11 +16,13 @@ jQuery(document).ready( function( $ ) {
 
 				$('#manual-import-result img').remove();
 				$('#manual-import-result').append( 'Allt gick bra. Antal importerade kurser: ' + response.num_courses );
+				$('#latest-import-time').text( response.import_status );
 
 			} else {
 
 				$('#manual-import-result img').remove();
 				$('#manual-import-result').append( 'Ett fel inträffade. Fel: ' + response.message );
+				$('#latest-import-time').text( response.import_status );
 
 			}
 
