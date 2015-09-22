@@ -466,7 +466,7 @@ function sortFunction( $a, $b ) {
 				$collected_terms['studieform'] = array();
 			}
 
-			$course_type = (string) $course->kurskategori;
+			$course_type = $this->mb_ucfirst( mb_strtolower( (string) $course->kurskategori ), 'utf-8' );
 			if( ! in_array( $course_type, $collected_terms['studieform'] ) ) array_push( $collected_terms['studieform'], $course_type );
 
 			if( ! isset( $collected_terms['niva'] ) ) {
@@ -474,12 +474,12 @@ function sortFunction( $a, $b ) {
 			}
 
 			// Add education level to collected terms array
-			$level = $level_array[(string) $course->skolform];
+			$level = $this->mb_ucfirst( mb_strtolower( $level_array[(string) $course->skolform] ), 'utf-8' );
 			if( ! in_array( $level, $collected_terms['niva'] ) ) array_push( $collected_terms['niva'], $level );
 
+	
 			// Add couse category to collected terms array
-			$terms_string = (string) $course->ämnesområde;
-			$terms = explode( ',', $terms_string );
+			$terms[] = $this->mb_ucfirst( mb_strtolower( (string) $course->ämnesområde ), 'utf-8' );
 			if( ! isset( $collected_terms['amnesomrade'] ) ) {
 				$collected_terms['amnesomrade'] = array();
 			}
@@ -489,7 +489,6 @@ function sortFunction( $a, $b ) {
 					if( ! in_array( $tmp_term, $collected_terms['amnesomrade'] ) ) array_push( $collected_terms['amnesomrade'], $tmp_term );
 				}
 			}
-
 
 			// Add course subjects as terms
 			array_push( $terms, $course_type );
@@ -509,9 +508,9 @@ function sortFunction( $a, $b ) {
 
 				foreach( $course->kursstarter->kursstart as $course_start ) {
 
-					if( !in_array( (string) $course_start->ort, $city_terms ) ) {
+					if( !in_array( (string) $this->mb_ucfirst( mb_strtolower( $course_start->ort ), 'utf-8' ), $city_terms ) ) {
 
-						array_push( $terms, (string) $course_start->ort );
+						array_push( $terms, (string) $this->mb_ucfirst( mb_strtolower( $course_start->ort ), 'utf-8' ) );
 
 					}
 
@@ -577,6 +576,24 @@ function sortFunction( $a, $b ) {
 			
 			update_option( 'vuxenutbildning_categorized_terms', $collected_terms );
 
+		}
+
+		/**
+		 * mb_ucfirst to capitilaze first multi byte character
+		 *
+		 * @since 1.0.0
+		 * 
+		 * @param  string     $string
+		 * @param  string     $encoding (utf-8, latin1)
+		 * 
+		 * @return string 
+		 */
+		private function mb_ucfirst( $string, $encoding ){
+    	$strlen = mb_strlen($string, $encoding);
+    	$firstChar = mb_substr($string, 0, 1, $encoding);
+    	$then = mb_substr($string, 1, $strlen - 1, $encoding);
+    	
+    	return mb_strtoupper($firstChar, $encoding) . $then;
 		}
 
 
