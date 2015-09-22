@@ -810,7 +810,9 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
                 <?php endforeach; ?>
                 </div><!-- .form-group -->
               <?php endif; ?>
-              <?php if( !empty( sort( $collected_terms['amnesomrade'] ) ) ) : ?>
+              <?php if( !empty( $collected_terms['amnesomrade'] ) ) : 
+                sort( $collected_terms['amnesomrade'] );
+              ?>
                 <div class="form-group">
                 <h5><label for="filter-taxonomy-amnesomrade"><?php _e('Ämnesområde', 'sk'); ?></label></h5>
                 <select name="filter-taxonomy-amnesomrade" id="filter-taxonomy-amnesomrade">
