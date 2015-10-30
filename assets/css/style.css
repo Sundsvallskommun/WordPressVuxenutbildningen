@@ -1865,21 +1865,6 @@ select[multiple].input-lg {
   color: #343434;
 }
 
-/*
-.of-btn-gra{
-  background-color: #e7e7e7;
-  color: #343434;
-}
-
-.of-btn-gra:hover{
-  background-color: #eeeeee;
-}
-
-.of-btn-gra:active{
-  background-color: #cccccc;
-}
-*/
-
 input[type="radio"], input[type="checkbox"] {
   display: inline-block;
 }
@@ -2471,4 +2456,9 @@ ul.of-breadcrumbs > li:first-child a {
 .sum-search-result-header p {
   margin: 0;
   font-style: italic;
+}
+
+.link-to-basket .glyphicon {
+  margin-right: 5px;
+  color: #3c763d;
 }

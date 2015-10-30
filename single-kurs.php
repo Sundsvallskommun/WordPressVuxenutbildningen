@@ -15,6 +15,10 @@ $nav_args = array(
   'echo' => false
 );
 
+//$basket_link = '<a class="link-to-basket" href="' . site_url() . '/kurskorg/"><span class="glyphicon glyphicon-ok"></span> Gå till kurskorg</a>';
+
+$basket_link = sprintf('<a class="link-to-basket" href="%s/kurskorg/"><span class="glyphicon glyphicon-ok"></span> %s</a>', site_url(), __( 'Gå till kurskorg', 'sk' ) );
+
 $menu = get_field( 'hide_sidebar_menu' ) !== false ? wp_nav_menu( $nav_args ) : false;
 $classes = array();
 
@@ -80,12 +84,21 @@ if ( has_boxes( 'sidebar_boxes', 'get_field' ) ) {
                 </tr>
               </thead>
               <tbody>
-
-                <?php $course_starts = unserialize( $post_meta['kursstarter'][0] ); ?>
                 <?php 
+                  $course_starts = unserialize( $post_meta['kursstarter'][0] );
+                
                   $flag = false;
-                  foreach( $course_starts as $course_start ) : ?>
-                  <?php 
+                  $course_added = false;
+                  foreach( $course_starts as $course_start ) : 
+
+                    // check if course already added
+                    if(isset( $_SESSION['course_basket']['courses'] )){
+                      foreach ($_SESSION['course_basket']['courses'] as $key => $value) {
+                        if( $key == $course_start['id'] )
+                          $course_added = true;
+                      }
+                    }
+
                     if( strtotime( $todays_date ) <= strtotime( $course_start['sokbarTill'] ) ) : 
                       $flag = true;
                   ?>
@@ -96,9 +109,16 @@ if ( has_boxes( 'sidebar_boxes', 'get_field' ) ) {
                       <td data-of-tr="<?php _e( 'Ort', 'sk' ); ?>"><?php echo $course_start['ort']; ?></td>
                       <td data-of-tr="<?php _e( 'Lägg i kurskorg', 'sk' ); ?>">
                           <?php if( strtotime( $todays_date ) <= strtotime( $course_start['sokbarTill'] ) ) : ?>
-                            <a href="https://sundsvall.alvis.gotit.se/student/laggtillkorg.aspx?add=<?php echo $course_start['id']; ?>" target="_blank" class="add-to-basket">
-                              <?php _e( 'Lägg i kurskorg', 'sk' ); ?>
-                            </a>
+                            
+                            <?php if( $course_added == true ) : ?>
+                              <?php echo $basket_link; ?>
+                            <?php else : ?>  
+                              <input type="hidden" class="course_id" value="<?php echo $course_start['id']; ?>">
+                              <a href="#" class="add-to-basket">
+                                <?php _e( 'Lägg i kurskorg', 'sk' ); ?>
+                              </a>
+                            <?php endif; ?>
+                          
                           <?php endif; ?>
                           <img class="add-to-basket-spinner" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ajax-loader.gif" style="display: none;" />
                       </td>
