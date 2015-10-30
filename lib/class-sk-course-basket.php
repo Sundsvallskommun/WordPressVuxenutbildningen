@@ -76,7 +76,7 @@
 			<?php endif; ?>
 			<?php if( $this->has_courses() > 0 ) : ?>
 				<div class="form-group apply-at-alvis-wrapper">
-					<a href="<?php echo $this->alvis_url_add ?><?php echo implode(',', $courses ); ?>" target="_blank" class="of-btn of-btn-inline of-btn-gra of-btn-spaced apply-at-alvis">
+					<a href="<?php echo $this->alvis_url_add ?><?php echo implode(',', $courses ); ?>" target="_blank" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced apply-at-alvis">
 						<span class=""><?php _e( 'Vidare till ansökan', 'sk' ); ?></span>
 					</a>
 				</div>
