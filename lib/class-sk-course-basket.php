@@ -14,7 +14,8 @@
 
 	class SK_Course_Basket {
 
-		private $alvis_url_add = 'https://testsundsvall.alvis.gotit.se/student/laggtillkorg.aspx?add=';
+		//private $alvis_url_add = 'https://testsundsvall.alvis.gotit.se/student/laggtillkorg.aspx?add=';
+		private $alvis_url_add = 'https://sundsvall.alvis.gotit.se/student/laggtillkorg.aspx?add=';
 
 		public function __construct() {
 
