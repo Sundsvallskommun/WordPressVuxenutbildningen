@@ -18,6 +18,16 @@
 		<?php /*<script src="<?php bloginfo( 'template_directory' ) ;?>/assets/js/lib/modernizr-2.8.1.min.js"></script> Currently not used. Uncomment if needed. */ ?>
 		
 		<?php wp_head(); ?>
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-63215391-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+
 	</head>
 	<body <?php body_class( 'sk-theme-' . get_field( 'site_color', 'option' ) ); ?>>
 		<!--[if lt IE 9]>
