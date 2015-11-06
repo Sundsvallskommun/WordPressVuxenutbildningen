@@ -26,8 +26,6 @@ class SK_Post_Types {
     add_action( 'admin_init', array( $this, 'remove_submenu_kurskategorier' ) );
 	}
 
-
-
   /**
    * Remove submenu for taxonomy kurskategorier
    *
@@ -52,77 +50,8 @@ class SK_Post_Types {
    */
 	public function register_post_types() {
 		// Register post types and taxonomies here
-
-    // Post type Faq
-    $this->post_type_faq();
     $this->post_type_course();
 	}
-
-
-  private function post_type_faq() {
-
-    $labels = array(
-      'name'               => _x( 'Faq', 'Faq', 'sk' ),
-      'singular_name'      => _x( 'Faq', 'faq', 'sk' ),
-      'menu_name'          => _x( 'Faq', 'admin menu', 'sk' ),
-      'name_admin_bar'     => _x( 'Faq', 'add new on admin bar', 'sk' ),
-      'add_new'            => _x( 'Skapa ny fråga', 'faq', 'sk' ),
-      'add_new_item'       => __( 'Skapa ny fråga', 'sk' ),
-      'new_item'           => __( 'Ny fråga', 'sk' ),
-      'edit_item'          => __( 'Redigera fråga', 'sk' ),
-      'view_item'          => __( 'Visa fråga', 'sk' ),
-      'all_items'          => __( 'Alla frågor', 'sk' ),
-      'search_items'       => __( 'Sök bland frågor', 'sk' ),
-      'parent_item_colon'  => __( 'Förälderfaq:', 'sk' ),
-      'not_found'          => __( 'Hittade inga frågor.', 'sk' ),
-      'not_found_in_trash' => __( 'Hittade inga frågot i papperskorgen.', 'sk' )
-    );
-
-    $args = array(
-      'labels'             => $labels,
-      'public'             => true,
-      'publicly_queryable' => true,
-      'show_ui'            => true,
-      'show_in_menu'       => true,
-      'query_var'          => true,
-      'rewrite'            => array( 'slug' => 'faq' ),
-      'capability_type'    => 'post',
-      'has_archive'        => false,
-      'hierarchical'       => false,
-      'menu_position'      => null,
-      'menu_icon'          => 'dashicons-search',
-      'supports'           => array( 'title', 'author' )
-    );
-
-    register_post_type( 'faq', $args );
-
-
-    // FAQ category labels
-    $category_labels = array(
-      'name'              => __( 'Faq kategorier', 'sk' ),
-      'singular_name'     => __( 'Faq kategori', 'sk' ),
-      'search_items'      => __( 'Sök faq kategori', 'sk' ),
-      'all_items'         => __( 'Alla faq kategorier', 'sk' ),
-      'parent_item'       => __( 'Förälder, kategori', 'sk' ),
-      'parent_item_colon' => __( 'Kategoriförälder:', 'sk' ),
-      'edit_item'         => __( 'Ändra kategori', 'sk' ),
-      'update_item'       => __( 'Uppdatera kategori', 'sk' ),
-      'add_new_item'      => __( 'Ny kategori', 'sk' ),
-      'new_item_name'     => __( 'Nytt kategorinamn', 'sk' ),
-      'menu_name'         => __( 'Faqkategorier', 'sk' )
-    );
-
-    $category_args = array(
-      'labels' => $category_labels,
-      'hierarchical' => true,
-      'query_var' => 'true',
-      'rewrite' => array('slug' => 'vanliga-fragor-faq'),
-      'show_admin_column' => 'true'
-    );
-
-    register_taxonomy( 'faqkategorier', 'faq', $category_args );
-
-  }
 
 
   /**
