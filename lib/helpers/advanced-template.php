@@ -686,7 +686,7 @@ function the_courselist_filter(){
         foreach( $in_categories as $in_cat ) {
           $term = get_term( $in_cat, 'kurskategorier' );
             foreach( $collected_terms['niva'] as $collected_term ){
-              if( $term->name == $collected_term ){
+              if( isset( $term->name ) && $term->name == $collected_term ){
                 $defaults['filter-meta-skolform'][] = $term->name;
               }  
             }
