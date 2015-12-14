@@ -87,10 +87,9 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                 </ul>
               <?php endif; ?>
             </div><!-- .course-starts -->
-
-
-            <?php edit_post_link( __( 'Redigera den här sidan', 'sk' ), '<p>', '</p>' ); ?>
     		  </div><!-- .course-meta-data -->
+
+          <?php edit_post_link( __( 'Redigera den här sidan', 'sk' ), '<p>', '</p>' ); ?>
 
           <div class="course-starts" style="clear:both;">
             <h3><?php _e( 'Kursstarter', 'sk' ); ?></h3>
