@@ -1,0 +1,32 @@
+.single-kurs{
+	h1{
+		 padding: 15px 0;
+	}	
+
+	.sk-entry-content{
+		width: 65%; 
+		float:left; 
+		padding-right: 25px;
+	}
+
+	.course-meta-data{
+		width: 35%;
+		float: right; 
+		background: #f9f9f9; 
+		border: 1px solid #b6c0c6; 
+		border-radius: 0.25em; 
+		padding: 15px;
+
+		.course-meta-title{
+			font-weight: bold;
+		}
+
+		.sub-courses-list{
+			font-size: 14px;
+			padding-left: 25px;
+			list-style-type: disc;
+		}
+
+	}
+
+}
