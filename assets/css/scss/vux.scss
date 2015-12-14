@@ -142,34 +142,8 @@ input[type="radio"], input[type="checkbox"] {
 .sk-campaign-grid-list > li:last-child:nth-child(odd) {
   display: inline-block;
 }
-@media (min-width: 36em) {
-/* .sk-campaign-grid-list > li:last-child:nth-child(odd) {
-    display: none;
-  } */
- /* .sk-campaign-grid-list > li figure {
-    width: 2.5em !important;
-  height: 2.5em  !important;
-  margin-right: .75em;
-}
-.sk-campaign-grid-list > li p{
-  font-size: .875em;
-}
-.sk-campaign-grid-list h5{
-  font-size: .875em;
-}
 
-.sk-campaign-grid-list > li {
 
-  padding-bottom: 0.5em;
-    margin: 0 !important;
-  
-}
-.sk-campaign-grid-list > li article.sk-narrow {
-  width: 100% !important;
-  width: calc(100% - 4em) !important;
-}*/
-  
-}
 @media (min-width: 70em) {
   .sk-campaign-grid-list > li:last-child:nth-child(odd) {
     display: inline-block;
@@ -447,6 +421,9 @@ ul.sk-links-list svg{
 .faq-post-terms{
     margin: .5em 0 .2em 0;
 }
+
+
+
 .of-checkbox-list ul{
   list-style: none;
 }
@@ -472,14 +449,6 @@ ul.sk-links-list svg{
   width: calc(70% - 1.125em - .1px);
 }
 
-/*
-.faq-filter-search > li.faq-filter-checkbox{
-  width: 30%;
-  width: calc(30% - 1.125em - .1px);
-  padding-left: .5em;
-}
-*/
-
 .faq-filter-search > li {
   position: relative;
   display: inline-block;
@@ -503,13 +472,6 @@ fieldset.of-checkbox-list{
 
 @media (max-width: 800px) {
 
-/*
-.faq-filter-search > li.faq-filter-checkbox{
-  width: 100%;
-  width: calc(100%);
-  margin-top: 10px;
-}
-*/
 .faq-filter-search > li.faq-filter{
   width: 100%;
   width: calc(100% - 1.125em - .1px);
@@ -652,7 +614,6 @@ ul.of-breadcrumbs > li:first-child a {
 }
 
 }
-
 
 /**
  * Generic

@@ -223,10 +223,11 @@
 		public function get_xml() {
 
 			// Remove this in production
-			
-			if( file_exists( get_stylesheet_directory() . '/alvis/_alvis_new.xml' ) ) {
-				return file_get_contents( get_stylesheet_directory() . '/alvis/_alvis_new.xml' );
+			/*
+			if( file_exists( get_stylesheet_directory() . '/alvis/test_alvis_new.xml' ) ) {
+				return file_get_contents( get_stylesheet_directory() . '/alvis/test_alvis_new.xml' );
 			}
+			*/
 			
 			// Load options
 	  	$options = get_option( 'sk_course_import_options' );
@@ -364,6 +365,33 @@
 
 
 		/**
+		 * Get included courses for kurspaket.
+		 *
+		 * @since 1.0.0 
+		 * 
+		 * @return 
+		 */
+		private function set_included_courses( $post_id = false, $included_courses ){	
+			if( empty( $post_id ) || empty( $included_courses ) )
+				return false;
+
+			$include = array();
+			$i = 0;
+			foreach ( $included_courses as $course ) {
+				$include[$i]['name'] 		= (string) $course->namn;
+				$include[$i]['code'] 		= (string) $course->kurskod;
+				$include[$i]['points'] 	= (string) $course->poäng;
+				$include[$i]['url'] 		= (string) $course->skolverketurl;
+				$i++;
+			}
+
+			if(! empty( $include ) )
+				update_post_meta( $post_id, 'included_courses', $include );
+
+		}
+
+
+		/**
 		 * Set the metadata for the course
 		 *
 		 * @since  1.0.0 
@@ -373,7 +401,6 @@
 		 */
 		private function update_course_metadata( $post_id, $course, $course_id, $course_package ) {
 
-			//\util::debug( $course );
 			$today = date_i18n('Y-m-d H:i:s');
 
 			update_post_meta( $post_id, 'kursid', (int) $course_id );
@@ -387,6 +414,11 @@
 			update_post_meta( $post_id, 'forkunskap', (string) $course->förkunskap );
 			update_post_meta( $post_id, 'skolverketurl', (string) $course->skolverketurl );
 			update_post_meta( $post_id, 'startdatum', strtotime( $course->datum ) );
+
+			// save included courses if this is a kurspaket
+			if( $course->attributes()->kurspaket[0] == 'true' ){
+				$this->set_included_courses( $post_id, $course->delkurs );
+			}
 
 			$course_starts = array();
 

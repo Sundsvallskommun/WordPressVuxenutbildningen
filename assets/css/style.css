@@ -1824,6 +1824,31 @@ select[multiple].input-lg {
   content: "\e260";
 }
 
+.single-kurs h1 {
+  padding: 15px 0;
+}
+.single-kurs .sk-entry-content {
+  width: 65%;
+  float: left;
+  padding-right: 25px;
+}
+.single-kurs .course-meta-data {
+  width: 35%;
+  float: right;
+  background: #f9f9f9;
+  border: 1px solid #b6c0c6;
+  border-radius: 0.25em;
+  padding: 15px;
+}
+.single-kurs .course-meta-data .course-meta-title {
+  font-weight: bold;
+}
+.single-kurs .course-meta-data .sub-courses-list {
+  font-size: 14px;
+  padding-left: 25px;
+  list-style-type: disc;
+}
+
 /*
 	@import "bootstrap/variables";
 	@import "bootstrap/mixins";
@@ -1957,33 +1982,6 @@ input[type="radio"], input[type="checkbox"] {
   display: inline-block;
 }
 
-@media (min-width: 36em) {
-  /* .sk-campaign-grid-list > li:last-child:nth-child(odd) {
-      display: none;
-    } */
- /* .sk-campaign-grid-list > li figure {
-    width: 2.5em !important;
-  height: 2.5em  !important;
-  margin-right: .75em;
-}
-.sk-campaign-grid-list > li p{
-  font-size: .875em;
-}
-.sk-campaign-grid-list h5{
-  font-size: .875em;
-}
-
-.sk-campaign-grid-list > li {
-
-  padding-bottom: 0.5em;
-    margin: 0 !important;
-  
-}
-.sk-campaign-grid-list > li article.sk-narrow {
-  width: 100% !important;
-  width: calc(100% - 4em) !important;
-}*/
-}
 @media (min-width: 70em) {
   .sk-campaign-grid-list > li:last-child:nth-child(odd) {
     display: inline-block;
@@ -2278,13 +2276,6 @@ ul.sk-links-list svg {
   width: calc(70% - 1.125em - .1px);
 }
 
-/*
-.faq-filter-search > li.faq-filter-checkbox{
-  width: 30%;
-  width: calc(30% - 1.125em - .1px);
-  padding-left: .5em;
-}
-*/
 .faq-filter-search > li {
   position: relative;
   display: inline-block;
@@ -2306,13 +2297,6 @@ fieldset.of-checkbox-list {
 }
 
 @media (max-width: 800px) {
-  /*
-  .faq-filter-search > li.faq-filter-checkbox{
-    width: 100%;
-    width: calc(100%);
-    margin-top: 10px;
-  }
-  */
   .faq-filter-search > li.faq-filter {
     width: 100%;
     width: calc(100% - 1.125em - .1px);
