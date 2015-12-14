@@ -64,8 +64,6 @@ $('.apply-at-alvis').click( function( event ) {
 
 	if( alvis_direct_link != undefined ) {
 
-		if( confirm( 'Du kommer nu att skickas vidare till Alvis för att gå vidare med din ansökan.' ) ) {
-
 			$.post( ajaxurl, {
 				action: 'empty_basket'
 			}, function( response ) {
@@ -81,8 +79,6 @@ $('.apply-at-alvis').click( function( event ) {
 			$('.sk-entry-content').append('<div class="basket-empty"><p>Vidarebefordning till Alvis pågår, var god dröj.</p><p><span class="of-preloader" role="progressbar"></span></p></div>');
 
 			});
-
-		}
 
 	}
 

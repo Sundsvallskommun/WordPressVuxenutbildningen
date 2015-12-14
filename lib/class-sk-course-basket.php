@@ -79,7 +79,7 @@
 
 				<div class="alert alert-info">
 					<p><i class="glyphicon glyphicon-info-sign"></i> <?php _e('Klicka på "Vidare till ansökan" för att ta med dina valda kurser till Alvis.', 'sk' ); ?></p>
-					<p><?php _e('Ett nytt webbläsarfönster kommer att öppnas där du kan sluföra din ansökan.', 'sk' ); ?></p>
+					<p><?php _e('Du kommer att vidarebefordras till Alvis där du kan sluföra din ansökan.', 'sk' ); ?></p>
 				</div>
 
 				<div class="form-group apply-at-alvis-wrapper">
