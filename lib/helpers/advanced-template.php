@@ -727,6 +727,7 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
 ?>
 
 <?php if ( !empty( $title ) ) : ?>
+  <a name="search-anchor" style="padding-top:60px;"></a>
   <header>
     <h2><?php echo $title; ?></h2>
   </header>

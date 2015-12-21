@@ -78,14 +78,19 @@
 			<?php if( $this->has_courses() > 0 ) : ?>
 
 				<div class="alert alert-info">
-					<p><i class="glyphicon glyphicon-info-sign"></i> <?php _e('Klicka på "Vidare till ansökan" för att ta med dina valda kurser till Alvis.', 'sk' ); ?></p>
-					<p><?php _e('Du kommer att vidarebefordras till Alvis där du kan sluföra din ansökan.', 'sk' ); ?></p>
+					<p><i class="glyphicon glyphicon-info-sign"></i> <?php _e('Välj "Vidare till ansökan" för registrering eller "Tillbaka till sök" för att lägga till ytterligare kurser och utbildningar.', 'sk' ); ?></p>
+					<!--<p><?php _e('Du kommer att vidarebefordras till Alvis där du kan sluföra din ansökan.', 'sk' ); ?></p>-->
 				</div>
 
 				<div class="form-group apply-at-alvis-wrapper">
 					<a href="<?php echo $this->alvis_url_add ?><?php echo implode(',', $courses ); ?>" target="_blank" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced apply-at-alvis">
 						<span class=""><?php _e( 'Vidare till ansökan', 'sk' ); ?></span>
 					</a>
+
+					<a href="<?php echo get_bloginfo('url'); ?>#search-anchor" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced">
+						<span class=""><?php _e( 'Tillbaka till sök', 'sk' ); ?></span>
+					</a>
+
 				</div>
 
 				<?php else : ?>
