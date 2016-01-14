@@ -128,7 +128,7 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                       <td data-of-tr="<?php _e( 'Startdatum', 'sk' ); ?>"><?php echo $course_start['datum']; ?></td>
                       <td data-of-tr="<?php _e( 'Ort', 'sk' ); ?>"><?php echo $course_start['ort']; ?></td>
                       <td data-of-tr="<?php _e( 'Lägg i kurskorg', 'sk' ); ?>">
-                          <?php if( strtotime( $todays_date ) <= strtotime( $course_start['sokbarTill'] ) ) : ?>
+                          <?php if( ( strtotime( $todays_date ) >= strtotime( $course_start['sokbar'] ) ) &&  ( strtotime( $todays_date ) <= strtotime( $course_start['sokbarTill'] ) ) ) : ?>
                             
                             <?php if( $course_added == true ) : ?>
                               <?php echo $basket_link; ?>

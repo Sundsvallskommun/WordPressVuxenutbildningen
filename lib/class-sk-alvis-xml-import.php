@@ -224,10 +224,11 @@
 
 			// Remove this in production
 			/*
-			if( file_exists( get_stylesheet_directory() . '/alvis/test_alvis_new.xml' ) ) {
-				return file_get_contents( get_stylesheet_directory() . '/alvis/test_alvis_new.xml' );
+			if( file_exists( get_stylesheet_directory() . '/alvis/_alvis_new.xml' ) ) {
+				return file_get_contents( get_stylesheet_directory() . '/alvis/_alvis_new.xml' );
 			}
 			*/
+			
 			
 			// Load options
 	  	$options = get_option( 'sk_course_import_options' );
@@ -453,13 +454,23 @@
 			}
 
 			// need to sort course start dates because there is no default ordering in xml, first array is not always the closest date.
-			usort($course_starts, array($this, 'sortFunction' ) );
+			usort($course_starts, array($this, 'sortFunction' ) );			
 
 			if( isset( $course_starts[0]['datum'] ) ) {
 				update_post_meta( $post_id, 'nearest_start_date', strtotime( $course_starts[0]['datum'] ) );
 			}
 
-			if( !empty( $course_starts[0]['sokbarTill'] ) && strtotime( $course_starts[0]['sokbarTill'] ) >= strtotime( $today ) ) {
+			
+			// check if there is a course that is searchable
+			$searchable_flag = false;
+			foreach( $course_starts as $data ){
+				if( ( strtotime( $today ) >= strtotime( $data['sokbar'] ) ) &&  ( strtotime( $today ) <= strtotime( $data['sokbarTill'] ) ) )
+					$searchable_flag = true;
+
+			}
+
+			// update post meta
+			if( $searchable_flag === true ){
 				update_post_meta( $post_id, 'is_searchable', 'true' );
 			}else{
 				update_post_meta( $post_id, 'is_searchable', 'false' );
