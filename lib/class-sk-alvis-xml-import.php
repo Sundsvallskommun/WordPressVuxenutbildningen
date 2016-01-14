@@ -224,8 +224,8 @@
 
 			// Remove this in production
 			/*
-			if( file_exists( get_stylesheet_directory() . '/alvis/_alvis_new.xml' ) ) {
-				return file_get_contents( get_stylesheet_directory() . '/alvis/_alvis_new.xml' );
+			if( file_exists( get_stylesheet_directory() . '/alvis/20160114_alvis_new.xml' ) ) {
+				return file_get_contents( get_stylesheet_directory() . '/alvis/20160114_alvis_new.xml' );
 			}
 			*/
 			

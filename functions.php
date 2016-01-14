@@ -1,4 +1,6 @@
 <?php
+// fix due to 4.4.1 that breaks page request like /page/[number]
+remove_filter('template_redirect','redirect_canonical');
 
 /* ------------------------------------------
 |  LOAD UTILITY CLASS, REMOVE FOR PRODUCTION |
