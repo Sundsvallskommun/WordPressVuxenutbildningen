@@ -101,6 +101,45 @@
     }
 
     /**
+     * Update posts that are not deletet for courses
+     * 
+     * @author Daniel Söderström <daniel.soderstrom@cybercom.com>
+     * 
+     * @return none
+     */
+    private function update_posts(){
+			global $wpdb;
+
+			// Update posts where not in skolform YH
+			// update the is_searchable meta
+    	$sql = "SELECT ID FROM $wpdb->posts WHERE post_type = 'kurs' AND post_status ='publish'"; 
+			$results = $wpdb->get_results( $sql );
+			$today = date_i18n('Y-m-d');
+			
+			if(!empty( $results ) ){
+				foreach ( $results as $post ) {
+					$courses = get_field( 'sk_course_starts', $post->ID );
+
+					$searchable_flag = false;		
+					if(!empty( $courses )){
+						foreach ($courses as $data ) {
+							if( ( strtotime( $today ) >= strtotime( $data['searchable_from'] ) ) &&  ( strtotime( $today ) <= strtotime( $data['searchable_to'] ) ) ){
+								$searchable_flag = true;
+							}
+						}
+					}
+				
+					if( $searchable_flag === true ){
+						update_post_meta( $post->ID, 'is_searchable', 'true' );
+					}else{
+						update_post_meta( $post->ID, 'is_searchable', 'false' );
+					}
+
+				}
+			}
+    }
+
+    /**
      * Delete all posts and postmeta in post type kurs
      *
      * @since 1.0.0 
@@ -110,20 +149,23 @@
      */
     private function delete_posts(){
     	global $wpdb;
-    	// Delete post meta
+
+    	// Delete post meta where not in skolform YH.
     	$sql = "DELETE FROM $wpdb->postmeta WHERE post_id IN (
 				 	SELECT * FROM ( 
 				 		SELECT $wpdb->posts.ID FROM $wpdb->posts
 				    	WHERE post_type = 'kurs' AND post_status = 'publish'
 					) as P
-				);
-				";
+				) AND ( meta_key = 'skolform' AND meta_value <> 'YH' );
+			";
 
+			// Delete posts where not in skolform YH
+    	$sql = "DELETE post FROM $wpdb->posts AS post 
+    	LEFT JOIN $wpdb->postmeta AS meta ON post.ID = meta.post_id 
+    	WHERE meta.meta_key = 'skolform' AND meta.meta_value <> 'YH'
+    	AND post.post_type = 'kurs';";
 			$wpdb->query( $sql );
 
-			// Delete posts
-    	$sql = "DELETE FROM $wpdb->posts WHERE post_type = 'kurs';";
-			$wpdb->query( $sql );
     }    
 
     /**
@@ -153,6 +195,8 @@
 			// delete posts and insert all as new from xml.
 			self::delete_posts();
 
+			// update posts that are left in database
+			self::update_posts();
 
 			// Run import
 			$importer = simplexml_load_string( $xml_content );
@@ -191,6 +235,16 @@
 			}
 
 		}
+		/**
+		 * Set YH courses searchable flag
+		 *  
+		 * @author Daniel Söderström <daniel.soderstrom@cybercom.com>
+		 * 
+		 * @return [type]
+		 */
+		public function after_import(){
+
+		}
 
 		/**
 		 * Remove terms that arent connected to any course, remove empty terms.
@@ -224,8 +278,8 @@
 
 			// Remove this in production
 			/*
-			if( file_exists( get_stylesheet_directory() . '/alvis/20160114_alvis_new.xml' ) ) {
-				return file_get_contents( get_stylesheet_directory() . '/alvis/20160114_alvis_new.xml' );
+			if( file_exists( get_stylesheet_directory() . '/alvis/alvis_2016_02.xml' ) ) {
+				return file_get_contents( get_stylesheet_directory() . '/alvis/alvis_2016_02.xml' );
 			}
 			*/
 			

@@ -14,6 +14,8 @@ $nav_args = array(
   'echo' => false
 );
 
+$type = get_post_meta( $post->ID, 'skolform', true );
+
 $basket_link = sprintf('<a class="link-to-basket" href="%s/kurskorg/"><span class="glyphicon glyphicon-ok"></span> %s</a>', site_url(), __( 'Gå till kurskorg', 'sk' ) );
 
 $menu = get_field( 'hide_sidebar_menu' ) !== false ? wp_nav_menu( $nav_args ) : false;
@@ -59,14 +61,16 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
 
           <div class="course-meta-data">
             <div class="course-starts">
-              <p><span class="course-meta-title"><?php _e( 'Anmälningskod: ', 'sk' ); ?></span> <?php echo $post_meta['anmkod'][0]; ?></p>
-              <p><span class="course-meta-title"><?php _e( 'Kurskod: ', 'sk' ); ?></span> <?php echo $post_meta['kurskod'][0]; ?></p>
-              <p><span class="course-meta-title"><?php _e( 'Poäng: ', 'sk' ); ?></span> <?php echo $post_meta['poang'][0]; ?></p>
-              <p><span class="course-meta-title"><?php _e( 'Studieform: ', 'sk' ); ?></span> <?php echo $post_meta['kurskategori'][0]; ?></p>
-              <p><span class="course-meta-title"><?php _e( 'Skolform: ', 'sk' ); ?></span> <?php echo $post_meta['skolform'][0]; ?></p>
-              <p><span class="course-meta-title"><?php _e( 'Förkunskap: ', 'sk' ); ?></span> <?php echo $post_meta['forkunskap'][0]; ?></p>
+            <?php if(! $type === 'YH' ) : ?>
+              <p><span class="course-meta-title"><?php _e( 'Anmälningskod: ', 'sk' ); ?></span> <?php echo !empty( $post_meta['anmkod'][0] ) ? $post_meta['anmkod'][0] : ''; ?></p>
+              <p><span class="course-meta-title"><?php _e( 'Kurskod: ', 'sk' ); ?></span> <?php echo !empty( $post_meta['kurskod'][0] ) ? $post_meta['kurskod'][0] : ''; ?></p>
+            <?php endif; ?>
+              <p><span class="course-meta-title"><?php _e( 'Poäng: ', 'sk' ); ?></span> <?php echo !empty( $post_meta['poang'][0] ) ? $post_meta['poang'][0] : ''; ?></p>
+              <p><span class="course-meta-title"><?php _e( 'Studieform: ', 'sk' ); ?></span> <?php echo !empty( $post_meta['kurskategori'][0] ) ? $post_meta['kurskategori'][0] : ''; ?></p>
+              <p><span class="course-meta-title"><?php _e( 'Skolform: ', 'sk' ); ?></span> <?php echo !empty( $post_meta['skolform'][0] ) ? $post_meta['skolform'][0] : ''; ?></p>
+              <p><span class="course-meta-title"><?php _e( 'Förkunskap: ', 'sk' ); ?></span> <?php echo !empty( $post_meta['forkunskap'][0] ) ? $post_meta['forkunskap'][0] : ''; ?></p>
               
-              <?php if( $post_meta['amnesomrade'][0] != 'Yrkesinriktade utbildningar' ) : ?>
+              <?php if( ( isset( $post_meta['amnesomrade'][0] ) && $post_meta['amnesomrade'][0] != 'Yrkesinriktade utbildningar' ) || $type != 'YH' ) : ?>
               <p>
                 <span class="course-meta-title"><?php _e( 'Ämnes-/kursplan hos skolverket: ' , 'sk' ); ?></span>
                 <?php if( !empty( $post_meta['skolverketurl'][0] ) ) : ?>
@@ -77,7 +81,11 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
               </p>
               <?php endif; ?>
 
-              
+              <?php if( $type === 'YH' ) : ?>
+                <p><span class="course-meta-title"><?php _e( 'Inkluderade kurser: ', 'sk' ); ?></span></p>
+                <div><?php echo !empty( $post_meta['included_courses_for_yh'][0] ) ? $post_meta['included_courses_for_yh'][0] : ''; ?></div>
+
+              <?php else: ?>
               <?php if(! empty( $sub_courses ) ) : ?>
                 <p><span class="course-meta-title"><?php _e( 'Inkluderade kurser: ', 'sk' ); ?></span></p>
                 <ul class="sub-courses-list">
@@ -86,6 +94,7 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                 <?php endforeach; ?>
                 </ul>
               <?php endif; ?>
+            <?php endif; ?>
             </div><!-- .course-starts -->
     		  </div><!-- .course-meta-data -->
 
@@ -105,10 +114,14 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
               </thead>
               <tbody>
                 <?php 
-                  $course_starts = unserialize( $post_meta['kursstarter'][0] );
-                
+                  if( $type === 'YH' )
+                    $course_starts = SK_Course::get_yh_course_starts();
+                  else
+                    $course_starts = unserialize( $post_meta['kursstarter'][0] );
+
                   $flag = false;
                   $course_added = false;
+                  if(! empty( $course_starts ) ) :
                   foreach( $course_starts as $course_start ) : 
 
                     // check if course already added
@@ -127,6 +140,18 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                       <td data-of-tr="<?php _e( 'Sökbar till', 'sk' ); ?>"><?php echo $course_start['sokbarTill']; ?></td>
                       <td data-of-tr="<?php _e( 'Startdatum', 'sk' ); ?>"><?php echo $course_start['datum']; ?></td>
                       <td data-of-tr="<?php _e( 'Ort', 'sk' ); ?>"><?php echo $course_start['ort']; ?></td>
+                      
+
+                      <?php if( $type === 'YH') : ?>
+                        <td>
+                          <?php if(! empty( $course_start['url'] ) ) : ?>
+                            <a href="<?php echo $course_start['url'] ?>" class="" target="_blank">
+                              <?php _e( 'Gå vidare till anmälan', 'sk' ); ?>
+                            </a>
+                          <?php endif; ?>
+                        </td>
+
+                    <?php else : ?>
                       <td data-of-tr="<?php _e( 'Lägg i kurskorg', 'sk' ); ?>">
                           <?php if( ( strtotime( $todays_date ) >= strtotime( $course_start['sokbar'] ) ) &&  ( strtotime( $todays_date ) <= strtotime( $course_start['sokbarTill'] ) ) ) : ?>
                             
@@ -142,8 +167,10 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                           <?php endif; ?>
                           <img class="add-to-basket-spinner" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/ajax-loader.gif" style="display: none;" />
                       </td>
+                      <?php endif; ?>
+                    
                     </tr>
-                <?php endif; endforeach; ?>
+                <?php endif; endforeach; endif;?>
                   <?php if( isset( $flag ) && $flag === false ) : ?>
                     <tr>
                       <td colspan="5"><i><?php _e('Det finns för närvarande inga aktuella startdatum för denna kurs.', 'sk') ?></i></td>

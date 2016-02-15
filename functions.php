@@ -25,8 +25,11 @@ $init = new SKChildTheme\SK_Init();
 
 // Load parent posttypes class
 require_once( get_template_directory() . '/lib/class-sk-post-types.php' );
-require_once( get_stylesheet_directory() . '/lib/class-sk-post-types.php' );
-$osynlig_post_types = new SKChildTheme\SK_Post_Types();
+//require_once( get_stylesheet_directory() . '/lib/class-sk-post-types.php' );
+//$osynlig_post_types = new SKChildTheme\SK_Post_Types();
+
+require_once( get_stylesheet_directory() . '/lib/class-sk-course.php' );
+$sk_course = new SK_Course();
 
 // Load the xml parser file
 
