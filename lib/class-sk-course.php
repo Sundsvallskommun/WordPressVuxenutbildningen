@@ -230,12 +230,12 @@ class SK_Course {
 
       <p>
         <label for="sk_forkunskap"><?php _e( 'Förkunskap:', 'sk' ); ?></label>
-        <textarea cols="60" rows="2" name="forkunskap" id="sk_forkunskap" class="widefat"><?php echo get_post_meta( $post_id, 'forkunskap', true ); ?></textarea>
+        <textarea cols="60" rows="4" name="forkunskap" id="sk_forkunskap" class="widefat"><?php echo get_post_meta( $post_id, 'forkunskap', true ); ?></textarea>
       </p>
 
       <p>
         <label for="included_courses_for_yh"><?php _e( 'Inkluderande kurser:', 'sk' ); ?> </label>
-        <textarea cols="60" rows="2" name="included_courses_for_yh" id="included_courses_for_yh" class="widefat"><?php echo get_post_meta( $post_id, 'included_courses_for_yh', true ); ?></textarea>
+        <textarea cols="60" rows="4" name="included_courses_for_yh" id="included_courses_for_yh" class="widefat"><?php echo get_post_meta( $post_id, 'included_courses_for_yh', true ); ?></textarea>
       </p>
     
     <?php

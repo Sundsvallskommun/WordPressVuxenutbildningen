@@ -68,7 +68,7 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
               <p><span class="course-meta-title"><?php _e( 'Poäng: ', 'sk' ); ?></span> <?php echo !empty( $post_meta['poang'][0] ) ? $post_meta['poang'][0] : ''; ?></p>
               <p><span class="course-meta-title"><?php _e( 'Studieform: ', 'sk' ); ?></span> <?php echo !empty( $post_meta['kurskategori'][0] ) ? $post_meta['kurskategori'][0] : ''; ?></p>
               <p><span class="course-meta-title"><?php _e( 'Skolform: ', 'sk' ); ?></span> <?php echo !empty( $post_meta['skolform'][0] ) ? $post_meta['skolform'][0] : ''; ?></p>
-              <p><span class="course-meta-title"><?php _e( 'Förkunskap: ', 'sk' ); ?></span> <?php echo !empty( $post_meta['forkunskap'][0] ) ? $post_meta['forkunskap'][0] : ''; ?></p>
+              <p><span class="course-meta-title"><?php _e( 'Förkunskap: ', 'sk' ); ?></span> <?php echo !empty( $post_meta['forkunskap'][0] ) ? wpautop( $post_meta['forkunskap'][0] ): ''; ?></p>
               
               <?php if( ( isset( $post_meta['amnesomrade'][0] ) && $post_meta['amnesomrade'][0] != 'Yrkesinriktade utbildningar' ) || $type != 'YH' ) : ?>
               <p>
@@ -83,7 +83,7 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
 
               <?php if( $type === 'YH' ) : ?>
                 <p><span class="course-meta-title"><?php _e( 'Inkluderade kurser: ', 'sk' ); ?></span></p>
-                <div><?php echo !empty( $post_meta['included_courses_for_yh'][0] ) ? $post_meta['included_courses_for_yh'][0] : ''; ?></div>
+                <div><?php echo !empty( $post_meta['included_courses_for_yh'][0] ) ? wpautop( $post_meta['included_courses_for_yh'][0] ) : ''; ?></div>
 
               <?php else: ?>
               <?php if(! empty( $sub_courses ) ) : ?>
