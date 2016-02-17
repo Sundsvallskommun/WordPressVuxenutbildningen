@@ -5,6 +5,10 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 *Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar*
 
+####1.1.1
+#####Bugg
+* Komplettering med full export av ACF fält.
+
 ####1.1.0
 #####Ändringsbegäran
 * Manuellt skapande av kurser för YH 
