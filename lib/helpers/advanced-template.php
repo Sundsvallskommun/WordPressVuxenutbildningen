@@ -618,7 +618,8 @@ function the_courselist_filter(){
 
   // Adding Yrkeshögskola manually when no longer included in xml import from Alvis.
   // Otherwise its not visible as an search option.
-  $collected_terms['niva'][] = 'Yrkeshögskola';
+  if(! in_array( 'Yrkeshögskola', $collected_terms['niva'] ) )
+    $collected_terms['niva'][] = 'Yrkeshögskola';
 
   $title = get_sub_field( 'courselist_title', $post->ID );
 

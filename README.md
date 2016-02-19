@@ -6,6 +6,11 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 *Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar*
 
 
+####1.2.2
+#####Ändringsbegäran
+* YH kurser som finns sedan tidigare i Alvis ska inte importeras till wordpress
+[https://trello.com/c/hihBrZDn/4-2-importera-ej-yh-utbildningar-fran-alvis](https://trello.com/c/hihBrZDn/4-2-importera-ej-yh-utbildningar-fran-alvis)
+
 ####1.1.2
 #####Bugg
 * Checkbox för Yrkeshögskolan saknades i och med att den inte längre inkluderas från Alvis vid import.

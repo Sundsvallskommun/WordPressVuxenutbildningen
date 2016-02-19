@@ -337,6 +337,14 @@
 			if(!empty( $course_xml_object->kursbeskrivning ))
 				$course_content = strip_tags( $course_xml_object->kursbeskrivning, '<a>' );
 
+
+
+			// we dont want do import skolform = YH. 
+			// https://trello.com/c/hihBrZDn/4-2-importera-ej-yh-utbildningar-fran-alvis
+			if( $course_xml_object->skolform == 'YH' )
+				return false;
+
+
 			// Check if course already exists
 			if( !$this->course_exists( $course_id ) ) {
 
