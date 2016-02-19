@@ -615,6 +615,11 @@ function get_course_block( $postdata = array() ) {
 function the_courselist_filter(){
   global $post;
   $collected_terms = get_option( 'vuxenutbildning_categorized_terms');
+
+  // Adding Yrkeshögskola manually when no longer included in xml import from Alvis.
+  // Otherwise its not visible as an search option.
+  $collected_terms['niva'][] = 'Yrkeshögskola';
+
   $title = get_sub_field( 'courselist_title', $post->ID );
 
   // exclude terms from select amnesomrade, add new items in array to exclude, lowercase
