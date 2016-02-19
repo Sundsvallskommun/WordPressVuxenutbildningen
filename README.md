@@ -5,6 +5,11 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 *Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar*
 
+
+####1.1.2
+#####Bugg
+* Checkbox för Yrkeshögskolan saknades i och med att den inte längre inkluderas från Alvis vid import.
+
 ####1.1.1
 #####Bugg
 * Komplettering med full export av ACF fält.
