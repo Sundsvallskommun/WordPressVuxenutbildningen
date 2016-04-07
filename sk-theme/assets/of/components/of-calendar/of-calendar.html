@@ -1,0 +1,118 @@
+<div class="of-calendar of-calendar-full of-block" id="cal2">
+
+	
+
+	
+		<script id="of-day-template" type="text/x-handlebars-template">	
+	<div class="calendar-day">
+
+		<header class="of-inner-padded-half">
+			<h2>{{day}}</h2>
+		</header>
+
+		<article class="of-inner-padded-b-half">
+			{{#eventsList events}}
+				{{this}}
+			{{/eventsList}}
+		</article>
+	</div>
+	</script>
+		<script id="of-calendar-template" type="text/x-handlebars-template">			<header class=" of-inner-padded-trl">
+				<div class="of-right">
+			<a class="of-btn of-btn-gronsta of-btn-xs of-btn-inline" href="#" data-of-toggler="add-calendar-event">
+				<span>Ny kalenderhändelse</span>
+			</a>
+		</div>
+		<h2>Kalender</h2>
+			</header>
+		<div class="of-border-bottom of-inner-padded of-hidden" data-of-toggled="add-calendar-event">
+		<form method="post" action="#">
+
+			<div class="of-c-xs-2 of-omega">
+				<label class="of-block-label">
+					<span>Namnge kalenderhändelse</span>
+					<input type="text" name="title">
+				</label>
+			</div>
+
+			<div class="of-c-xs-2 of-omega">
+				<label class="of-block-label">
+					<span>Heldag</span>
+					<select name="toggle" data-of-select="toggle">
+						<option value="1">Ja</option>
+						<option value="0" selected>Nej</option>
+					</select>
+				</label>
+			</div>
+
+			<div class="of-c-xs-2 of-c-lg-4 of-omega-xs of-omega-sm of-omega-md">
+				<label class="of-block-label">
+					<span>Datum från</span>
+					<input type="datetime-local" name="from" value="2015-04-27T14:53">
+				</label>
+			</div>
+
+			<div class="of-c-xs-2 of-c-lg-4 of-omega">
+				<label class="of-block-label">
+					<span>Datum till</span>
+					<input type="datetime-local" name="to" value="2015-04-27T14:53">
+				</label>
+			</div>
+
+			<div class="of-c-xs-2 of-omega">
+				<label class="of-block-label">
+					<span>Beskrivning</span>
+					<textarea name="content"></textarea>
+				</label>
+
+				<div class="of-inner-padded-t-half">
+					<a class="of-btn of-btn-gronsta of-btn-inline of-right" href="#">Lägg till</a>
+					<div class="of-inline of-hide-to-md">
+						<a class="of-icon" href="#" data-of-open-modal="add-file">
+							<i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"><use xlink:href="#file"></use></svg></i><span>Bifoga fil</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+		<div class="month clndr-controls of-inner-padded-rl of-inner-padded-tb-half">
+		<div class="of-right-from-sm">
+			<div class="of-btn-group">
+				<a class="of-btn of-icon of-icon-only clndr-previous-button" href="#">
+					<i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"><use xlink:href="#arrow-left"></use></svg></i>
+					<span>Föregående månad</span>
+				</a>
+				<a class="of-btn" href="samarbetsrum_kalender_agenda.html">Agenda</a>
+				<a class="of-btn" href="samarbetsrum_kalender.html">Månad</a>
+				<a class="of-btn of-icon of-icon-only clndr-next-button" href="#">
+					<i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"><use xlink:href="#arrow-right"></use></svg></i>
+					<span>Nästa månad</span>
+				</a>
+			</div>
+		</div>
+		<h2 id="of-month-ph" class="of-has-btn-group of-month-name">{{month}} {{year}}</h2>
+	</div>
+
+			<div class="days of-inner-padded-rbl">
+			<header class="calendar-row">
+				<div>V</div>
+				{{#each daysOfTheWeek}}
+				<div>{{safe_string this}}</div>
+				{{/each}}
+			</header>
+
+			{{#list days}}
+				{{this}}
+			{{/list}}
+			<div class="calendar-day"></div>
+			</div>
+		</div>
+		
+				<div class="of-inner-padded-rb of-inner-padded-t-half of-text-right">
+			<a class="of-dark-link of-icon of-icon-xs" href="#">
+				<i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"><use xlink:href="#calendar"></use></svg></i><span>Prenumerera på denna kalender</span>
+			</a>
+		</div>
+			</div>
+	</script>

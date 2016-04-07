@@ -1,0 +1,99 @@
+/* Sizes
+-------------------------------------------------- */
+/* Colors
+-------------------------------------------------- */
+/* Font Settings
+-------------------------------------------------- */
+.of-fileupload {
+  position: relative;
+  border: 2px dashed #c2c2c2;
+  background-color: #fafafa;
+  border-radius: .25em;
+  text-align: center;
+  font-weight: normal;
+  padding: 3.28125rem 0;
+  min-height: 11.375em;
+}
+.of-fileupload h2 {
+  font-size: 1.25em;
+  font-weight: normal;
+  margin-bottom: 1rem;
+}
+.of-fileupload .of-upload {
+  width: 60%;
+  margin: 0 auto;
+}
+.of-fileupload .of-upload .of-btn {
+  margin: 1em 0;
+}
+.of-fileupload .of-upload .of-filesize-info {
+  display: block;
+  font-size: .875em;
+}
+.of-fileupload.of-margin-top {
+  margin-top: .5em;
+}
+.of-fileover .of-fileupload {
+  border-color: #0064ad;
+}
+.of-fileover .of-fileupload .of-upload .of-btn-vattjom {
+  background: #00528e;
+}
+.of-fileupload.of-fileover {
+  border-color: #0064ad;
+  background-color: #f6f8fc;
+}
+.of-fileupload.of-fileover h2 {
+  color: #0064ad;
+}
+.of-fileupload .of-uploaded {
+  display: none;
+}
+.of-fileupload .of-uploaded figure {
+  position: relative;
+  width: 5.875em;
+  height: 5.875em;
+  margin: 0 auto;
+}
+.of-fileupload .of-uploaded figure img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+}
+.of-fileupload .of-uploaded figure.of-loading img {
+  display: none;
+}
+.of-fileupload .of-uploaded figure.of-loading:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(226, 230, 232, 0.75);
+  content: '';
+}
+.of-fileupload.of-file-uploaded {
+  border-style: solid;
+  border-width: 1px;
+}
+.of-fileupload.of-file-uploaded:hover, .of-fileupload.of-file-uploaded:focus, .of-fileupload.of-file-uploaded.of-fileover, .of-fileover .of-fileupload.of-file-uploaded {
+  border-color: #c2c2c2;
+  border-width: 1px;
+}
+.of-fileupload.of-file-uploaded .of-upload {
+  display: none;
+}
+.of-fileupload.of-file-uploaded .of-uploaded {
+  display: block;
+}
+.of-fileupload.of-file-uploaded .of-loading + .of-btn {
+  display: none;
+}
+.of-fileupload.of-file-uploaded .of-btn {
+  margin-top: 1em;
+}
+
+.of-fileupload + .of-progress {
+  margin-top: 1em;
+}

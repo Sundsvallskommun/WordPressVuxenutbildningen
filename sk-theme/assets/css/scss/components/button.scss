@@ -1,0 +1,59 @@
+.of-btn {
+  @include theme(background-color, 1);
+  
+  &, i, span {
+    color: #fff;
+    fill: #fff;
+  }
+
+  &:hover,
+  &:focus {
+    @include theme(background-color, 1, "lighten", 6);
+
+    &, i, span {
+      color: #fff;
+      fill: #fff;
+    }
+  }
+
+  &:active,
+  &.of-active {
+    @include theme(background-color, 2, "darken", 6);
+
+    &, i, span {
+      color: #fff;
+      fill: #fff;
+    }
+  }
+
+  &.loading {
+    @include theme(background-color, 3);
+
+    .of-preloader {
+      @include theme(background-color, 2);
+    }
+  }
+  
+  &.of-btn-outline,
+  &.of-btn-outline:hover,
+  &.of-btn-outline:focus {
+    background: $outline-background;
+    border-color: $outline-border;
+  }
+
+  &.of-btn-outline,
+  &.of-btn-outline i,
+  &.of-btn-outline span {
+    @include theme(color, 2);
+    @include theme(fill, 2);
+
+    /*&:hover,
+    &:focus {
+      color: #fff;
+    }*/
+  }
+}
+
+input[type="submit"] {
+  @extend .of-btn;
+}

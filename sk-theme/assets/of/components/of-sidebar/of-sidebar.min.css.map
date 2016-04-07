@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAMA,WAAY,CACX,UAAU,CCOF,OAAO",
+"sources": ["../../../source/of-assets/css/scss/components/of-sidebar/of-sidebar.scss","../../../source/of-assets/css/scss/helpers/variables.scss"],
+"names": [],
+"file": "of-sidebar.min.css"
+}

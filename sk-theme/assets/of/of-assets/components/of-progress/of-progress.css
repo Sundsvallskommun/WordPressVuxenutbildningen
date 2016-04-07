@@ -1,0 +1,154 @@
+/* Sizes
+-------------------------------------------------- */
+/* Colors
+-------------------------------------------------- */
+/* Font Settings
+-------------------------------------------------- */
+.of-progress {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
+  -webkit-transition-property: background opacity;
+  -moz-transition-property: background opacity;
+  transition-property: background opacity;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: "ease-in";
+  -moz-transition-timing-function: "ease-in";
+  transition-timing-function: "ease-in";
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  transition-delay: 0;
+  border: none;
+  width: 100%;
+  height: .9375em;
+  background: #e7e7e7;
+  border-radius: 3em;
+  overflow: hidden;
+  margin-bottom: .25em;
+}
+.of-progress > span {
+  display: block;
+  height: 3em;
+  background: #0064ad;
+}
+.of-progress.of-status-bad {
+  background: #f8c5ae;
+}
+.of-progress.of-status-bad > span {
+  background: #e5352d;
+}
+.of-progress.of-status-poor {
+  background: #fcd7ae;
+}
+.of-progress.of-status-poor > span {
+  background: #f08a00;
+}
+.of-progress.of-status-good {
+  background: #cee2b9;
+}
+.of-progress.of-status-good > span {
+  background: #008a00;
+}
+.of-progress.of-progress-sm {
+  height: .75em;
+}
+.of-progress.of-progress-lg {
+  height: 1.1875em;
+}
+.of-progress.of-complete {
+  opacity: 0;
+}
+
+progress.of-progress {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.of-progress[value]::-moz-progress-bar {
+  -webkit-transition-property: background;
+  -moz-transition-property: background;
+  transition-property: background;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: "ease-in";
+  -moz-transition-timing-function: "ease-in";
+  transition-timing-function: "ease-in";
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  transition-delay: 0;
+  background: #0064ad;
+}
+
+.of-progress[value].of-status-bad::-moz-progress-bar {
+  background: #e5352d;
+}
+
+.of-progress[value].of-status-poor::-moz-progress-bar {
+  background: #f08a00;
+}
+
+.of-progress[value].of-status-good::-moz-progress-bar {
+  background: #008a00;
+}
+
+.of-progress[value]::-webkit-progress-bar {
+  -webkit-transition-property: background;
+  -moz-transition-property: background;
+  transition-property: background;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: "ease-in";
+  -moz-transition-timing-function: "ease-in";
+  transition-timing-function: "ease-in";
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  transition-delay: 0;
+  background: #e7e7e7;
+}
+
+.of-progress[value].of-status-bad::-webkit-progress-bar {
+  background: #f8c5ae;
+}
+
+.of-progress[value].of-status-poor::-webkit-progress-bar {
+  background: #fcd7ae;
+}
+
+.of-progress[value].of-status-good::-webkit-progress-bar {
+  background: #cee2b9;
+}
+
+.of-progress[value]::-webkit-progress-value {
+  -webkit-transition-property: background;
+  -moz-transition-property: background;
+  transition-property: background;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: "ease-in";
+  -moz-transition-timing-function: "ease-in";
+  transition-timing-function: "ease-in";
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  transition-delay: 0;
+  background: #0064ad;
+}
+
+.of-progress[value].of-status-bad::-webkit-progress-value {
+  background: #e5352d;
+}
+
+.of-progress[value].of-status-poor::-webkit-progress-value {
+  background: #f08a00;
+}
+
+.of-progress[value].of-status-good::-webkit-progress-value {
+  background: #008a00;
+}

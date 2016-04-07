@@ -1,0 +1,112 @@
+// Footer -------------------------------------------------- */
+
+footer.global-footer {
+  text-align: left;
+  padding-top: 2.5rem;
+  padding-bottom: 0;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.footer-columns {
+  @extend %clearfix;
+
+  .footer-column {
+    padding-bottom: 2.5em;
+    width: 100%;
+
+    @include breakpoint(of-screen-md-min) {
+      float: left;
+      padding-right: 2em;
+      padding-bottom: 1.5em;
+
+      &.footer-column--right {
+        text-align: right;
+      }
+
+      &.footer-column--center {
+        text-align: center;
+        padding-left: 2em;
+      }
+
+      &.footer-column--right,
+      &.footer-column--center {
+        p {
+          text-align: inherit !important;
+        }
+      }
+    }
+  }
+
+  &.-columns-1 {
+    .footer-column {
+      float: none;
+      padding-right: 0;
+    }
+  }
+
+  &.-columns-2 {
+    .footer-column {
+
+      @include breakpoint(of-screen-md-min) {
+        width: 50%;
+
+        &.footer-column--right:nth-child(even) {
+          padding-right: 0;
+        }
+      } 
+    }
+  }
+
+  &.-columns-3 {
+    .footer-column {
+
+      @include breakpoint(of-screen-md-min) {
+        width: 50%;
+
+        &.footer-column--right:nth-child(2n) {
+          padding-right: 0;
+        }
+      } 
+
+      @include breakpoint(of-screen-lg-min) {
+        width: 33%;
+
+        &.footer-column--right:nth-child(2n) {
+          padding-right: 2em;
+        }
+
+        &.footer-column--right:nth-child(3n) {
+          padding-right: 0;
+        }
+      } 
+    }
+  }
+
+  &.-columns-4 {
+    .footer-column {
+
+      @include breakpoint(of-screen-md-min) {
+        width: 50%;
+
+        &.footer-column--right:nth-child(2n) {
+          padding-right: 0;
+        }
+      } 
+
+      @include breakpoint(of-screen-lg-min) {
+        width: 25%;
+
+        &.footer-column--right:nth-child(2n) {
+          padding-right: 2em;
+        }
+
+        &.footer-column--right:nth-child(4n) {
+          padding-right: 0;
+        }
+      } 
+    }
+  }
+}

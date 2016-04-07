@@ -1,0 +1,71 @@
+// Breakpoints -------------------------------------------------- */
+
+@mixin sk-breakpoint($point) {
+
+  @if $point == sk-screen-sm-min {
+    @media (min-width: 27em) { @content; }
+  }
+
+  @else if $point == sk-screen-lg-min {
+    @media (min-width: 61.25em) { @content; }
+  }
+
+}
+
+// Helpers -------------------------------------------------- */
+
+@mixin theme($property, $color, $shade: "none", $percent: "none") {
+  @each $theme in $themes {
+    $name: nth($theme, 1);
+    
+    @if $shade != "none" {
+      .sk-theme-#{$name} & {
+        @if $shade == "darken" {
+          @if $percent == "none" {
+            $percent: 5;
+          }
+
+          #{$property}: darken(nth($theme, $color + 1), $percent * 1%);
+        }
+        @else {
+          @if $percent == "none" {
+            $percent: 3;
+          }
+
+          #{$property}: lighten(nth($theme, $color + 1), $percent * 1%); 
+        }
+      }
+    }
+    @else {
+      .sk-theme-#{$name} & {
+        #{$property}: nth($theme, $color + 1);
+      }
+    }
+  }
+}
+
+// Mixin to calculate fixed width sidebar with flexible width content, or vice versa.
+// Example:
+// In .sidebar: @include calc(20%, 20em);
+// In .content: @include calc(80%, 20em, 100%);
+// If supported sidebar will be fixed at 20em width and content will take up additional
+// space until window or container is filled. If not supported the fallback parameters
+// will be used.
+
+@mixin calc($fallback, $fixed-width, $flexible-width: 0) {
+
+  @if $flexible-width == 0 {
+    width: $fallback;
+    width: -webkit-calc(#{$fixed-width});
+    width: -moz-calc(#{$fixed-width});
+    width: calc(#{$fixed-width});
+  }
+
+  @else {
+    width: $fallback;
+    width: -webkit-calc(#{$flexible-width} - #{$fixed-width});
+    width: -moz-calc(#{$flexible-width} - #{$fixed-width});
+    width: calc(#{$flexible-width} - #{$fixed-width});
+  }
+
+}

@@ -1,0 +1,286 @@
+// Extend plugin styles here
+
+// Magnific Popup -------------------------------------------------- */
+
+.mfp-bg {
+  background: #000;
+  opacity: .35;
+}
+
+.mfp-img {
+  padding-bottom: 60px !important;
+
+  @include breakpoint(of-screen-xl-min) {
+    max-width: 1000px !important;
+  }
+}
+
+.mfp-content {
+  @include breakpoint(of-screen-sm-min) {
+    margin: 0 2em;    
+  } 
+}
+
+.mfp-iframe-holder .mfp-content {
+  @include breakpoint(of-screen-sm-min) {
+    max-width: 640px;    
+  } 
+  @include breakpoint(of-screen-lg-min) {
+    max-width: 900px;
+  } 
+}
+
+.mfp-iframe-scaler iframe {
+  box-shadow: none;
+}
+
+.mfp-arrow {
+  display: none !important;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  margin-top: -40px !important;
+  border: 2px solid #fff !important;
+
+  @include breakpoint(of-screen-sm-min) {
+    display: block !important;
+  } 
+}
+
+.mfp-figure {
+
+  &:after {
+    box-shadow: none;
+    background: none !important;  
+  }
+
+  figure {
+    background: none !important;
+
+    figcaption {
+      background: none;
+    }
+  }
+}
+
+.mfp-title,
+.mfp-counter {
+  color: #333;
+  font-size: .8em;
+  height: 3.4em;
+  background: #fff;
+  padding: 1em;
+
+  @include breakpoint(of-screen-sm-min) {
+    font-size: .9em;    
+  } 
+
+  @include breakpoint(of-screen-lg-min) {
+    font-size: 1em;
+  } 
+}
+
+.mfp-title a {
+  text-decoration: underline;
+}
+
+button.mfp-arrow {
+  opacity: 1 !important;
+  right: 3.5em;
+  background: url('../images/icons/arrow-right.svg'), rgba(255, 255, 255, .7);
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: center center;
+
+  &:after,
+  &:before {
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+}
+
+button.mfp-arrow-left {
+  background-image: url('../images/icons/arrow-left.svg');
+  right: auto;
+  left: 3.5em;
+
+}
+
+.mfp-zoom-out-cur, 
+.mfp-zoom-out-cur .mfp-image-holder .mfp-close {
+  cursor: auto;
+}
+
+.mfp-close {
+  cursor: pointer !important;
+  opacity: 1 !important;
+}
+
+.mfp-bottom-bar {
+  margin-top: -60px;
+}
+
+// End of Magnific Popup -------------------------------------------------- */ 
+
+
+
+// Owl Carousel
+
+.item,
+.item-video,
+.owl-stage {
+  /* First height limitation set.
+  height: 200px;
+
+  @include breakpoint(of-screen-sm-min) {
+    height: 300px;
+  } 
+
+  @include breakpoint(of-screen-md-min) {
+    height: 420px;
+  } */
+
+  /* Becomes to high on 3-column pages.
+  @include breakpoint(of-screen-xl-min) {
+    height: 560px;
+  }*/
+}
+
+.owl-video-tn {
+  width: 100%;
+  height: 0;
+  padding-top: 52%;  
+}
+
+.item {
+  transform: translateY(50%); 
+}
+
+.owl-carousel img {
+  transform: translateY(-50%);
+}
+
+.owl-carousel {
+  z-index: 0 !important;
+  // background: #000;
+
+  .wrap {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    max-width: none;
+    text-align: center;
+    transform: translateY(-50%);
+
+    &:before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+      margin-right: -0.25em;
+    }
+  }
+
+  .wrap-video {
+    transform: none;
+  }
+
+  .text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    color: #fff;
+    padding: .6em 1em;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+  }
+}
+
+.owl-dots {
+  position: absolute;
+  top: 5%;
+  right: 1em;
+
+  .touch & {
+    display: none !important;
+  }
+
+  .owl-dot {
+    width: .65em;
+    height: .65em;
+    background: rgba(255, 255, 255, .5);
+    border-radius: 100%;
+    float: left;
+    margin: 0 .2em;
+
+    &.active {
+      background: #fff;
+    }
+  }
+}
+
+.owl-nav {
+  transition: all .2s ease-in-out; 
+
+  > div {
+    transition: all .1s ease-in-out;
+    position: absolute;
+    top: 50%;
+    left: 2em;
+    margin-top: -1.9em;
+    background-image: url('../images/icons/arrow-left.svg');
+    background-color: rgba(255, 255, 255, .7);
+    background-position: center center;
+    background-size: 40%;
+    background-repeat: no-repeat;
+    border-radius: 100%;
+    width: 2.5em;
+    height: 2.5em;
+    text-indent: -9999px;
+  }
+
+  .owl-prev {
+    background-position-x: .7em;
+  }
+
+  .owl-next {
+    position: absolute;
+    right: 2em;
+    left: auto;
+    background-image: url('../images/icons/arrow-right.svg');
+  }
+}
+
+.no-touch .owl-nav {
+  opacity: 0;
+}
+
+.no-touch .owl-carousel:hover {
+  .owl-nav {
+    opacity: 1;
+  }
+}
+
+.owl-carousel .owl-video-play-icon {
+  background: url('../images/icons/play.svg') no-repeat center center #fff;
+  background-size: 1.2em;
+  text-align: center;
+  font-weight: 600;
+  width: 3em;
+  height: 3em;
+  border-radius: .4em;
+  padding: .63em 1.5625em;
+  font-size: .9rem;
+  width: auto;
+  margin-left: -1.5em;
+  margin-top: -2.2em;
+}
+
+.owl-video-tn {
+  //background-size: cover !important;
+}

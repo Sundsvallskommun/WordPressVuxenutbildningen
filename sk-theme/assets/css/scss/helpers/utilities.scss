@@ -1,0 +1,191 @@
+/* Utilities
+-------------------------------------------------- */
+
+// Disabling pointer events on scrolling
+// http://www.thecssninja.com/javascript/pointer-events-60fps
+.disable-hover {
+  pointer-events: none;
+}
+
+// Message for outdated browser
+
+.outdated-browser {
+	text-align: center;
+	background: #fec2c1;
+	border-bottom: 1px solid #d86a73;
+	margin: 0;
+	padding: 1.5em;
+	font-family: sans-serif;
+	line-height: 1.3;
+	color: #333;
+	font-size: .9em;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 9999;
+
+	p {
+		margin: 0;
+	}
+
+	img {
+		display: block;
+		margin: 0 auto 1em;
+	}
+
+	a {
+		color: #333;
+		font-weight: bold;
+	}
+}
+
+// Screen size indicator
+.screen {
+	position: fixed;
+	bottom: 1em;
+	left: 0;
+	right: 0;
+	width: 15em;
+	margin: auto;
+	z-index: 9999;
+
+	&:before {
+		@include smoothing(background);
+		display: block;
+		padding: .5em;
+		color: #fff;
+
+		@include breakpoint(of-screen-xs-min) {
+			background: rgba(125, 0, 0, .8);
+			content: 'of-screen-xs-min'
+		}
+
+		@include breakpoint(of-screen-sm-min) {
+			background: rgba(125, 125, 0, .8);
+			content: 'of-screen-sm-min'
+		}
+
+		@include breakpoint(of-screen-md-min) {
+			background: rgba(125, 0, 125, .8);
+			content: 'of-screen-md-min'
+		}
+
+		@include breakpoint(of-screen-lg-min) {
+			background: rgba(0, 125, 125, .8);
+			content: 'of-screen-lg-min'
+		}
+
+		@include breakpoint(of-screen-xl-min) {
+			background: rgba(0, 125, 0, .8);
+			content: 'of-screen-xl-min'
+		}
+
+		@include breakpoint(of-screen-xxl-min) {
+			background: rgba(0, 0, 125, .8);
+			content: 'of-screen-xxl-min'
+		}
+
+		@include breakpoint(of-screen-xxxl-min) {
+			background: rgba(125, 0, 255, .8);
+			content: 'of-screen-xxxl-min'
+		}
+	}
+}
+
+/*
+ * Image replacement
+ */
+
+.ir {
+	background-color: transparent;
+	border: 0;
+	overflow: hidden;
+	/* IE 6/7 fallback */
+	*text-indent: -9999px;
+}
+
+.ir:before {
+	content: "";
+	display: block;
+	width: 0;
+	height: 150%;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+	display: none !important;
+	visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+	visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+%clearfix:before,
+%clearfix:after {
+	content: " "; /* 1 */
+	display: table; /* 2 */
+}
+
+%clearfix:after {
+	clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+%clearfix {
+	*zoom: 1;
+}

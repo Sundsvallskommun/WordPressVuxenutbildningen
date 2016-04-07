@@ -1,0 +1,51 @@
+
+<section class="of-calendar of-block of-widget">
+<script id="of-calendar-widget-template" type="text/x-handlebars-template">	
+		<header>
+		<h3>Kalender</h3>
+		<a class="of-icon of-icon-only of-absolute-right of-hover-touch-show" href="#">
+			<i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"><use xlink:href="#cog"></use></svg></i>
+			<span>Inställningar</span>
+		</a>
+	</header>
+	
+		<div class="month clndr-controls">
+		<a class="prev-month clndr-previous-button of-icon of-icon-only" href="#">
+			<i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"><use xlink:href="#arrow-left"></use></svg></i>
+			<span>Föregående månad</span>
+		</a>
+		<h2>{{month}} {{year}}</h2>
+		<a class="next-month clndr-next-button of-icon of-icon-only" href="#">
+			<i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"><use xlink:href="#arrow-right"></use></svg></i>
+			<span>Nästa månad</span>
+		</a>
+	</div>
+
+	<div class="days of-inner-padded-rl-half">
+		<ul>
+			<li class="header">V</li>
+			{{#each daysOfTheWeek}}
+			<li class="header">{{safe_string this}}</li>
+			{{/each}}
+
+			{{#widget_list days}}
+				{{this}}
+			{{/widget_list}}
+
+		</ul>
+	</div>
+
+	<article class="day of-inner-padded-trl-half of-feed-list-scroll">
+		<ul class="of-feed-list">
+			{{currentEvents this/currentEvents}}
+		</ul>
+	</article>
+
+	<footer>
+		<a class="of-block-link of-icon of-icon-md" href="samarbetsrum_kalender.php#add-calendar-event">
+			<i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"><use xlink:href="#plus"></use></svg></i>
+			<span>Skapa kalenderhändelse</span>
+		</a>
+	</footer>
+</script>
+</section>

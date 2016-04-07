@@ -1,0 +1,77 @@
+ul.gform_fields {
+	list-style: none;
+	margin-bottom: 1em;
+
+	.gfield_required {
+		color: $rodon2;
+	}
+
+	.gfield_description {
+		margin-top: .25em;
+		font-style: italic;
+		font-size: .875em;
+	}
+
+	.gfield_error {
+
+		input,
+		textarea {
+			border-color: $rodon2;
+			color: $rodon2;
+			background-color: $rodon4;
+		}
+
+		.validation_message {
+			color: $rodon2;
+		}
+	}
+
+	ul {
+		list-style: none;
+	}
+
+	li {
+		margin-left: 0;
+		margin-right: 0;
+
+		select {
+			margin-top: .5em;
+		}
+
+		input {
+
+			@include breakpoint(of-screen-sm-min) {
+				max-width: 60%;
+			}
+		}
+
+		input[type="radio"],
+		input[type="checkbox"] {
+			display: inline-block;
+			margin-right: .4em;
+
+			&+ label {
+				font-weight: normal;
+			}
+		}
+	}
+}
+
+.gform_wrapper {
+	button,
+	input[type="submit"] {
+		background-color: $svartvik1 !important;
+		color: #fff;
+		fill: #fff;
+	}
+}
+
+.gform_heading > span,
+.validation_error {
+	display: block;
+	margin: 1em 0;
+}
+
+.validation_error {
+	color: $rodon2;
+}

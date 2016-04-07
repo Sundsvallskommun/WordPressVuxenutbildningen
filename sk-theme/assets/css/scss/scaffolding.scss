@@ -1,0 +1,288 @@
+// WP -------------------------------------------------- */
+
+.alignleft {
+  float: left;
+}
+
+.alignright {
+  float: right;
+}
+
+img.alignleft {
+  margin: 0 1em 1em 0;
+}
+
+img.alignright {
+  margin: 0 0 1em 1em;
+}
+
+img.alignnone {
+  margin: 0 0 1em 0;
+}
+
+.sk-entry-content img {
+  width: auto !important;
+  height: auto !important;
+}
+
+dd {
+  margin: 1em 0;
+}
+
+blockquote p {
+  padding-left: 1em;
+  border-left: 3px solid #ccc;
+}
+
+.sk-skip-to-content {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+// Overwriting OF -------------------------------------------------- */
+
+html,
+body {
+  position: relative;
+  min-height: 0;
+  word-break: break-word;
+}
+
+html.no-js {
+  margin-top: 0 !important;
+
+  .admin-bar {
+
+    .of-sidebar-menu-advanced-content-wrap {
+      padding-top: 46px;
+
+      @include breakpoint(782px) {
+        padding-top: 32px;
+      }
+    }
+
+    .of-sidebar-inner {
+      padding-top: 46px;
+
+      @include breakpoint(782px) {
+        padding-top: 32px;
+      }
+
+      @include breakpoint(of-screen-lg-min) {
+        padding-top: 0;
+      }
+    }
+
+  }
+}
+
+body {
+  background: #fff;
+}
+
+h1 {
+  font-size: 1.375em;
+
+  @include breakpoint(of-screen-md-min) {
+    font-size: 1.83em;    
+  } 
+
+  @include breakpoint(of-screen-lg-min) {
+    font-size: 2.2em;    
+  } 
+}
+
+h2 {
+  font-size: 1.26em;
+
+  @include breakpoint(of-screen-md-min) {
+    font-size: 1.55em;    
+  } 
+
+  @include breakpoint(of-screen-lg-min) {
+    font-size: 1.75em;    
+  } 
+}
+
+h3 {
+  font-size: 1.075em;
+
+  @include breakpoint(of-screen-md-min) {
+    font-size: 1.3em;    
+  } 
+
+  @include breakpoint(of-screen-lg-min) {
+    font-size: 1.4em;    
+  } 
+}
+
+.of-wrap {
+  max-width: 75rem;
+
+  @include breakpoint(of-screen-sm-min) {
+    padding: 0 2em;
+  } 
+}
+
+.sk-main-padded {
+  margin-top: 2em;
+
+  // .home & {
+  //   margin-top: 0;
+  //   padding-top: 1em;
+
+  //   @include breakpoint(of-screen-sm-min) {
+  //     padding-top: 2em;
+  //   }
+  //   /*margin-top: 2em;
+  //   padding-top: 0;
+
+  //   @include breakpoint(of-screen-lg-min) {
+  //     margin-top: 0;
+  //   }*/
+  // }
+
+  h1 {
+    margin: 0 0 .4rem;    
+  }
+
+  h2 {
+    margin: .8rem 0 .2rem;
+  }
+
+  h3 {
+    margin: .6rem 0 .2rem;
+  }
+
+  h4 {
+    margin: .4rem 0 .1rem;
+  }
+
+  h5 {
+    margin: 0 0 .2rem 0;
+  }
+
+  h6 {
+    margin: 0 0 .1rem 0;
+  }
+
+  h1 + p,
+  h2 + p,
+  h3 + p,
+  h4 + p {
+    margin-top: 0;
+  }
+}
+
+.sk-boxes .sk-list {
+  list-style: disc;
+  list-style-position: inside;
+}
+
+.sk-entry-content {
+  font-size: 1.1em;
+  margin-bottom: 1.36em;
+
+  p {
+    margin-top: 1em;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  li {
+    margin: .75em 0 .75em 0;
+
+    li {
+      //margin-left: 1em;
+    }
+  }
+
+  ul {
+    list-style: disc;
+    list-style-position: inside;
+  }
+
+  .sk-list {
+    padding-left: 2em;
+    margin: 1em 0;
+  }
+
+  ol {
+    list-style: none;
+    counter-reset: item;
+
+    li:before {
+      list-style: none;
+      content: counters(item, ".") " ";
+      counter-increment: item;
+      margin-right: .25em;
+    }
+  }
+}
+
+.sk-open > .sub-menu {
+  display: block;
+}
+
+// Post list -------------------------------------------------- */
+
+ul.of-post-list > li {
+  padding: 1.6em 0;
+}
+
+ul.of-post-list > li header > figure {
+  margin-bottom: .5em;
+  @include breakpoint(of-screen-sm-min) {
+    margin-bottom: 1em;
+    margin-right: 1em;
+    width: 7em;
+    height: 7em;    
+  } 
+}
+
+ul.of-post-list > li header h2 {
+  margin-top: 0;
+  margin-bottom: .5em;
+}
+
+ul.of-post-list > li header p {
+  margin-bottom: .5em;
+}
+
+
+// Activity list -------------------------------------------------- */
+
+
+ul.of-activity-list,
+ul.of-feed-list {
+  list-style: none;
+
+  li {
+    margin: inherit;
+    word-wrap: break-word;
+  }
+
+  svg {
+    width: 1em;
+    height: 1.35em;
+    vertical-align: top;
+  }
+
+  header svg {
+    width: 9px;
+    height: 9px;
+  }
+}
+
+
+// Sidebar menu -------------------------------------------------- */
+
+.of-sidebar-menu ul {
+  height: auto;
+}

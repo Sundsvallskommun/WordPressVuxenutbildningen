@@ -1,0 +1,65 @@
+// If it’s a hack, it goes in _shame.scss.
+// Document all hacks fully:
+// What part of the codebase does it relate to?
+// Why was this needed?
+// How does this fix it?
+// How might you fix it properly, given more time?
+// Do not blame the developer; if they explained why they had to do it then their reasons are probably (hopefully) valid.
+// Try and clean shame.scss up when you have some down time.
+
+/* 
+Make the Facebook Like box responsive (fluid width)
+https://developers.facebook.com/docs/reference/plugins/like-box/ 
+*/
+
+/* 
+This element holds injected scripts inside iframes that in 
+some cases may stretch layouts. So, we're just hiding it. 
+*/
+
+/*.fb_iframe_widget,
+.fb_iframe_widget span,
+.fb_iframe_widget span iframe[style] {
+    width: 100% !important;
+    min-width: 200px;
+}*/
+
+.of-modal-backdrop.of-menu-visible {
+  @include breakpoint(of-screen-lg-min) {
+    display: none;
+  }
+}
+
+.of-sidebar-menu-advanced {
+  -ms-transform: translate(-17.25em, 0);
+
+  @include breakpoint(of-screen-lg-min) {
+    -ms-transform: translate(0, 0) !important;
+  }
+}
+
+.of-sidebar-menu-advanced-active .of-sidebar-menu-advanced {
+  -ms-transform: translate(0, 0);
+}
+
+html,
+body {
+  min-height: 100%;
+  height: 100% !important;
+}
+
+.of-sidebar-menu-advanced-content-wrap {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.sk-page-row {
+  display: table-row;
+  height: 1px;
+
+  &--expanded {
+    height: 100%;
+  }
+}

@@ -1,0 +1,44 @@
+.sk-sidebar {
+  .sk-boxes {
+    > li {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+}
+
+@include breakpoint(of-screen-lg-min) {
+	.of-sidebar-menu-advanced ul > li.of-active,
+	.of-sidebar-menu-advanced .of-sidebar-inner > ul > li.of-active-ascendant {
+		@include theme(background-color, 2);
+	}
+
+	.of-sidebar-menu-advanced ul > li > ul li.of-active > a:first-child {
+		@include theme(color, 1);
+	}
+
+	.of-sidebar-menu-advanced ul > li > ul li.of-active > a:first-child,
+	.of-sidebar-menu-advanced ul > li > ul {
+		background-color: #fff;
+	}
+}
+
+// .of-sidebar-menu-advanced {
+// 	.admin-bar & {
+// 		padding-top: 46px;
+
+// 		@include breakpoint(783px) {
+// 			padding-top: 32px;
+// 		}
+
+// 		@include breakpoint(of-screen-lg-min) {
+// 			padding-top: 0;
+// 		}
+// 	}
+// }
+
+.of-sidebar-menu-advanced-content-wrap,
+.of-sidebar-menu-advanced,
+.of-modal-backdrop {
+	transition: .175s linear;
+}

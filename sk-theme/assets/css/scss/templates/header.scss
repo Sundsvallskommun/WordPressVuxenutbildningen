@@ -1,0 +1,259 @@
+// Header -------------------------------------------------- */
+
+header.sk-site {
+  .sk-search-form {
+    float: right;
+    width: 15em;
+
+    .search-active & {
+      display: block !important;
+    }
+
+    @include breakpoint(of-screen-lg-max) {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      width: 100%;
+      padding: 1em;
+      background: #fafafa;
+      z-index: 500;
+    } 
+
+    input {
+      padding-top: .42em;
+      padding-bottom: .5em;
+      min-height: 0;
+      margin-top: .5em;
+
+      @include breakpoint(of-screen-lg-max) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .of-icon-lg {
+    i,
+    span {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    span {
+      font-size: 1em;
+      margin-top: 0;
+      margin-left: .3em;
+    }
+  }
+  
+  .sk-mobile-menu-toggle {
+    float: left;
+  }
+
+  .sk-mobile-menu-toggle,
+  .sk-search-toggle {
+    vertical-align: middle;
+    display: inline-block;
+
+    i {
+      position: relative;
+      fill: #fff;
+      margin: 0 !important;
+      width: 1.3em !important;
+      height: 1.3em !important;
+
+      &:before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: transparent;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      i {
+        fill: #fff;
+      }
+    }
+  }
+
+  .sk-search-toggle {
+    float: right;
+
+    .sk-search-close {
+      display: none;
+    }
+
+    .search-active & {
+      .sk-search-open {
+        display: none;
+      }
+
+      .sk-search-close {
+        display: block;
+      }
+    }
+  }
+}
+
+.top-banner {
+  padding: 1.5em 0;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+h1.sk-site-title {
+  font-size: 1.4em;
+
+  a {
+    color: $font-color;
+    display: inline-block;
+  }
+}
+
+.sk-main-menu-outer-wrap {
+  min-height: 3.1875em;
+}
+
+.of-sidebar-inner .of-menu-toggle {
+  background-color: $svartvik1;
+
+  a {
+    color: #fff;
+
+    .of-icon i {
+      fill: #fff;
+    }
+  }
+}
+
+.sk-main-menu-wrap {
+  background: $gray2;
+  //font-size: .9em;
+  position: relative;
+  @include theme(background-color, 2);
+
+  .of-sidebar-menu-advanced-active & {
+    position: static;
+  }
+  
+  .sk-sticky-menu & {
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    width: 100%;
+
+    .of-sidebar-menu-advanced-active & {
+      position: static;
+    }
+  }
+
+  @include breakpoint(of-screen-lg-min) {
+    font-size: 1em;    
+  }
+
+  .of-menu-toggle,
+  .sk-search-toggle {
+    font-size: .9em;
+  }
+  
+  nav.main-menu a,
+  .sk-search-toggle,
+  .sk-mobile-menu-toggle {
+    display: block;
+    padding: 1.1em 1.3em 1.1em;
+    color: #fff;
+  }
+
+  .sk-search-toggle:hover,
+  .sk-search-toggle:focus,
+  .sk-mobile-menu-toggle:hover,
+  .sk-mobile-menu-toggle:focus {
+    text-decoration: none;
+    @include theme(background-color, 2, "lighten");
+  }
+}
+
+header.sk-site .of-sidebar-menu-advanced {
+
+  .of-sidebar-inner > ul > li {
+    // Give correct active color in header menu
+    &.of-active-ascendant > a {
+      @include theme(background-color, 2, "darken");
+      color: #fff;
+    }
+  }
+
+  ul > li {
+
+    &.sk-top-bar {
+      height: 10.0625em;
+      @include theme(background-color, 1);
+
+      @include breakpoint(of-screen-lg-min) {
+        display: none;
+      }
+    }
+
+    &.of-menu-toggle {
+      //background-color: #f3f3f3;
+      //@include theme(background-color, 1, "lighten", 10);
+
+      a {
+        padding-top: .98em;
+        padding-bottom: .98em;
+      }
+
+      @include breakpoint(of-screen-lg-min) {
+        display: none;
+      }
+    }
+  }
+
+  @include breakpoint(of-screen-lg-min) {
+    float: left;
+    background: none;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+
+    ul ul {
+      display: none !important; // !important needed because the javascript automatically opens up active elements.
+    }
+
+    ul {
+      li {
+        float: left;
+
+        &, &.of-active-ancestor, &.of-active {
+          background: none;
+          border-bottom: none;
+
+          a {
+            font-weight: 400;
+            color: #fff;
+            padding: 1.24em 1em;
+          }
+        }
+
+        &.of-active-ancestor a, &.of-active a {
+          @include theme(background-color, 2, "darken");
+          padding-bottom: 1.22em;
+        }
+      }
+    }
+
+    .of-expand {
+      display: none;
+    }
+  }
+}
+
+.of-menu-toggle svg {
+  overflow: visible;
+}

@@ -1,0 +1,72 @@
+.sk-grid-list {
+  position: relative;
+  font-size: 0;
+
+  > li {
+    vertical-align: top;
+    display: inline-block;
+    font-size: 1rem;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 2.5em;
+    
+    @include breakpoint(of-screen-sm-min) {
+      width: 50%;
+    }
+
+    @include breakpoint(of-screen-xl-min) {
+      width: 33.3333%;
+    }
+
+    &:last-child:nth-child(odd) {
+      display: inline-block;
+      
+      @include breakpoint(of-screen-sm-min) {
+        display: none;
+      }
+
+      @include breakpoint(of-screen-xl-min) {
+        display: inline-block;
+      }
+    }
+
+    .of-dark-link {
+      text-decoration: none;
+      font-weight: 400;
+    }
+
+    figure {
+      vertical-align: top;
+      display: inline-block;
+      background: none;
+      border-radius: 6em;
+      width: 6em;
+      height: 6em;
+      margin-right: .75em;
+    }
+
+    article {
+      vertical-align: top;
+      display: inline-block;
+      font-size: 1em;
+      padding-right: 2em;
+      
+      &.sk-narrow {
+         @include calc(75%, 7em, 100%);
+      }
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .of-meta-line {
+      padding: 0;
+
+      li {
+        font-size: 1em;
+        margin: 0;
+      }
+    }
+  }
+}

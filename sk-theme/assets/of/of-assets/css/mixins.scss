@@ -1,0 +1,782 @@
+// Breakpoints
+
+@mixin breakpoint($point) {
+
+  @if $point == of-screen-xs-min {
+    @media (min-width: 20em) { @content; }
+  }
+
+  @else if $point == of-screen-sm-min {
+    @media (min-width: 36em) { @content; }
+  }
+
+  @else if $point == of-screen-md-min {
+    @media (min-width: 45em) { @content; }
+  }
+
+  @else if $point == of-screen-lg-min {
+    @media (min-width: 52em) { @content; }
+  }
+
+  @else if $point == of-screen-xl-min {
+    @media (min-width: 70em) { @content; }
+  }
+
+  @else if $point == of-screen-xxl-min {
+    @media (min-width: 80em) { @content; }
+  }
+
+  @else if $point == of-screen-xxxl-min {
+    @media (min-width: 86em) { @content; }
+  }
+
+  @else if $point == of-screen-xs-max {
+    @media (max-width: 20.0625em) { @content; }
+  }
+
+  @else if $point == of-screen-sm-max {
+    @media (max-width: 35.999em) { @content; }
+  }
+
+  @else if $point == of-screen-md-max {
+    @media (max-width: 44.9375em) { @content; }
+  }
+
+  @else if $point == of-screen-lg-max {
+    @media (max-width: 51.9375em) { @content; }
+  }
+
+  @else if $point == of-screen-xl-max {
+    @media (max-width: 69.999em) { @content; }
+  }
+
+  @else if $point == of-screen-xxl-max {
+    @media (max-width: 79.999em) { @content; }
+  }
+
+  @else if $point == of-screen-xxxl-max {
+    @media (max-width: 85.999em) { @content; }
+  }
+
+  @else {
+    @media (min-width: $point) { @content; }
+  }
+
+}
+
+// Mixin to calculate fixed width sidebar with flexible width content, or vice versa.
+// Example:
+// In .sidebar: @include calc(20%, 20em);
+// In .content: @include calc(80%, 20em, 100%);
+// If supported sidebar will be fixed at 20em width and content will take up additional
+// space until window or container is filled. If not supported the fallback parameters
+// will be used.
+
+@mixin calc($fallback, $fixed-width, $flexible-width: 0) {
+
+  @if $flexible-width == 0 {
+    width: $fallback;
+    width: -webkit-calc(#{$fixed-width});
+    width: -moz-calc(#{$fixed-width});
+    width: calc(#{$fixed-width});
+  }
+
+  @else {
+    width: $fallback;
+    width: -webkit-calc(#{$flexible-width} - #{$fixed-width});
+    width: -moz-calc(#{$flexible-width} - #{$fixed-width});
+    width: calc(#{$flexible-width} - #{$fixed-width});
+  }
+
+}
+
+// Mixin for easy transitions
+
+@mixin smoothing($property, $duration: .25s, $timing-function: 'ease-in', $delay: 0) {
+  -webkit-transition-property: $property;
+     -moz-transition-property: $property;
+          transition-property: $property;
+  -webkit-transition-duration: $duration;
+     -moz-transition-duration: $duration;
+          transition-duration: $duration;
+  -webkit-transition-timing-function: $timing-function;
+     -moz-transition-timing-function: $timing-function;
+          transition-timing-function: $timing-function;
+  -webkit-transition-delay: $delay;
+     -moz-transition-delay: $delay;
+          transition-delay: $delay;
+}
+
+
+// Clearfix, usage @include clearfix();
+
+@mixin clearfix() {
+  *zoom: 1;
+
+  &:before,
+  &:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+// Wrapper
+@mixin make-wrap() {
+  @include clearfix();
+  width: 100%;
+  max-width: $wrap-width;
+  margin: 0 auto;
+  padding: 0 1em;
+
+  .of-non-responsive & {
+    width: $wrap-width;
+  }
+
+  &.of-wrap-no-padding {
+    @include breakpoint(of-screen-sm-max) {
+      padding: 0;
+
+      // .of-dialog-block,
+      // .add-module {
+      //   margin-right: 1em;
+      //   margin-left: 1em;
+      // }
+    }
+  }
+
+  &.of-wrap-full-screen {
+    padding: 0;
+    max-width: 99999em;
+  }
+}
+
+
+// Headings
+
+@mixin make-headings() {
+  $i: 1;
+  $il: 6;
+
+  $list: "h#{$i}";
+
+  @for $i from(1+1) through $il {
+    $list: "#{$list}, h#{$i}";
+  }
+
+  #{$list} {
+    font: {
+      family: $font-sans;
+      weight: 600;
+    }
+    margin: 0;
+    line-height: 1.17;
+
+    &.of-clear-push {
+      clear: both;
+      padding-top: 1.5em !important;
+
+      @include breakpoint(of-screen-lg-min) {
+        padding-top: 0 !important; 
+      }
+    }
+
+    &.of-icon i {
+      margin-right: 0;
+      width: .75em;
+      height: .75em;
+    }
+
+    &.of-icon span + i {
+      margin-left: 0;
+    }
+  }
+
+  h1 {
+    font-size: 1.5em;
+
+    @include breakpoint(of-screen-md-min) {
+      font-size: 2.2em;
+    }
+
+    @include breakpoint(of-screen-lg-min) {
+      font-size: 2.875em;
+    }
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  h3 {
+    font-size: 1.625em;
+
+  }
+
+  h4 {
+    font-size: 1.25em;
+  }
+
+  h5 {
+    font-size: 1.125em;
+  }
+
+  h6 {
+    font-size: 1em;
+    text-transform: uppercase;
+  }
+
+}
+
+// Colors
+
+@mixin make-colors() {
+  $colors:
+  gray         $gray1   $gray2    $gray3,
+  bjornstigen  $bjornstigen1   $bjornstigen2   $bjornstigen3,
+  gronsta  $gronsta1   $gronsta2   $gronsta3,
+  juniskar $juniskar1  $juniskar2  $juniskar3,
+  rodon  $rodon1   $rodon2   $rodon3,
+  solum  $solum1   $solum2   $solum3,
+  svartvik $svartvik1  $svartvik2  $svartvik3,
+  vattjom  $vattjom1   $vattjom2   $vattjom3,
+  tranviken  $tranviken1   $tranviken2   $tranviken3;
+
+  @each $color in $colors {
+    $name: nth($color, 1);
+
+    @for $i from 1 through 3 {
+      .of-color-#{$name}#{$i} {
+        color: nth($color, $i + 1);
+        fill: nth($color, $i + 1);
+      }
+
+       .of-background-#{$name}#{$i} {
+          background-color: nth($color, $i + 1);
+        }
+    }
+  }
+}
+
+// Buttons
+
+@mixin make-buttons() {
+
+  $buttons:
+  bjornstigen $bjornstigen1 $bjornstigen2   $bjornstigen3   #dbe8f3     $vattjom4,
+  gronsta     $gronsta1     $gronsta2       $gronsta3       #dbe8f3     $vattjom4,
+  juniskar    $juniskar1    $juniskar2      $juniskar3      #dbe8f3     $vattjom4,
+  rodon       $rodon1       $rodon2         $rodon3         #dbe8f3     $vattjom4,
+  solum       $solum1       $solum2         $solum3         #dbe8f3     $vattjom4,
+  svartvik    $svartvik1    $svartvik2      $svartvik3      #dbe8f3     $vattjom4,
+  vattjom     $vattjom2     $vattjom2       $vattjom3       #dbe8f3     $vattjom4,
+  tranviken   $tranviken1   $tranviken2     $tranviken3     #dbe8f3     $vattjom4;
+
+  @each $button in $buttons {
+    $name: nth($button, 1);
+    $color: nth($button, 2);
+    $loadingcolor: nth($button, 3);
+    $loading: nth($button, 4);
+    $outline-border: nth($button, 5);
+    $outline-background: nth($button, 6);
+
+
+    &.of-btn-#{$name} {
+      background: $color;
+      color: #fff;
+      fill: #fff;
+      
+      i, span {
+        color: #fff;
+        fill: #fff;
+      }
+
+      &:hover,
+      &:focus {
+        background: lighten($color, 6%);
+
+        i, span {
+          color: #fff;
+          fill: #fff;
+        }
+      }
+
+      &:active,
+      &.of-active {
+        background: darken($color, 6%);
+
+        i, span {
+          color: #fff;
+          fill: #fff;
+        }
+      }
+
+      &.loading {
+        background: $loading;
+
+          .of-preloader {
+            background: $loadingcolor;
+          }
+      }
+
+      &.of-btn-outline {
+        background: $outline-background;
+        border-color: $outline-border;
+      }
+
+      &.of-btn-outline,
+      &.of-btn-outline i,
+      &.of-btn-outline span {
+        color: $loadingcolor;
+        fill: $loadingcolor;
+      }
+
+      &.of-btn-round {
+        border-radius: 999em;
+        width: 1.875em;
+        height: 1.875em;
+        padding: .25em 0 0 0;
+
+        i {
+          width: .8125em;
+          height: .8125em;
+        }
+
+        // Icon not supported on round buttons
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+// Columns
+
+@mixin make-columns-xs() {
+  $i: 1;
+  $il: 2;
+
+  @for $i from(1) through $il {
+    $selector: ".of-c-xs-#{$i}";
+
+    #{$selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-xs-min) {
+
+        @if ($i != $il) {
+          width: ((100% / $il) * $i);
+        } @else {
+          width: 100%;
+        }
+      }
+
+    }
+  }
+}
+
+@mixin make-columns-sm() {
+  $i: 1;
+  $il: 4;
+
+  @for $i from(1) through $il {
+    $selector: ".of-c-sm-#{$i}";
+
+    #{$selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-sm-min) {
+
+        @if ($i != $il) {
+          width: ((100% / $il) * $i);
+        } @else {
+          width: 100%;
+        }
+      }
+    }
+
+    .of-c-sm-third {
+      @extend %column;
+
+      @include breakpoint(of-screen-sm-min) {
+        width: (100% / 3);
+      }
+    }
+  }
+}
+
+@mixin make-columns-md() {
+  $i: 1;
+  $il: 4;
+
+  @for $i from(1) through $il {
+    $selector: ".of-c-md-#{$i}";
+
+    #{$selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-md-min) {
+
+        @if ($i != $il) {
+          width: ((100% / $il) * $i);
+        } @else {
+          width: 100%;
+        }
+      }
+    }
+
+    .of-c-md-third {
+      @extend %column;
+
+      @include breakpoint(of-screen-md-min) {
+        width: (100% / 3);
+      }
+    }
+  }
+}
+
+@mixin make-columns-lg() {
+  $i: 1;
+  $il: 8;
+
+  @for $i from(1) through $il {
+    $selector: ".of-c-lg-#{$i}";
+
+    #{$selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-lg-min) {
+
+        @if ($i != $il) {
+          width: ((100% / $il) * $i);
+        } @else {
+          width: 100%;
+        }
+      }
+    }
+
+    .of-c-lg-third {
+      @extend %column;
+
+      @include breakpoint(of-screen-lg-min) {
+        width: (100% / 3);
+      }
+    }
+  }
+}
+
+@mixin make-columns-xl() {
+  $i: 1;
+  $il: 8;
+
+  @for $i from(1) through $il {
+    $selector: ".of-c-xl-#{$i}";
+
+    #{$selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-xl-min) {
+
+        @if ($i != $il) {
+          width: ((100% / $il) * $i);
+          
+        } @else {
+          width: 100%;
+        }
+      }
+    }
+    .of-c-xl-third {
+      @extend %column;
+
+      @include breakpoint(of-screen-xl-min) {
+        width: (100% / 3);
+      }
+    }
+  }
+}
+
+@mixin make-columns-xxl() {
+  $i: 1;
+  $il: 10;
+
+
+  @for $i from(1) through $il {
+    $selector: ".of-c-xxl-#{$i}";
+
+    #{$selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-xxl-min) {
+
+        @if ($i != $il) {
+          width: ((100% / $il) * $i);
+        } @else {
+          width: 100%;
+        }
+      }
+    }
+
+    .of-c-xxl-third {
+      @extend %column;
+
+      @include breakpoint(of-screen-xxl-min) {
+        width: (100% / 3);
+      }
+    }
+  }
+}
+
+@mixin make-columns-xxxl() {
+  $i: 1;
+  $il: 12;
+
+
+  @for $i from(1) through $il {
+    $selector: ".of-c-xxxl-#{$i}";
+
+    #{$selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-xxxl-min) {
+
+        @if ($i != $il) {
+          width: ((100% / $il) * $i);
+        } @else {
+          width: 100%;
+        }
+      }
+    }
+
+    .of-c-xxxl-third {
+      @extend %column;
+
+      @include breakpoint(of-screen-xxxl-min) {
+        width: (100% / 3);
+      }
+    }
+  }
+}
+
+@mixin make-column-fixed() {
+
+  $i: 1;
+  $il: 12;
+  $colWidth: 7em;
+  $fixedGutter: 1.875em;
+
+  @for $i from(1) through $il {
+    $fixed-selector: ".of-c-sm-fixed-#{$i}";
+    $flexible-selector: ".of-c-sm-flexible-#{$i}";
+    $fallback: percentage(($i * $colWidth) / ($colWidth * $il));
+    $gutteredWidth: 100%;
+    $usedGutters: ($il - $i);
+
+    #{$fixed-selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-sm-min) {
+        @include calc($fallback, ($colWidth * $i));
+      }
+
+    }
+
+    #{$fixed-selector}-omega {
+      @extend %column;
+
+      @include breakpoint(of-screen-sm-min) {
+        @include calc($fallback, (($colWidth * $i) - $fixedGutter));
+      }
+    }
+
+    #{$flexible-selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-sm-min) {
+        @include calc($fallback, ($colWidth * ($il - $i)), 100%);
+      }
+    }
+
+    #{$flexible-selector}-omega {
+      @extend %column;
+
+      @include breakpoint(of-screen-sm-min) {
+        @include calc($fallback, (($colWidth * ($il - $i)) - $fixedGutter), 100%);
+      }
+    }
+
+  }
+
+  @for $i from(1) through $il {
+    $fixed-selector: ".of-c-md-fixed-#{$i}";
+    $flexible-selector: ".of-c-md-flexible-#{$i}";
+    $fallback: percentage(($i * $colWidth) / ($colWidth * $il));
+    $gutteredWidth: 100%;
+    $usedGutters: ($il - $i);
+
+    #{$fixed-selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-md-min) {
+        @include calc($fallback, ($colWidth * $i));
+      }
+
+    }
+
+    #{$fixed-selector}-omega {
+      @extend %column;
+
+      @include breakpoint(of-screen-md-min) {
+        @include calc($fallback, (($colWidth * $i) - $fixedGutter));
+      }
+    }
+
+    #{$flexible-selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-md-min) {
+        @include calc($fallback, ($colWidth * ($il - $i)), 100%);
+      }
+    }
+
+    #{$flexible-selector}-omega {
+      @extend %column;
+
+      @include breakpoint(of-screen-md-min) {
+        @include calc($fallback, (($colWidth * ($il - $i)) - $fixedGutter), 100%);
+      }
+    }
+
+  }
+
+  @for $i from(1) through $il {
+    $fixed-selector: ".of-c-lg-fixed-#{$i}";
+    $flexible-selector: ".of-c-lg-flexible-#{$i}";
+    $fallback: percentage(($i * $colWidth) / ($colWidth * $il));
+    $gutteredWidth: 100%;
+    $usedGutters: ($il - $i);
+
+    #{$fixed-selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-lg-min) {
+        @include calc($fallback, ($colWidth * $i));
+      }
+
+    }
+
+    #{$fixed-selector}-omega {
+      @extend %column;
+
+      @include breakpoint(of-screen-lg-min) {
+        @include calc($fallback, (($colWidth * $i) - $fixedGutter));
+      }
+    }
+
+    #{$flexible-selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-lg-min) {
+        @include calc($fallback, ($colWidth * ($il - $i)), 100%);
+      }
+    }
+
+    #{$flexible-selector}-omega {
+      @extend %column;
+
+      @include breakpoint(of-screen-lg-min) {
+        @include calc($fallback, (($colWidth * ($il - $i)) - $fixedGutter), 100%);
+      }
+    }
+
+  }
+
+  @for $i from(1) through $il {
+    $fixed-selector: ".of-c-xl-fixed-#{$i}";
+    $flexible-selector: ".of-c-xl-flexible-#{$i}";
+    $fallback: percentage(($i * $colWidth) / ($colWidth * $il));
+    $gutteredWidth: 100%;
+    $usedGutters: $il - $i;
+
+    #{$fixed-selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-xl-min) {
+        @include calc($fallback, ($colWidth * $i));
+      }
+
+    }
+
+    #{$fixed-selector}-omega {
+      @extend %column;
+
+      @include breakpoint(of-screen-xl-min) {
+        @include calc($fallback, (($colWidth * $i) - $fixedGutter));
+      }
+    }
+
+    #{$flexible-selector} {
+      @extend %column;
+
+      @include breakpoint(of-screen-xl-min) {
+        @include calc($fallback, ($colWidth * ($il - $i)), 100%);
+      }
+    }
+
+    #{$flexible-selector}-omega {
+      @extend %column;
+
+      @include breakpoint(of-screen-xl-min) {
+        @include calc($fallback, (($colWidth * ($il - $i)) - $fixedGutter), 100%);
+      }
+    }
+
+  }
+
+}
+
+@mixin make-column-list() {
+  $columns: 2 3 4;
+  $sizes: sm md lg xl xxl xxxl;
+
+ @each $size in $sizes {
+    @each $column in $columns {
+      &.of-row-#{$size}-#{$column} li {
+        display: inline-block;
+        vertical-align: top;
+
+        @include breakpoint("of-screen-#{$size}-min") {
+          width: percentage(1 / $column);
+        }
+      }
+    }
+  }
+}
+
+// Grid list
+
+@mixin of-grid-list-li() {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: -4px;
+  width: 50%;
+  padding-right: ($gutter / 2);
+
+  &:nth-child(even) {
+    padding-right: 0;
+    padding-left: ($gutter / 2);
+  }
+}
+
+// Hidden mixin
+
+@mixin hidden() {
+  display: none !important;
+  speak: none;
+  // width: 0 !important;
+  // height: 0 !important;
+  // overflow: hidden !important;
+}

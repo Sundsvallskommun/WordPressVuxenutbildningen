@@ -1,0 +1,297 @@
+/* Sizes
+-------------------------------------------------- */
+/* Colors
+-------------------------------------------------- */
+/* Font Settings
+-------------------------------------------------- */
+.of-system-message {
+  position: absolute;
+  background: #fffae1;
+  border: 1px solid #c7c2a9;
+  top: 4em;
+  left: 1em;
+  right: 1em;
+  max-width: 38.625em;
+  margin: auto;
+  z-index: 950;
+  border-radius: .25em;
+  fill: #424242;
+}
+.of-system-message.error {
+  background: #fce8df;
+  border-color: #d9a9a5;
+  fill: #e5352d;
+}
+.of-system-message.warning {
+  background: #f08a00;
+  color: #fff;
+}
+.of-system-message.success {
+  background: #ebf3e3;
+  border-color: #99c7b1;
+  fill: #008a00;
+}
+.of-system-message.info {
+  background: #f6f8fc;
+  border-color: #99c1de;
+  fill: #0064ad;
+}
+.of-system-message > div {
+  position: relative;
+  *zoom: 1;
+  width: 100%;
+  max-width: 86.125rem;
+  margin: 0 auto;
+  padding: 0 1em;
+  padding: 1em 3em 1em 1em;
+  text-align: center;
+  overflow: hidden;
+}
+.of-system-message > div:before, .of-system-message > div:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.of-system-message > div:after {
+  clear: both;
+}
+.of-non-responsive .of-system-message > div {
+  width: 86.125rem;
+}
+@media (max-width: 35.999em) {
+  .of-system-message > div.of-wrap-no-padding {
+    padding: 0;
+  }
+}
+.of-system-message > div.of-wrap-full-screen {
+  padding: 0;
+  max-width: 99999em;
+}
+.of-system-message > div .of-close {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 3.6875em;
+  height: 3.6875em;
+  text-indent: -9999px;
+  z-index: 1;
+  color: #424242;
+  fill: #424242;
+}
+.of-system-message > div .of-close i {
+  display: block;
+  width: .6875em;
+  height: .6875em;
+}
+.of-system-message > div .of-close i svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: .6875em;
+  height: .6875em;
+  margin-top: -.34375em;
+  margin-left: -.34375em;
+}
+.of-system-message > div .of-close span {
+  display: none;
+}
+
+.of-system-message-mini {
+  display: none;
+  position: fixed;
+  width: auto;
+  top: 4.57em;
+  left: 1em;
+  right: 1em;
+  margin: auto;
+  z-index: 982;
+  font-size: .875em;
+}
+@media (min-width: 36em) {
+  .of-system-message-mini {
+    left: 50%;
+    right: auto;
+  }
+}
+.of-system-message-mini.error > div {
+  background: #fce8df;
+  border-color: #d9a9a5;
+  fill: #9f291d;
+}
+.of-system-message-mini.warning > div {
+  background: #f08a00;
+  color: #fff;
+}
+.of-system-message-mini.success > div {
+  background: #ebf3e3;
+  border-color: #99c7b1;
+  fill: #006b37;
+}
+.of-system-message-mini.info > div {
+  background: #f6f8fc;
+  border-color: #99c1de;
+  fill: #0064ad;
+}
+.of-system-message-mini > div {
+  position: relative;
+  *zoom: 1;
+  width: 100%;
+  max-width: 86.125rem;
+  margin: 0 auto;
+  padding: 0 1em;
+  padding: 1em;
+  text-align: center;
+  overflow: hidden;
+  background: #fffae1;
+  border: 1px solid #c7c2a9;
+  border-radius: .25em;
+  fill: #424242;
+}
+.of-system-message-mini > div:before, .of-system-message-mini > div:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.of-system-message-mini > div:after {
+  clear: both;
+}
+.of-non-responsive .of-system-message-mini > div {
+  width: 86.125rem;
+}
+@media (max-width: 35.999em) {
+  .of-system-message-mini > div.of-wrap-no-padding {
+    padding: 0;
+  }
+}
+.of-system-message-mini > div.of-wrap-full-screen {
+  padding: 0;
+  max-width: 99999em;
+}
+@media (min-width: 36em) {
+  .of-system-message-mini > div {
+    margin-left: -50%;
+  }
+}
+
+form .of-system-message,
+form .of-system-message-mini,
+article .of-system-message,
+article .of-system-message-mini,
+div .of-system-message,
+div .of-system-message-mini {
+  position: static;
+}
+form .of-system-message > div,
+form .of-system-message-mini > div,
+article .of-system-message > div,
+article .of-system-message-mini > div,
+div .of-system-message > div,
+div .of-system-message-mini > div {
+  margin-left: 0;
+}
+
+.of-system-message-fixed {
+  background: #fffae1;
+  border-bottom: 1px solid #c7c2a9;
+  fill: #424242;
+}
+@media (min-width: 36em) {
+  .of-system-message-fixed {
+    margin-top: -1.25em;
+    margin-bottom: 1.25em;
+  }
+}
+@media (min-width: 52em) {
+  .of-system-message-fixed {
+    margin-top: -1.6em;
+    margin-bottom: 1.6em;
+  }
+}
+.of-system-message-fixed.error {
+  background: #fce8df;
+  border-color: #d9a9a5;
+  fill: #e5352d;
+}
+.of-system-message-fixed.warning {
+  background: #fcd7ae;
+  fill: #d64c13;
+  border-color: #d64c13;
+}
+.of-system-message-fixed.success {
+  background: #ebf3e3;
+  border-color: #99c7b1;
+  fill: #008a00;
+}
+.of-system-message-fixed.info {
+  background: #f6f8fc;
+  border-color: #99c1de;
+  fill: #0064ad;
+}
+.of-system-message-fixed > div {
+  position: relative;
+  *zoom: 1;
+  width: 100%;
+  max-width: 86.125rem;
+  margin: 0 auto;
+  padding: 0 1em;
+  padding: 1em;
+  text-align: center;
+  overflow: hidden;
+}
+.of-system-message-fixed > div:before, .of-system-message-fixed > div:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.of-system-message-fixed > div:after {
+  clear: both;
+}
+.of-non-responsive .of-system-message-fixed > div {
+  width: 86.125rem;
+}
+@media (max-width: 35.999em) {
+  .of-system-message-fixed > div.of-wrap-no-padding {
+    padding: 0;
+  }
+}
+.of-system-message-fixed > div.of-wrap-full-screen {
+  padding: 0;
+  max-width: 99999em;
+}
+.of-system-message-fixed > div .of-close {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 3.6875em;
+  height: 3.6875em;
+  text-indent: -9999px;
+  z-index: 1;
+  color: #424242;
+  fill: #424242;
+}
+.of-system-message-fixed > div .of-close i {
+  display: block;
+  width: .6875em;
+  height: .6875em;
+}
+.of-system-message-fixed > div .of-close i svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: .6875em;
+  height: .6875em;
+  margin-top: -.34375em;
+  margin-left: -.34375em;
+}
+.of-system-message-fixed > div .of-close span {
+  display: none;
+}

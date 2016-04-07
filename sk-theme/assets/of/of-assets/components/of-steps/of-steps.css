@@ -1,0 +1,52 @@
+/* Sizes
+-------------------------------------------------- */
+/* Colors
+-------------------------------------------------- */
+/* Font Settings
+-------------------------------------------------- */
+.of-steps > li {
+  border: 1px solid #b6c0c6;
+  border-radius: .25em;
+  margin-top: 1.25em;
+}
+.of-steps > li > header,
+.of-steps > li > header a {
+  color: #5c6a70;
+  fill: #5c6a70;
+}
+.of-steps > li > header .of-icon,
+.of-steps > li > header a .of-icon {
+  padding-top: .25em;
+}
+.of-steps > li > article {
+  border-top: 1px solid #485258;
+  display: none;
+}
+.of-steps > li:first-child {
+  margin-top: 0;
+}
+.of-steps > li.active {
+  border-color: #485258;
+}
+.of-steps > li.active > header,
+.of-steps > li.active > header a {
+  color: #424242;
+  fill: #424242;
+}
+.of-steps > li.active > article {
+  display: block;
+}
+.of-steps > li.completed {
+  background: #ebf3e3;
+  border-color: #008a00;
+}
+.of-steps > li.completed > header,
+.of-steps > li.completed > header a {
+  color: #5a961e;
+  fill: #5a961e;
+}
+.of-steps > li.completed > header .of-icon span,
+.of-steps > li.completed > header a .of-icon span {
+  color: #485258;
+  margin-right: .5em;
+}

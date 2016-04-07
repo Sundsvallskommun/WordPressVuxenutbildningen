@@ -1,0 +1,123 @@
+/* Sizes
+-------------------------------------------------- */
+$wrap-width: 86.125rem;
+$gutter: 1.875rem;
+$fixedGutter: 1.875rem;
+
+/* Colors
+-------------------------------------------------- */
+
+$rodon1: #e5352d !default;
+$rodon2: #9f291d !default;
+$rodon3: #f8c5ae !default;
+$rodon4: #fce8df !default;
+
+$solum1: #f08a00 !default;
+$solum2: #d64c13 !default;
+$solum3: #fcd7ae !default;
+$solum4: #feefdf !default;
+
+$gronsta1: #008a00 !default;
+$gronsta2: #006b37 !default;
+$gronsta3: #cee2b9 !default;
+$gronsta4: #ebf3e3 !default;
+
+$vattjom1: #77bee5 !default;
+$vattjom2: #0064ad !default;
+$vattjom3: #d4deef !default;
+$vattjom4: #f6f8fc !default;
+
+$bjornstigen1: #9260a9 !default;
+$bjornstigen2: #5b1f78 !default;
+$bjornstigen3: #d2c5df !default;
+$bjornstigen4: #d2c5df !default;
+
+$juniskar1: #d85194 !default;
+$juniskar2: #a90074 !default;
+$juniskar3: #f6bdc1 !default;
+$juniskar4: #f6bdc1 !default;
+
+$svartvik1: #485258 !default;
+$svartvik2: #5c6a70 !default;
+$svartvik3: #b6c0c6 !default;
+$svartvik4: #e2e6e8 !default;
+$svartvik5: #a0a9ae !default;
+
+$gray1: #cacaca !default;
+$gray2: #424242 !default;
+$gray3: #e7e7e7 !default;
+$gray4: #fafafa !default;
+
+$tranviken1: #eed865 !default;
+$tranviken2: #a69850 !default;
+$tranviken3: #ffffa5 !default;
+
+$font-color: $gray2 !default;
+
+$body-background: $gray3 !default;
+
+$block-background: #fff !default;
+$block-shadow: #cfcfcf !default;
+$block-footer-background: $vattjom4 !default;
+
+$filemanager-background: #f3f3f3 !default;
+$sidebar-menu-advanced-background: $filemanager-background;
+
+$button-border-radius: .1875em !default;
+
+// INPUTS
+// Initial
+
+$input-color: $font-color !default;
+$input-background: $block-background !default;
+$input-border: #c2c2c2 !default;
+
+// Active
+$input-active-border: $svartvik1 !default;
+
+// Disabled
+$input-disabled-background: $gray3 !default;
+$input-disabled-border: $input-border !default;
+$input-disabled-color: $svartvik5 !default;
+
+// Error
+$input-error-background: $rodon4 !default;
+$input-error-border: rgba($rodon2, .4) !default;
+$input-error-color: $rodon2 !default;
+
+// Valid
+$input-valid-background: $gronsta4 !default;
+$input-valid-border: rgba($gronsta2, .4) !default;
+$input-valid-color: $gronsta2 !default;
+
+// EO. INPUTS
+
+$link-color: darken($vattjom2, 10%) !default;
+$link-color-hover: darken($vattjom2, 20%) !default;
+$link-weight: 600 !default;
+
+$meta-line-color: $svartvik2 !default;
+$meta-line-separator: '\B7';
+
+$modal-backdrop: rgba(#000, .35) !default;
+$modal-backdrop-light: rgba($svartvik3, .85) !default;
+
+$searchfield-border-radius: .25em !default;
+$searchfield-background: $svartvik4 !default;
+$searchfield-placeholder-color: $svartvik1 !default;
+$searchfield-focus-background: $block-background !default;
+$searchfield-focus-color: #000 !default;
+
+$sidebar-link-color: $svartvik1 !default;
+$sidebar-link-hover-color: $svartvik3 !default;
+
+$tooltip-background: $svartvik1 !default;
+$tooltip-border-radius: .25em !default;
+
+/* Font Settings
+-------------------------------------------------- */
+
+// SemiBold = 600
+
+$font-sans: 'Source Sans Pro', sans-serif;
+$font-serif: serif !default;
