@@ -5,6 +5,9 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 *Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar*
 
+####1.3.2
+#####Ändringsbegäran
+* Utskriftsvänliga sidor
 
 ####1.2.2
 #####Ändringsbegäran
