@@ -663,7 +663,7 @@ function sortFunction( $a, $b ) {
 			 	$content = $post->post_content;
 
 			 	// print post categories into content in hidden element to be searchable in free search.
-			 	$hidden_meta = '<!-- searchable meta --> <div style="display:none">';
+			 	$hidden_meta = '<!-- searchable meta --> <div class="no-print" style="display:none">';
 			 	foreach( array_unique( $terms_array ) as $term_id ){
 			 		$term = get_term( $term_id, $this->taxonomy );
 			 		$hidden_meta .= $term->name . ' ';

@@ -152,7 +152,7 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                         </td>
 
                     <?php else : ?>
-                      <td data-of-tr="<?php _e( 'Lägg i kurskorg', 'sk' ); ?>">
+                      <td class="no-print" data-of-tr="<?php _e( 'Lägg i kurskorg', 'sk' ); ?>">
                           <?php if( ( strtotime( $todays_date ) >= strtotime( $course_start['sokbar'] ) ) &&  ( strtotime( $todays_date ) <= strtotime( $course_start['sokbarTill'] ) ) ) : ?>
                             
                             <?php if( $course_added == true ) : ?>

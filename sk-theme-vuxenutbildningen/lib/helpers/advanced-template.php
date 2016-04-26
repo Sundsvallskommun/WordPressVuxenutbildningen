@@ -738,8 +738,7 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
     <h2><?php echo $title; ?></h2>
   </header>
 <?php endif; ?>
-
- <div class="sk-courselist-filter">
+ <div class="sk-courselist-filter no-print">
     <form id="form-single-courses">
         <div role="tabpanel">
           <ul class="nav nav-tabs search-education-tabs" role="tablist">
@@ -885,7 +884,7 @@ function the_courselist_block( $with_search_fields = false, $post_data = false )
   $courses = get_course_block( $post_data );
   $collected_terms = get_option( 'vuxenutbildning_categorized_terms', array() );
   ?>
-  <div class="sum-search-result-header"><p><?php printf(__('Sökningen resulterade i totalt %s träffar.'), $courses->found_posts ); ?></p></div>
+  <div class="sum-search-result-header no-print"><p><?php printf(__('Sökningen resulterade i totalt %s träffar.'), $courses->found_posts ); ?></p></div>
   <?php
 
   if ( empty( $courses->posts ) ) : ?>
