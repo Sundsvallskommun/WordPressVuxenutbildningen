@@ -52,7 +52,7 @@ function the_campaign_block() {
     <?php return; ?>
   <?php endif; ?>
   
-  <div class="sk-main sk-campaign-block">
+  <div class="sk-main sk-campaign-block no-print">
     <ul class="sk-campaign-content-list">  
     <?php if ( ! empty( $campaign_posts->title ) ) : ?>
       <header>
