@@ -52,7 +52,6 @@
 			// add_action('init', array( $this, 'import' ));
 
 		}
-
 		/**
      * Add the weekly cron interval to cron schedule list.
      * 
@@ -158,6 +157,7 @@
 					) as P
 				) AND ( meta_key = 'skolform' AND meta_value <> 'YH' );
 			";
+			$wpdb->query( $sql );
 
 			// Delete posts where not in skolform YH
     	$sql = "DELETE post FROM $wpdb->posts AS post 
