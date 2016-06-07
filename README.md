@@ -5,6 +5,10 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 *Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar*
 
+####1.3.3
+#####Bugg
+* Åtgärdat en bugg som inte raderade gammal data i post meta tabellen vid import av kurser.
+
 ####1.3.2
 #####Ändringsbegäran
 * Utskriftsvänliga sidor
