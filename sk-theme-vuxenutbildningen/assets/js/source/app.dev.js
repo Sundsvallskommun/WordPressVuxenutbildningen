@@ -92,6 +92,7 @@
       var form = $(this).closest('form');
       form.find('input[type=text]').val('');
       form.find('input[type=checkbox]').prop('checked', false);
+      form.find('#show-only-appliable').prop('checked', true);
       form.find('#filter-taxonomy-amnesomrade option[value=""]').prop("selected", true);
       form.find('#filter-sortorder option[value="sort-alpha"]').prop("selected", true);
 
@@ -132,7 +133,7 @@
 
       var form = $(this).closest('form');
       form.find('input[type=text]').val('');
-      form.find('input[type=checkbox]').prop('checked', false);
+      form.find('input[type=checkbox]:not("#show-only-appliable")').prop('checked', false);
       form.find('#filter-taxonomy-amnesomrade option[value=""]').prop("selected", true);
       form.find('#filter-sortorder option[value="sort-alpha"]').prop("selected", true);
       
