@@ -1,0 +1,51 @@
+{
+    "key": "group_546f53715c146",
+    "title": "Puff - Facebook",
+    "fields": [
+        {
+            "key": "field_546f53928d4ba",
+            "label": "L\u00e4nk till facebook-sida",
+            "name": "box_facebook_url",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "boxes"
+            },
+            {
+                "param": "post_taxonomy",
+                "operator": "==",
+                "value": "box-type:facebook-flode"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "local": "php",
+    "modified": 1473251571
+}
