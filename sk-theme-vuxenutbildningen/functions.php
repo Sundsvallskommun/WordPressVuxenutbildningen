@@ -28,6 +28,9 @@ require_once( get_template_directory() . '/lib/class-sk-post-types.php' );
 //require_once( get_stylesheet_directory() . '/lib/class-sk-post-types.php' );
 //$osynlig_post_types = new SKChildTheme\SK_Post_Types();
 
+require_once( get_stylesheet_directory() . '/lib/class-sk-short-url.php' );
+$sk_short_url = new SK_ShortURL();
+
 require_once( get_stylesheet_directory() . '/lib/class-sk-course.php' );
 $sk_course = new SK_Course();
 

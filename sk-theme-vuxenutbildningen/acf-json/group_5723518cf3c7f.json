@@ -1,0 +1,45 @@
+{
+    "key": "group_5723518cf3c7f",
+    "title": "L\u00e4nkinst\u00e4llningar",
+    "fields": [
+        {
+            "key": "field_5723519bc8678",
+            "label": "Kort URL",
+            "name": "sk_shortlink",
+            "type": "text",
+            "instructions": "Endast ett ord per s\u00f6kv\u00e4g (t.ex. \"bad\"). Kommaseparerat f\u00f6r flera s\u00f6kv\u00e4gar (t.ex. \"bad, bada, simma\").",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1472736943
+}
