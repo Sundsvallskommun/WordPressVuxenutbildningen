@@ -1,0 +1,73 @@
+{
+    "key": "group_545b731c895bb",
+    "title": "Sidhuvud",
+    "fields": [
+        {
+            "key": "field_545b732dff2fa",
+            "label": "Logotyp",
+            "name": "site_logo",
+            "type": "image",
+            "instructions": "V\u00e4lj en logotyp att visa i webbplatsens sidhuvud. Ifall ingen logotyp finns kommer webbplatsens titel skrivas ut ist\u00e4llet. Logotypen b\u00f6r vara max 200px bred och max 150px h\u00f6g. Ska laddas upp i .jpg eller .png.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_545b75d307f6b",
+            "label": "Bakgrundsbild",
+            "name": "site_header_bg",
+            "type": "image",
+            "instructions": "V\u00e4lj en bakgrundsbild som visas i webbplatsens sidhuvud. Bakgrundsbilden b\u00f6r vara 1500x400px.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-sidhuvud"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "local": "php",
+    "modified": 1473251571
+}

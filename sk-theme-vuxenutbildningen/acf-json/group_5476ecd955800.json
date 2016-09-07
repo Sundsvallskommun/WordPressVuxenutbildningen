@@ -1,0 +1,91 @@
+{
+    "key": "group_5476ecd955800",
+    "title": "Puff - Dokument",
+    "fields": [
+        {
+            "key": "field_5477346726a03",
+            "label": "Titel",
+            "name": "box_documents_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_5476ece4656b8",
+            "label": "Filer",
+            "name": "box_documents",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": "",
+            "max": "",
+            "layout": "table",
+            "button_label": "L\u00e4gg till fil",
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_5476ed31656b9",
+                    "label": "Fil",
+                    "name": "box_documents_file",
+                    "type": "file",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "all",
+                    "min_size": 0,
+                    "max_size": 0,
+                    "mime_types": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "boxes"
+            },
+            {
+                "param": "post_taxonomy",
+                "operator": "==",
+                "value": "box-type:dokument"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "local": "php",
+    "modified": 1473251571
+}

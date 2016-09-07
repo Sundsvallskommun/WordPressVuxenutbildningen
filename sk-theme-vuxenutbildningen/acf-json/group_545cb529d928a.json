@@ -1,0 +1,912 @@
+{
+    "key": "group_545cb529d928a",
+    "title": "Inneh\u00e5llsblock",
+    "fields": [
+        {
+            "key": "field_545cb53512c60",
+            "label": "Inneh\u00e5llsblock",
+            "name": "content_block",
+            "type": "flexible_content",
+            "instructions": "V\u00e4lj dina inneh\u00e5llsblock.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "button_label": "L\u00e4gg till inneh\u00e5llsblock",
+            "min": "",
+            "max": "",
+            "layouts": [
+                {
+                    "key": "546dde5ca1c49",
+                    "name": "slider_block",
+                    "label": "Bildspel",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_546de6cf2e105",
+                            "label": "Titel",
+                            "name": "slider_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_546de912bc7a1",
+                            "label": "Bilder\/Video",
+                            "name": "slider_content",
+                            "type": "flexible_content",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "button_label": "L\u00e4gg till bild\/video",
+                            "min": "",
+                            "max": "",
+                            "layouts": [
+                                {
+                                    "key": "546de917517b3",
+                                    "name": "slider_image",
+                                    "label": "Bild",
+                                    "display": "row",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_546dde76a1c4b",
+                                            "label": "Bild",
+                                            "name": "slider_image_content",
+                                            "type": "image",
+                                            "instructions": "",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "return_format": "id",
+                                            "preview_size": "medium",
+                                            "library": "all",
+                                            "min_width": 0,
+                                            "min_height": 0,
+                                            "min_size": 0,
+                                            "max_width": 0,
+                                            "max_height": 0,
+                                            "max_size": 0,
+                                            "mime_types": ""
+                                        },
+                                        {
+                                            "key": "field_546dea1e63e40",
+                                            "label": "Text",
+                                            "name": "slider_image_text",
+                                            "type": "text",
+                                            "instructions": "Text som skrivs ut p\u00e5 bilden.",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "maxlength": "",
+                                            "readonly": 0,
+                                            "disabled": 0
+                                        },
+                                        {
+                                            "key": "field_546ddf55a1c50",
+                                            "label": "L\u00e4nk",
+                                            "name": "slider_image_url",
+                                            "type": "url",
+                                            "instructions": "L\u00e4nka bilden.",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "placeholder": ""
+                                        }
+                                    ],
+                                    "min": "",
+                                    "max": ""
+                                },
+                                {
+                                    "key": "546de98f996f2",
+                                    "name": "slider_video",
+                                    "label": "Video",
+                                    "display": "row",
+                                    "sub_fields": [
+                                        {
+                                            "key": "field_546ddeaea1c4d",
+                                            "label": "Videol\u00e4nk",
+                                            "name": "slider_video_url",
+                                            "type": "url",
+                                            "instructions": "URL till YouTube\/Vimeo.",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "placeholder": ""
+                                        },
+                                        {
+                                            "key": "field_546ddecda1c4e",
+                                            "label": "Text",
+                                            "name": "slider_video_text",
+                                            "type": "text",
+                                            "instructions": "Text p\u00e5 videon.",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "default_value": "",
+                                            "placeholder": "",
+                                            "prepend": "",
+                                            "append": "",
+                                            "maxlength": "",
+                                            "readonly": 0,
+                                            "disabled": 0
+                                        },
+                                        {
+                                            "key": "field_546ee58a84012",
+                                            "label": "Bild",
+                                            "name": "slider_video_image",
+                                            "type": "image",
+                                            "instructions": "Om du vill anv\u00e4nda en egen bild som poster f\u00f6r videon.",
+                                            "required": 0,
+                                            "conditional_logic": 0,
+                                            "wrapper": {
+                                                "width": "",
+                                                "class": "",
+                                                "id": ""
+                                            },
+                                            "return_format": "id",
+                                            "preview_size": "medium",
+                                            "library": "all",
+                                            "min_width": 0,
+                                            "min_height": 0,
+                                            "min_size": 0,
+                                            "max_width": 0,
+                                            "max_height": 0,
+                                            "max_size": 0,
+                                            "mime_types": ""
+                                        }
+                                    ],
+                                    "min": "",
+                                    "max": ""
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "545cb555d64fd",
+                    "name": "text_block",
+                    "label": "Text",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_5464802e0e910",
+                            "label": "Titel",
+                            "name": "text_title",
+                            "type": "text",
+                            "instructions": "Ifall ni vill ha en titel till inneh\u00e5llsblocket, fyll i den h\u00e4r.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_546b0dd62fa89",
+                            "label": "Kolumner",
+                            "name": "text_columns",
+                            "type": "select",
+                            "instructions": "V\u00e4lj antalet textkolumner ni vill ha.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "1": 1,
+                                "2": 2
+                            },
+                            "default_value": [
+
+                            ],
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "disabled": 0,
+                            "readonly": 0,
+                            "return_format": "value"
+                        },
+                        {
+                            "key": "field_545cb55e12c61",
+                            "label": "Inneh\u00e5ll",
+                            "name": "text_content",
+                            "type": "wysiwyg",
+                            "instructions": "Inneh\u00e5llet f\u00f6r blocket.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1
+                        },
+                        {
+                            "key": "field_546b0e272fa8a",
+                            "label": "Inneh\u00e5ll",
+                            "name": "text_content_2",
+                            "type": "wysiwyg",
+                            "instructions": "Inneh\u00e5llet f\u00f6r blocket.",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_546b0dd62fa89",
+                                        "operator": "==",
+                                        "value": "2"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "545cb6bcdcf21",
+                    "name": "gallery_block",
+                    "label": "Galleri",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_5464807961b44",
+                            "label": "Titel",
+                            "name": "gallery_title",
+                            "type": "text",
+                            "instructions": "Ifall ni vill ha en titel till inneh\u00e5llsblocket, fyll i den h\u00e4r.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_545cb6c2dcf22",
+                            "label": "Galleri",
+                            "name": "gallery_content",
+                            "type": "gallery",
+                            "instructions": "V\u00e4lj era bilder ni vill presentera i galleriet.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "min": "",
+                            "max": "",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": 0,
+                            "min_height": 0,
+                            "min_size": 0,
+                            "max_width": 0,
+                            "max_height": 0,
+                            "max_size": 0,
+                            "mime_types": "",
+                            "insert": "append"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "546c4df5aef9f",
+                    "name": "boxes_block",
+                    "label": "Puffar",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_546c4e1baefa0",
+                            "label": "Titel",
+                            "name": "boxes_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_546c4e6aaefa2",
+                            "label": "Puff",
+                            "name": "boxes_content",
+                            "type": "relationship",
+                            "instructions": "V\u00e4lj puffar att visa p\u00e5 sidan. Dessa h\u00e4mtas fr\u00e5n biblioteket inneh\u00e5llande puffar. Vill du uppdatera inneh\u00e5ll i puffarna g\u00e5 till \"Puffar\" i v\u00e4nstermenyn.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "boxes"
+                            ],
+                            "taxonomy": [
+
+                            ],
+                            "filters": [
+                                "search",
+                                "taxonomy"
+                            ],
+                            "elements": "",
+                            "max": "",
+                            "return_format": "id",
+                            "min": 0
+                        },
+                        {
+                            "key": "field_54f96af002c8e",
+                            "label": "Antal puffar",
+                            "name": "boxes_width",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "2": 2,
+                                "3": 3,
+                                "4": 4
+                            },
+                            "default_value": {
+                                "3": 3
+                            },
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "disabled": 0,
+                            "readonly": 0,
+                            "return_format": "value"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "547f076ccceeb",
+                    "name": "latest_posts_block",
+                    "label": "Senaste inl\u00e4ggen",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_547f0793cceec",
+                            "label": "Titel",
+                            "name": "latest_posts_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_547f07dccceed",
+                            "label": "Kategori",
+                            "name": "latest_posts_category",
+                            "type": "taxonomy",
+                            "instructions": "Senaste inl\u00e4ggen fr\u00e5n valda kategorier kommer att visas. V\u00e4ljer du ingen kategori visas samtliga inl\u00e4gg.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "category",
+                            "field_type": "multi_select",
+                            "allow_null": 0,
+                            "load_save_terms": 0,
+                            "return_format": "id",
+                            "multiple": 0,
+                            "add_term": 1,
+                            "load_terms": 0,
+                            "save_terms": 0
+                        },
+                        {
+                            "key": "field_547f0829cceee",
+                            "label": "Antal inl\u00e4gg",
+                            "name": "latest_posts_limit",
+                            "type": "number",
+                            "instructions": "Max antal inl\u00e4gg som ska visas.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": 4,
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "min": "",
+                            "max": "",
+                            "step": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "54f0345ae6cc1",
+                    "name": "faq_block",
+                    "label": "FAQ",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_54f0345ae6cc2",
+                            "label": "Titel",
+                            "name": "faq_block_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_54f0345ae6cc3",
+                            "label": "Kategori",
+                            "name": "faq_block_category",
+                            "type": "taxonomy",
+                            "instructions": "Senaste inl\u00e4ggen fr\u00e5n valda kategorier kommer att visas. V\u00e4ljer du ingen kategori visas samtliga inl\u00e4gg.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "faqkategorier",
+                            "field_type": "multi_select",
+                            "allow_null": 0,
+                            "load_save_terms": 0,
+                            "return_format": "object",
+                            "multiple": 0,
+                            "add_term": 1,
+                            "load_terms": 0,
+                            "save_terms": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "54eef16518508",
+                    "name": "campaign_block",
+                    "label": "Kampanj",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_54eef16518509",
+                            "label": "Titel",
+                            "name": "campaign_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_54eef1651850a",
+                            "label": "Kategori",
+                            "name": "campaign_category",
+                            "type": "taxonomy",
+                            "instructions": "Senaste inl\u00e4ggen fr\u00e5n valda kategorier kommer att visas. V\u00e4ljer du ingen kategori visas samtliga inl\u00e4gg.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "category",
+                            "field_type": "multi_select",
+                            "allow_null": 0,
+                            "load_save_terms": 0,
+                            "return_format": "id",
+                            "multiple": 0,
+                            "add_term": 1,
+                            "load_terms": 0,
+                            "save_terms": 0
+                        },
+                        {
+                            "key": "field_54ef373d56adc",
+                            "label": "Kampanjyta",
+                            "name": "campaign_content",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "min": "",
+                            "max": "",
+                            "layout": "table",
+                            "button_label": "Add Row",
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_54ef379e56add",
+                                    "label": "Kampanjbild",
+                                    "name": "campaign_image",
+                                    "type": "image",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "return_format": "array",
+                                    "preview_size": "thumbnail",
+                                    "library": "all",
+                                    "min_width": 0,
+                                    "min_height": 0,
+                                    "min_size": 0,
+                                    "max_width": 0,
+                                    "max_height": 0,
+                                    "max_size": 0,
+                                    "mime_types": ""
+                                },
+                                {
+                                    "key": "field_54f040959b9fc",
+                                    "label": "Text",
+                                    "name": "campaign_image_text",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": "",
+                                    "maxlength": "",
+                                    "readonly": 0,
+                                    "disabled": 0
+                                },
+                                {
+                                    "key": "field_54ef37c656ade",
+                                    "label": "L\u00e5sa bilden",
+                                    "name": "campaign_image_lock",
+                                    "type": "checkbox",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "Ja": "Ja"
+                                    },
+                                    "default_value": [
+
+                                    ],
+                                    "layout": "vertical",
+                                    "toggle": 0,
+                                    "return_format": "value"
+                                },
+                                {
+                                    "key": "field_54f08c23bb23f",
+                                    "label": "L\u00e4nk",
+                                    "name": "campaign_image_url",
+                                    "type": "page_link",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "post_type": [
+
+                                    ],
+                                    "taxonomy": [
+
+                                    ],
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "allow_archives": 1
+                                }
+                            ]
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "54802fc04f035",
+                    "name": "form_block",
+                    "label": "Formul\u00e4r",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_54802fca4f036",
+                            "label": "Titel",
+                            "name": "form_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_54802fd84f037",
+                            "label": "Formul\u00e4r",
+                            "name": "form_id",
+                            "type": "gravity_forms_field",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "allow_null": 0,
+                            "allow_multiple": 0,
+                            "multiple": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "5510917ecd79c",
+                    "name": "courselist_block",
+                    "label": "Kurslista",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_551091a0cd79d",
+                            "label": "Titel",
+                            "name": "courselist_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_55e846bd00031",
+                            "label": "Aktivera tabb",
+                            "name": "courselist_activate_tab",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "educations": "Yrkesutbildningar",
+                                "courses": "Kurser"
+                            },
+                            "other_choice": 0,
+                            "save_other_choice": 0,
+                            "default_value": "educations",
+                            "layout": "horizontal",
+                            "allow_null": 0,
+                            "return_format": "value"
+                        },
+                        {
+                            "key": "field_551091b1cd79e",
+                            "label": "Kategorier",
+                            "name": "courselist_categories",
+                            "type": "taxonomy",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "kurskategorier",
+                            "field_type": "checkbox",
+                            "allow_null": 0,
+                            "load_save_terms": 0,
+                            "return_format": "id",
+                            "multiple": 0,
+                            "add_term": 1,
+                            "load_terms": 0,
+                            "save_terms": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-advanced.php"
+            }
+        ]
+    ],
+    "menu_order": -1,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "featured_image"
+    ],
+    "active": 1,
+    "description": "",
+    "local": "php",
+    "modified": 1473251570
+}

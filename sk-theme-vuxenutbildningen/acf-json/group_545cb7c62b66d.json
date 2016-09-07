@@ -1,0 +1,55 @@
+{
+    "key": "group_545cb7c62b66d",
+    "title": "Tema",
+    "fields": [
+        {
+            "key": "field_545b8b365752b",
+            "label": "Temaf\u00e4rg",
+            "name": "site_color",
+            "type": "radio",
+            "instructions": "V\u00e4lj temaf\u00e4rg f\u00f6r din webbplats. F\u00e4rgerna \u00e4r fr\u00e5n Sundvalls kommunkoncerns grafiska profil.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "rodon": "R\u00f6d\u00f6n <span style=\"background: #9f291d; vertical-align: middle; display: inline-block; width: 1.4em; height: 1.4em; border-radius: 3px; margin: 0 .3em;\"><\/span>",
+                "solum": "Solum <span style=\"background: #d64c13; vertical-align: middle; display: inline-block; width: 1.4em; height: 1.4em; border-radius: 3px; margin: 0 .3em;\"><\/span>",
+                "gronsta": "Gr\u00f6nsta <span style=\"background: #006b37; vertical-align: middle; display: inline-block; width: 1.4em; height: 1.4em; border-radius: 3px; margin: 0 .3em;\"><\/span>",
+                "vattjom": "Vattjom <span style=\"background: #0064ad; vertical-align: middle; display: inline-block; width: 1.4em; height: 1.4em; border-radius: 3px; margin: 0 .3em;\"><\/span>",
+                "bjornstigen": "Bj\u00f6rnstigen <span style=\"background: #5b1f78; vertical-align: middle; display: inline-block; width: 1.4em; height: 1.4em; border-radius: 3px; margin: 0 .3em;\"><\/span>",
+                "juniskar": "Junisk\u00e4r <span style=\"background: #a90074; vertical-align: middle; display: inline-block; width: 1.4em; height: 1.4em; border-radius: 3px; margin: 0 .3em;\"><\/span>",
+                "svartvik": "Svartvik <span style=\"background: #5c6a70; vertical-align: middle; display: inline-block; width: 1.4em; height: 1.4em; border-radius: 3px; margin: 0 .3em;\"><\/span>",
+                "tranviken": "Tranviken <span style=\"background: #a69850; vertical-align: middle; display: inline-block; width: 1.4em; height: 1.4em; border-radius: 3px; margin: 0 .3em;\"><\/span>"
+            },
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "",
+            "layout": "horizontal",
+            "allow_null": 0,
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-tema"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "local": "php",
+    "modified": 1473251572
+}

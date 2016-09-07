@@ -1,0 +1,60 @@
+{
+    "key": "group_5476e1c779c8b",
+    "title": "H\u00f6gerspalt",
+    "fields": [
+        {
+            "key": "field_5476e2008da59",
+            "label": "Puffar",
+            "name": "sidebar_boxes",
+            "type": "relationship",
+            "instructions": "V\u00e4lj puffar att visa p\u00e5 sidan. Dessa h\u00e4mtas fr\u00e5n biblioteket inneh\u00e5llande puffar. Vill du uppdatera inneh\u00e5ll i puffarna g\u00e5 till \"Puffar\" i v\u00e4nstermenyn.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "boxes"
+            ],
+            "taxonomy": [
+
+            ],
+            "filters": [
+                "search",
+                "taxonomy"
+            ],
+            "elements": "",
+            "max": "",
+            "return_format": "id",
+            "min": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "default"
+            }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-advanced.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "local": "php",
+    "modified": 1473251571
+}
