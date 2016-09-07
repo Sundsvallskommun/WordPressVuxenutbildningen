@@ -370,11 +370,20 @@ function get_course_block( $postdata = array() ) {
   // delete session on reload.
   if(! get_query_var('page') ){
      unset( $_SESSION['postdata'] );
-   }
+  }
+
 
   $is_course_search = false;
   $is_points_order = false;
   $show_only_appliable = false;
+
+  if( !empty( $postdata ) ) {
+    foreach( $postdata as $data ) {
+      if( $data['name'] == 'show_only_appliable' && $data['value'] === true ) {
+        $show_only_appliable = true;
+      }
+    }
+  }
 
   $filter = array(
     'meta_key'      => array(),
@@ -646,22 +655,22 @@ function the_courselist_filter(){
 
   }
 
-   $post_form_id = false;
-      if(isset($_SESSION['search_history'])){
-        foreach( $_SESSION['search_history'] as $key => $value ){
-          if( $value['name'] == 'post_id' ){
-            $post_form_id = $value['value'];
-          }
-        }
+  $post_form_id = false;
+  if(isset($_SESSION['search_history'])){
+    foreach( $_SESSION['search_history'] as $key => $value ){
+      if( $value['name'] == 'post_id' ){
+        $post_form_id = $value['value'];
       }
-        
+    }
+  }
+
 
   // no session set, check for default values for current page      
   if( isset( $post_form_id ) && $post_form_id != $post->ID ){
     
     $defaults = array();
     $in_categories = get_sub_field( 'courselist_categories', $post->ID );
-    
+
     // which tab is set as default for current search container.
     // get values and save as pre default settings
     
@@ -837,7 +846,16 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
 
             <div class="form-group">
               <br />
-              <label class="checkbox-inline"><input type="checkbox" <?php isset( $filter['show_only_appliable'][0] ) ? checked( $filter['show_only_appliable'][0], 'true' ) : '';?> name="show_only_appliable" value="true"><?php _e( 'Visa endast sökbara', 'sk' ); ?></label>
+              <?php
+                if( isset( $filter['show_only_appliable'][0] ) && $filter['show_only_appliable'][0] == 'true' ) {
+                  $checked = 'checked';
+                } elseif( isset( $filter['show_only_appliable'][0] ) && $filter['show_only_appliable'][0] == 'false' ) {
+                  $checked = '';
+                } else {
+                  $checked = 'checked';
+                }
+              ?>
+              <label class="checkbox-inline"><input type="checkbox" id="show-only-appliable" <?php echo $checked; ?> name="show_only_appliable" value="true"><?php _e( 'Visa endast sökbara', 'sk' ); ?></label>
             </div>
 
           </div><!-- .tab-content -->

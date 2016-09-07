@@ -114,10 +114,14 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
               </thead>
               <tbody>
                 <?php 
-                  if( $type === 'YH' )
+                  if( $type === 'YH' ) {
                     $course_starts = SK_Course::get_yh_course_starts();
-                  else
+                  } else {
                     $course_starts = unserialize( $post_meta['kursstarter'][0] );
+                  }
+
+                  // Sort the course starts by the start date
+                  SK_Course::sort_by_column( $course_starts, 'sokbarTill' );
 
                   $flag = false;
                   $course_added = false;
