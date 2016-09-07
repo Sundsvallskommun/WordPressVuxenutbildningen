@@ -39,3 +39,6 @@ function mce_add_buttons( $buttons ){
     return $buttons;
 }
 add_filter( 'mce_buttons_2', 'mce_add_buttons' );
+
+
+

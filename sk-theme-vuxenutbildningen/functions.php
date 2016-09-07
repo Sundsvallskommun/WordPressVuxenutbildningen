@@ -32,7 +32,6 @@ require_once( get_stylesheet_directory() . '/lib/class-sk-course.php' );
 $sk_course = new SK_Course();
 
 // Load the xml parser file
-
 require_once( get_stylesheet_directory() . '/lib/class-sk-alvis-xml-import.php' );
 $importer = new SKChildTheme\SK_Alvis_XML_Import();
 
@@ -45,7 +44,7 @@ function theme_enqueue_styles() {
     //wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/assets/css/style.min.css' );
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/assets/css/style.css' );
 
-		// JS   echo PRODUCTION_MODE ? '.min' : ''; 
+		// JS echo PRODUCTION_MODE ? '.min' : '';
 		if( PRODUCTION_MODE === true )
 			wp_enqueue_script( 'child-js', get_stylesheet_directory_uri() . '/assets/js/app.min.js', array( 'jquery', 'jquery-ui-datepicker' ), null, true );
 		else
@@ -53,13 +52,12 @@ function theme_enqueue_styles() {
   
 
   	// include jquery jscroll
-    wp_enqueue_script( 'jscroll', get_stylesheet_directory_uri() . '/assets/js/lib/jscroll/jquery.jscroll.min.js', array( 'jquery' ), null, true );
-    
+	wp_enqueue_script( 'jscroll', get_stylesheet_directory_uri() . '/assets/js/lib/jscroll/jquery.jscroll.min.js', array( 'jquery' ), null, true );
 
 /**
  * TODO: move
  */
-wp_localize_script( 'child-js', 'ajax_object', array( 
+wp_localize_script( 'child-js', 'ajax_object', array(
   'ajaxurl'     => admin_url( 'admin-ajax.php' ),
   'ajax_nonce'  => wp_create_nonce('ajax_nonce'),
   'course_basket_link' => site_url() . '/kurskorg'
