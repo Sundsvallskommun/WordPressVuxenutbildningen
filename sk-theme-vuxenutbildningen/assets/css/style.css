@@ -1848,7 +1848,46 @@ select[multiple].input-lg {
   padding-left: 25px;
   list-style-type: disc;
 }
+.single-kurs .printable {
+  display: none;
+}
 
+@media print {
+  .single-kurs .printable {
+    width: 100%;
+    clear: both;
+  }
+  .single-kurs .printable img.header {
+    display: block !important;
+  }
+  .single-kurs .printable .course-permalink {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .single-kurs .printable .course-meta {
+    width: 40% !important;
+    float: left !important;
+  }
+  .single-kurs .printable .course-meta p {
+    font-weight: normal !important;
+    margin: 0;
+    padding: 0;
+  }
+  .single-kurs .printable .course-meta p span {
+    font-weight: bold !important;
+  }
+  .single-kurs .printable .course-starts {
+    width: 40% !important;
+    float: left !important;
+    text-align: left;
+  }
+  .single-kurs .printable .course-starts table {
+    width: 100%;
+  }
+  .single-kurs .printable .course-starts table tr td {
+    width: 30%;
+  }
+}
 /*
 	@import "bootstrap/variables";
 	@import "bootstrap/mixins";

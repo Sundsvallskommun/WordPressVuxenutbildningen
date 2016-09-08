@@ -31,6 +31,9 @@ if ( has_boxes( 'sidebar_boxes', 'get_field' ) ) {
 
 $sub_courses = get_post_meta( $post->ID, 'included_courses', true ); 
 ?>
+<div class="printable">
+    <img src="http://vuxenutbildningen.dev/app/uploads/2015/06/vst15logoii.png" alt="<?php echo( get_bloginfo( 'title' ) ); ?>" class="header" />
+</div>
 <div class="of-wrap<?php echo ! empty( $classes ) ? ' ' . implode( ' ', $classes ) : ''; ?>">
   <div class="sk-main-padded of-inner-padded-t">
     <?php if ( $menu !== false ): ?>
@@ -48,8 +51,14 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
 
       	<div class="<?php if ( has_boxes( 'sidebar_boxes', 'get_field' ) ) : ?>of-c-sm-4 of-inner-padded-r of-c-md-4 of-c-lg-12 of-c-xl-flexible-10<?php else : ?>of-c-sm-4<?php endif; ?> of-omega">
           <?php edit_post_link( __( 'Redigera den här sidan', 'sk' ), '<p>', '</p>' ); ?>
-          <?php SKChildTheme\custom_breadcrumbs(); ?>
+          <?php SKChildTheme\custom_breadcrumbs('no-print'); ?>
     			<h1><?php the_title(); ?></h1>
+                <div class="printable">
+                    <div class="course-permalink">
+                        <?php _e('Kursadress:', 'sk'); ?><br />
+                        <?php echo get_permalink( get_the_ID() ); ?>
+                    </div>
+                </div>
     			<div class="sk-entry-content">
     				<?php the_content(); ?>                        
             <div class="single-course-back-btn"> 
@@ -59,7 +68,7 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
             </div><!-- .single-course-back-btn -->
     			</div><!-- .sk-entry-content -->
 
-          <div class="course-meta-data">
+          <div class="course-meta-data no-print">
             <div class="course-starts">
             <?php if(! $type === 'YH' ) : ?>
               <p><span class="course-meta-title"><?php _e( 'Anmälningskod: ', 'sk' ); ?></span> <?php echo !empty( $post_meta['anmkod'][0] ) ? $post_meta['anmkod'][0] : ''; ?></p>
@@ -98,9 +107,35 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
             </div><!-- .course-starts -->
     		  </div><!-- .course-meta-data -->
 
+            <?php
+            $course_info_to_print = '<div class="course-meta">';
+            $course_info_to_print .= '<h3>' . __( 'Kursinfo', 'sk' ) .'</h3>';
+
+            $ci_points = !empty( $post_meta['poang'][0] ) ? $post_meta['poang'][0] : '';
+            $ci_study_form = !empty( $post_meta['kurskategori'][0] ) ? $post_meta['kurskategori'][0] : '';
+            $ci_school_form = !empty( $post_meta['skolform'][0] ) ? $post_meta['skolform'][0] : '';
+            $ci_pre_knowledge = !empty( $post_meta['forkunskap'][0] ) ? wpautop( $post_meta['forkunskap'][0] ): '';
+
+            $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Poäng: ', 'sk' ) . '</span>' . $ci_points . '</p>';
+            $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Studieform: ', 'sk' ) .'</span>' . $ci_study_form .'</p>';
+            $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Skolform: ', 'sk' ) . '</span>' . $ci_school_form . '</p>';
+            $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Förkunskap: ', 'sk' ) . '</span>' . $ci_pre_knowledge . '</p>';
+
+            if (! $type === 'YH' ) {
+                $ci_entry_code = !empty( $post_meta['anmkod'][0] ) ? $post_meta['anmkod'][0] : '';
+                $ci_course_code = !empty( $post_meta['kurskod'][0] ) ? $post_meta['kurskod'][0] : '';
+                $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Anmälningskod: ', 'sk' ) . '</span>' . $ci_entry_code . '</p>';
+                $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Kurskod: ', 'sk' ) . '</span>' . $ci_course_code . '</p>';
+            }
+
+
+            $course_info_to_print .= '</div>';
+            ?>
+
+
           <?php edit_post_link( __( 'Redigera den här sidan', 'sk' ), '<p>', '</p>' ); ?>
 
-          <div class="course-starts" style="clear:both;">
+          <div class="course-starts no-print" style="clear:both;">
             <h3><?php _e( 'Kursstarter', 'sk' ); ?></h3>
             <table class="of-table of-table-even-odd" cellpadding="0" cellspacing="0">
               <thead>
@@ -126,7 +161,9 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                   $flag = false;
                   $course_added = false;
                   if(! empty( $course_starts ) ) :
-                  foreach( $course_starts as $course_start ) : 
+                      $course_starts_to_print = '<div class="course-starts"><h3>' . __('Kursstarter', 'sk') . '</h3><table><thead><tr><th>' . __('Ort', 'sk') . '</th><th>' . __('Startdatum', 'sk') . '</th><th>' . __('Sökbar till', 'sk') . '</th></tr></thead>';
+                  foreach( $course_starts as $course_start ) :
+
 
                     // check if course already added
                     if(isset( $_SESSION['course_basket']['courses'] )){
@@ -144,7 +181,8 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                       <td data-of-tr="<?php _e( 'Sökbar till', 'sk' ); ?>"><?php echo $course_start['sokbarTill']; ?></td>
                       <td data-of-tr="<?php _e( 'Startdatum', 'sk' ); ?>"><?php echo $course_start['datum']; ?></td>
                       <td data-of-tr="<?php _e( 'Ort', 'sk' ); ?>"><?php echo $course_start['ort']; ?></td>
-                      
+
+                      <?php $course_starts_to_print .= sprintf( "<tr><td>%s</td><td>%s</td><td>%s</td></tr>", $course_start['ort'], $course_start['datum'], $course_start['sokbarTill'] ); ?>
 
                       <?php if( $type === 'YH') : ?>
                         <td>
@@ -174,13 +212,17 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                       <?php endif; ?>
                     
                     </tr>
-                <?php endif; endforeach; endif;?>
+
+                <?php endif; endforeach;
+                      $course_starts_to_print .= '</table></div>';
+                  endif;?>
+                        </div>
+
                   <?php if( isset( $flag ) && $flag === false ) : ?>
                     <tr>
                       <td colspan="5"><i><?php _e('Det finns för närvarande inga aktuella startdatum för denna kurs.', 'sk') ?></i></td>
                     </tr>
                   <?php endif; ?>
-
 
               </tbody>
             </table>
@@ -188,10 +230,17 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
               <input type="hidden" name="namn" value="<?php echo get_the_title( get_the_id() ); ?>" />
               <input type="hidden" name="anmkod" value="<?php echo $post_meta['anmkod'][0]; ?>" />
             </form>
-          </div>            
+          </div>
+
+          <div class="printable">
+              <?php
+              echo $course_info_to_print;
+              echo $course_starts_to_print;
+              ?>
+          </div>
 
     	<?php endwhile; // end of the loop. ?>
-      
+
       <?php if ( has_boxes( 'sidebar_boxes', 'get_field' ) ) : ?>
         <div class="of-c-sm-4 of-c-md-4 of-c-lg-12 of-c-xl-fixed-2 of-omega sk-sidebar">
           <?php SKChildTheme\the_boxes_block( 'sidebar_boxes', 'get_field', true ); ?>

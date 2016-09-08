@@ -1089,8 +1089,8 @@ function the_image_and_textlist_box( $box ) {
   <?php
 }
 
-function custom_breadcrumbs() {
- 
+function custom_breadcrumbs( $extra_classes = null ) {
+
   $showOnHome = 0; // 1 - show breadcrumbs on the homepage, 0 - don't show
   $delimiter = ''; // delimiter between crumbs &raquo;
   $home = 'Hem'; // text for the 'Home' link
@@ -1104,10 +1104,14 @@ function custom_breadcrumbs() {
   if (is_home() || is_front_page()) {
  
     if ($showOnHome == 1) echo '<ul class="of-breadcrumbs"><li><a href="' . $homeLink . '">' . $home . '</a></li></ul>';
- 
+
   } else {
- 
-    echo '<ul class="of-breadcrumbs"><li><a href="' . $homeLink . '">' . $home . '</a></li> ' . $delimiter . ' ';
+
+    $classes = 'of-breadcrumbs';
+    if ( isset( $extra_classes ) ) {
+      $classes = "of-breadcrumbs $extra_classes";
+    }
+    echo '<ul class="' . $classes . '"><li><a href="' . $homeLink . '">' . $home . '</a></li> ' . $delimiter . ' ';
  
     if ( is_category() ) {
       $thisCat = get_category(get_query_var('cat'), false);

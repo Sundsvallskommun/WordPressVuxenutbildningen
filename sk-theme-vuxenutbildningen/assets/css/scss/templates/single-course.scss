@@ -29,4 +29,64 @@
 
 	}
 
+	.printable {
+		display: none;
+	}
+
+}
+
+@media print {
+
+	.single-kurs {
+
+		.printable {
+			width: 100%;
+			clear: both;
+
+			img.header {
+				display: block !important;
+			}
+
+			.course-permalink {
+				width: 100%;
+				margin-bottom: 10px;
+			}
+
+			.course-meta {
+				width: 40% !important;
+				float: left !important;
+
+				p {
+					font-weight: normal !important;
+					margin: 0;
+					padding: 0;
+
+					span {
+						font-weight: bold !important;
+					}
+				}
+
+			}
+
+			.course-starts {
+				width: 40% !important;
+				float: left !important;
+				text-align: left;
+
+				table {
+					width: 100%;
+
+					tr {
+						td {
+							width: 30%;
+						}
+					}
+				}
+
+			}
+
+		}
+
+	}
+
 }
