@@ -60,6 +60,15 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                     </div>
                 </div>
     			<div class="sk-entry-content">
+                    <?php if ( has_post_thumbnail() ) : ?>
+                        <?php
+                        $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(), 'image-1000' );
+                        $alt = get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true );
+                        ?>
+                        <figure class="sk-featured-image-single">
+                            <img src="<?php echo $thumbnail[0]; ?>" alt="<?php echo $alt; ?>">
+                        </figure>
+                    <?php endif; ?>
     				<?php the_content(); ?>                        
             <div class="single-course-back-btn"> 
               <a href="#" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced" onclick="window.history.go(-1); return false;">
