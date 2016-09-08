@@ -50,15 +50,9 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
       <?php $post_meta = get_post_custom( get_the_ID() ); ?>
 
       	<div class="<?php if ( has_boxes( 'sidebar_boxes', 'get_field' ) ) : ?>of-c-sm-4 of-inner-padded-r of-c-md-4 of-c-lg-12 of-c-xl-flexible-10<?php else : ?>of-c-sm-4<?php endif; ?> of-omega">
-          <?php edit_post_link( __( 'Redigera den här sidan', 'sk' ), '<p>', '</p>' ); ?>
+          <?php edit_post_link( __( 'Redigera den här sidan', 'sk' ), '<p>', '</p>', null, 'post-edit-link no-print' ); ?>
           <?php SKChildTheme\custom_breadcrumbs('no-print'); ?>
     			<h1><?php the_title(); ?></h1>
-                <div class="printable">
-                    <div class="course-permalink">
-                        <?php _e('Kursadress:', 'sk'); ?><br />
-                        <?php echo get_permalink( get_the_ID() ); ?>
-                    </div>
-                </div>
     			<div class="sk-entry-content">
                     <?php if ( has_post_thumbnail() ) : ?>
                         <?php
@@ -69,6 +63,12 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                             <img src="<?php echo $thumbnail[0]; ?>" alt="<?php echo $alt; ?>">
                         </figure>
                     <?php endif; ?>
+                    <div class="printable">
+                        <div class="course-permalink">
+                            <?php _e('Kursadress:', 'sk'); ?><br />
+                            <?php echo get_permalink( get_the_ID() ); ?>
+                        </div>
+                    </div>
     				<?php the_content(); ?>                        
             <div class="single-course-back-btn"> 
               <a href="#" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced" onclick="window.history.go(-1); return false;">
@@ -142,7 +142,7 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
             ?>
 
 
-          <?php edit_post_link( __( 'Redigera den här sidan', 'sk' ), '<p>', '</p>' ); ?>
+          <?php edit_post_link( __( 'Redigera den här sidan', 'sk' ), '<p>', '</p>', null, 'post-edit-link no-print' ); ?>
 
           <div class="course-starts no-print" style="clear:both;">
             <h3><?php _e( 'Kursstarter', 'sk' ); ?></h3>

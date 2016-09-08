@@ -1853,6 +1853,17 @@ select[multiple].input-lg {
 }
 
 @media print {
+  #wpadminbar,
+  #sidebar {
+    display: none !important;
+  }
+
+  #content {
+    margin-left: 0;
+    float: none;
+    width: auto;
+  }
+
   .single-kurs .printable {
     width: 100%;
     clear: both;

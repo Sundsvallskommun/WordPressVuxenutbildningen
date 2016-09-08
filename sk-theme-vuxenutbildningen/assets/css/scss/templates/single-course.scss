@@ -37,6 +37,17 @@
 
 @media print {
 
+	#wpadminbar,
+	#sidebar {
+		display:none !important;
+	}
+
+	#content{
+		margin-left:0;
+		float:none;
+		width:auto;
+	}
+
 	.single-kurs {
 
 		.printable {
