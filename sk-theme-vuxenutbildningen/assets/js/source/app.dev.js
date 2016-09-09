@@ -14,7 +14,7 @@
 
     if( $('#course-occupation').is(':hidden') ) {  
       form.find('#course-occupation input[type=text]').val('');
-      form.find('#course-occupation input[type=checkbox]:not(input[id^="filter-ort"])').prop('checked', false);
+      form.find('#course-occupation input[type=checkbox]').prop('checked', false);
       form.find("#course-occupation select option").prop('selected', false);
     }
 
