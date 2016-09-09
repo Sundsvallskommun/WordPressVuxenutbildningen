@@ -136,6 +136,7 @@
       form.find('input[type=checkbox]:not("#show-only-appliable")').prop('checked', false);
       form.find('#filter-taxonomy-amnesomrade option[value=""]').prop("selected", true);
       form.find('#filter-sortorder option[value="sort-alpha"]').prop("selected", true);
+      form.find('input[id^="filter-ort"]').prop("checked", true);
       
       if( $(this).attr('id') == 'educations-tab' ) {
         $('#filter-search-type').val('educations');
@@ -145,7 +146,7 @@
 
       var post_object = $('#form-single-courses').serializeArray();
 
-      $('#course-occupation input[type=checkbox]').each( function( element ) {
+      $("#course-occupation input[type=checkbox]:not('input[id^=filter-ort]')").each( function( element ) {
 
         $(this).prop('checked', false );
 

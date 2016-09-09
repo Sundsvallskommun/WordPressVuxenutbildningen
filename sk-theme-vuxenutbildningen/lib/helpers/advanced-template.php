@@ -459,7 +459,7 @@ function get_course_block( $postdata = array() ) {
          $filter['free_search_education'] = $value['value'];
       }
 
-    if( $value['name'] == 'filter-search-courses' ) {
+      if( $value['name'] == 'filter-search-courses' ) {
          $filter['free_search_courses'] = $value['value'];
       }
 
@@ -483,6 +483,15 @@ function get_course_block( $postdata = array() ) {
           $is_course_search = false;
         }
 
+      }
+
+      if ( $value['name'] == 'filter-ort' ) {
+	      if( !empty( $value['value'] ) ) {
+		      $term = get_term_by('name', $value['value'], 'kurskategorier');
+		      if( isset( $term ) && is_object( $term ) ) {
+			      $filter['ort'] []= $term->slug;
+		      }
+	      }
       }
 
       if( $value['name'] == 'show_only_appliable' && $value['value'] == 'true' ) {
@@ -568,6 +577,17 @@ function get_course_block( $postdata = array() ) {
       'value'   => 'true',
       'compare' => '=',
     );
+
+  }
+
+  if( !empty( $filter['ort'] ) ) {
+
+	  $tax_query[] = array(
+		  'taxonomy' => 'kurskategorier',
+		  'field'     => 'slug',
+		  'terms'    => $filter['ort'],
+		  'operator' => 'IN',
+	  );
 
   }
 
@@ -667,8 +687,11 @@ function the_courselist_filter(){
 
   // no session set, check for default values for current page      
   if( isset( $post_form_id ) && $post_form_id != $post->ID ){
-    
     $defaults = array();
+	  $defaults['filter-ort'] = array(
+		  'sundsvall',
+		  'timra'
+	  );
     $in_categories = get_sub_field( 'courselist_categories', $post->ID );
 
     // which tab is set as default for current search container.
@@ -738,7 +761,6 @@ $ie_fix = false;
 if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
   $ie_fix = true;
 }
-
 ?>
 
 <?php if ( !empty( $title ) ) : ?>
@@ -778,9 +800,18 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
               <?php endif; ?>
               </div><!-- .form-group -->
 
+              <div class="form-group">
+                <h5><?php _e('Ort', 'sk'); ?></h5>
+                <label class="checkbox-inline"><input id="filter-ort-sundsvall-education" type="checkbox" <?php if( isset( $filter['filter-ort'] ) ) checked( in_array( 'sundsvall', $filter['filter-ort'] ) ? 'sundsvall' : '' , 'sundsvall' );?> value="sundsvall" name="filter-ort"> <?php _e('Sundsvall', 'sk'); ?></label>
+                <label class="checkbox-inline"><input id="filter-ort-timra-education" type="checkbox" <?php if( isset( $filter['filter-ort'] ) ) checked( in_array( 'timra', $filter['filter-ort'] ) ? 'timra' : '' , 'timra' );?> value="timra" name="filter-ort"> <?php _e('Timrå', 'sk'); ?></label>
+              </div><!-- .form-group -->
+
               <?php 
                 $exclude_niva_from_courses = array('grundskola');
-                foreach( $collected_terms['niva'] as $item ) : 
+              ?>
+                <h5><?php _e('Nivå', 'sk'); ?></h5>
+              <?php
+                foreach( $collected_terms['niva'] as $item ) :
                   if(! in_array( mb_strtolower( $item ), $exclude_niva_from_courses )) :
                   ?>
                 <label class="checkbox-inline"><input type="checkbox" <?php if( isset( $filter['filter-metapackage-skolform'] ) ) checked( in_array( $item, $filter['filter-metapackage-skolform'] ) ? $item : '' , $item );?> value="<?php echo $item ?>" name="filter-metapackage-skolform"> <?php echo $item ?></label>
@@ -796,6 +827,12 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
               <?php else : ?>
                 <input type="text" id="course-filter-search" class="filter-search" name="filter-search-courses" placeholder="<?php _e('Ange sökord', 'sk') ?>" value="<?php echo isset( $filter['filter-search-courses'][0] ) ? $filter['filter-search-courses'][0] : '' ?>">
               <?php endif; ?>
+              </div><!-- .form-group -->
+
+              <div class="form-group">
+                <h5><?php _e('Ort', 'sk'); ?></h5>
+                <label class="checkbox-inline"><input id="filter-ort-sundsvall-course" type="checkbox" <?php if( isset( $filter['filter-ort'] ) ) checked( in_array( 'sundsvall', $filter['filter-ort'] ) ? 'sundsvall' : '' , 'sundsvall' );?> value="sundsvall" name="filter-ort"> <?php _e('Sundsvall', 'sk'); ?></label>
+                <label class="checkbox-inline"><input id="filter-ort-timra-course" type="checkbox" <?php if( isset( $filter['filter-ort'] ) ) checked( in_array( 'timra', $filter['filter-ort'] ) ? 'timra' : '' , 'timra' );?> value="timra" name="filter-ort"> <?php _e('Timrå', 'sk'); ?></label>
               </div><!-- .form-group -->
 
               <?php if( !empty( $collected_terms['niva'] ) ) : ?>
