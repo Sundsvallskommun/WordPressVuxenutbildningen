@@ -14,8 +14,8 @@
 
     if( $('#course-occupation').is(':hidden') ) {  
       form.find('#course-occupation input[type=text]').val('');
-      form.find('#course-occupation input[type=checkbox]').prop('checked', false);
-      form.find("#course-occupation select option").prop('selected', false);    
+      form.find('#course-occupation input[type=checkbox]:not(input[id^="filter-ort"])').prop('checked', false);
+      form.find("#course-occupation select option").prop('selected', false);
     }
 
     if( $('#course-single').is(':hidden') ) {
@@ -96,7 +96,6 @@
       form.find('#filter-taxonomy-amnesomrade option[value=""]').prop("selected", true);
       form.find('#filter-sortorder option[value="sort-alpha"]').prop("selected", true);
 
-
       // delete our transient
       var data = {
         'action': 'delete_session'
@@ -105,6 +104,8 @@
       }).error(function(){
         alert ("Problem calling: " + action + "\nCode: " + this.status + "\nException: " + this.statusText);
       });
+
+      form.find('input[id^="filter-ort"]').prop("checked", true);
 
       $( '#btn-courselist-filter' ).click();
 
