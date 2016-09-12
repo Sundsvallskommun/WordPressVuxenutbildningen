@@ -32,7 +32,7 @@ if ( has_boxes( 'sidebar_boxes', 'get_field' ) ) {
 $sub_courses = get_post_meta( $post->ID, 'included_courses', true ); 
 ?>
 <div class="printable">
-    <img src="http://vuxenutbildningen.dev/app/uploads/2015/06/vst15logoii.png" alt="<?php echo( get_bloginfo( 'title' ) ); ?>" class="header" />
+    <img src="<?php echo get_stylesheet_directory_uri() . '/assets/images/Sidhuvud-utskrift-webb.jpg'; ?>" alt="<?php echo( get_bloginfo( 'title' ) ); ?>" class="header" />
 </div>
 <div class="of-wrap<?php echo ! empty( $classes ) ? ' ' . implode( ' ', $classes ) : ''; ?>">
   <div class="sk-main-padded of-inner-padded-t">

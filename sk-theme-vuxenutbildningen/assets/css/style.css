@@ -1870,6 +1870,8 @@ select[multiple].input-lg {
   }
   .single-kurs .printable img.header {
     display: block !important;
+    position: relative;
+    top: 0px;
   }
   .single-kurs .printable .course-permalink {
     width: 100%;
