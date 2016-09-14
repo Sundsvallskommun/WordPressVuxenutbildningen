@@ -63,19 +63,20 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                             <img src="<?php echo $thumbnail[0]; ?>" alt="<?php echo $alt; ?>">
                         </figure>
                     <?php endif; ?>
-                    <div class="printable">
-                        <div class="course-permalink">
-                            <?php _e('Kursadress:', 'sk'); ?><br />
-                            <?php echo get_permalink( get_the_ID() ); ?>
-                        </div>
-                    </div>
-    				<?php the_content(); ?>                        
-            <div class="single-course-back-btn"> 
-              <a href="#" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced" onclick="window.history.go(-1); return false;">
-                <span><?php _e('Tillbaka till sök', 'sk') ?></span>
-              </a>
-            </div><!-- .single-course-back-btn -->
-    			</div><!-- .sk-entry-content -->
+    				<?php the_content(); ?>
+                <div class="single-course-button-row">
+                    <div class="single-course-back-btn">
+                      <a href="#" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced" onclick="window.history.go(-1); return false;">
+                        <span><?php _e('Tillbaka till sök', 'sk') ?></span>
+                      </a>
+                    </div><!-- .single-course-back-btn -->
+                    <div class="single-course-back-btn">
+                        <a href="#" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced" onclick="window.print(); return false;">
+                            <span><?php _e('Skriv ut kurs', 'sk') ?></span>
+                        </a>
+                    </div><!-- .single-course-back-btn -->
+                </div>
+    		</div><!-- .sk-entry-content -->
 
           <div class="course-meta-data no-print">
             <div class="course-starts">

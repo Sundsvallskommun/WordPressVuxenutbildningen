@@ -1852,6 +1852,13 @@ select[multiple].input-lg {
   display: none;
 }
 
+.single-course-button-row {
+  width: 100%;
+}
+.single-course-button-row .single-course-back-btn {
+  float: left;
+  margin-right: 5px;
+}
 @media print {
   #wpadminbar,
   #sidebar {
