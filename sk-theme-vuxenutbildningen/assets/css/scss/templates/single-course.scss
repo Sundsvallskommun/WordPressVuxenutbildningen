@@ -51,14 +51,13 @@
 	.single-kurs {
 
 		.printable {
-			width: 100%;
-			clear: both;
 
 			img.header {
-				display: block !important;
+			  display: block !important;
               position: relative;
               top: 0px;
 			}
+
 
 			.course-permalink {
 				width: 100%;
@@ -88,6 +87,7 @@
 
 				table {
 					width: 100%;
+					text-align: left;
 
 					tr {
 						td {
@@ -96,6 +96,11 @@
 					}
 				}
 
+			}
+
+			figure {
+				float: right;
+				margin-left: 10px;
 			}
 
 		}
