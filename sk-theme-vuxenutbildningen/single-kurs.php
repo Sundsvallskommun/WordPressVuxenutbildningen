@@ -59,9 +59,11 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                         $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(), 'image-1000' );
                         $alt = get_post_meta( get_post_thumbnail_id( $post->ID ), '_wp_attachment_image_alt', true );
                         ?>
-                        <figure class="sk-featured-image-single no-print">
-                            <img src="<?php echo $thumbnail[0]; ?>" alt="<?php echo $alt; ?>">
-                        </figure>
+                        <div class="textwrap-thumbnail no-print">
+                            <figure class="sk-featured-image-single no-print">
+                                <img src="<?php echo $thumbnail[0]; ?>" alt="<?php echo $alt; ?>">
+                            </figure>
+                        </div>
                         <div class="printable textwrap">
                             <?php
                             $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(), 'thumbnail' );

@@ -7,6 +7,14 @@
 		width: 65%; 
 		float:left; 
 		padding-right: 25px;
+
+		.textwrap-thumbnail {
+			width: 300px;
+			float: right;
+			margin-bottom: 10px;
+			padding-left: 10px;
+		}
+
 	}
 
 	.course-meta-data{
@@ -101,6 +109,23 @@
 			figure {
 				float: right;
 				margin-left: 10px;
+			}
+
+		}
+
+
+	}
+
+}
+
+@media (max-width: 700px) {
+	.single-kurs {
+
+		.sk-entry-content{
+
+			.textwrap-thumbnail {
+				width: 100%;
+				margin-bottom: 10px;
 			}
 
 		}
