@@ -1838,6 +1838,10 @@ select[multiple].input-lg {
   margin-bottom: 10px;
   padding-left: 10px;
 }
+.single-kurs #single-course-back-button {
+  float: right;
+  margin-top: 10px;
+}
 .single-kurs .course-meta-data {
   width: 35%;
   float: right;

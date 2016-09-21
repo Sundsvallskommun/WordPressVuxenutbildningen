@@ -77,11 +77,6 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
     				<?php the_content(); ?>
                 <div class="single-course-button-row">
                     <div class="single-course-back-btn">
-                      <a href="#" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced" onclick="window.history.go(-1); return false;">
-                        <span><?php _e('Tillbaka till sök', 'sk') ?></span>
-                      </a>
-                    </div><!-- .single-course-back-btn -->
-                    <div class="single-course-back-btn">
                         <a href="#" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced" onclick="window.print(); return false;">
                             <span><?php _e('Skriv ut kurs', 'sk') ?></span>
                         </a>
@@ -251,6 +246,14 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
               <input type="hidden" name="namn" value="<?php echo get_the_title( get_the_id() ); ?>" />
               <input type="hidden" name="anmkod" value="<?php echo $post_meta['anmkod'][0]; ?>" />
             </form>
+          </div>
+
+          <div class="single-course-button-row">
+              <div class="single-course-back-btn">
+                  <a href="#" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced" id="single-course-back-button" onclick="window.history.go(-1); return false;">
+                      <span><?php _e('Tillbaka till sök', 'sk') ?></span>
+                  </a>
+              </div><!-- .single-course-back-btn -->
           </div>
 
           <div class="printable">
