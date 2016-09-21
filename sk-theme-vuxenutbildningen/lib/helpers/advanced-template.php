@@ -971,13 +971,7 @@ function the_courselist_block( $with_search_fields = false, $post_data = false )
           $terms_array = array();
         ?>
         <li>
-            <?php if ( has_post_thumbnail( $course->ID ) ) : ?>
-              <figure>
-                <?php echo get_the_post_thumbnail( $course->ID, 'thumbnail' ); ?>
-              </figure>
-            <?php endif; ?>
-            
-            <article<?php if ( has_post_thumbnail( $course->ID ) ) : ?> class="sk-narrow"<?php endif; ?>>
+            <article>
               <header>
                 <h5><a href="<?php echo get_permalink( $course->ID ); ?>"><?php echo $course->post_title; ?></a></h5>
               </header>
