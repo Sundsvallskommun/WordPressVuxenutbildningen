@@ -156,9 +156,9 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
             <table class="of-table of-table-even-odd" cellpadding="0" cellspacing="0">
               <thead>
                 <tr>
-                  <th><?php _e( 'Sökbar', 'sk' ); ?></th>
-                  <th><?php _e( 'Sökbar till', 'sk' ); ?></th>
                   <th><?php _e( 'Startdatum', 'sk' ); ?></th>
+                  <th><?php _e( 'Sökbar från', 'sk' ); ?></th>
+                  <th><?php _e( 'Sökbar till', 'sk' ); ?></th>
                   <th><?php _e( 'Ort', 'sk' ); ?></th>
                   <th></th>
                 </tr>
@@ -193,9 +193,9 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                       $flag = true;
                   ?>
                     <tr>
-                      <td data-of-tr="<?php _e( 'Sökbar', 'sk' ); ?>"><?php echo $course_start['sokbar']; ?></td>
-                      <td data-of-tr="<?php _e( 'Sökbar till', 'sk' ); ?>"><?php echo $course_start['sokbarTill']; ?></td>
                       <td data-of-tr="<?php _e( 'Startdatum', 'sk' ); ?>"><?php echo $course_start['datum']; ?></td>
+                      <td data-of-tr="<?php _e( 'Sökbar från', 'sk' ); ?>"><?php echo $course_start['sokbar']; ?></td>
+                      <td data-of-tr="<?php _e( 'Sökbar till', 'sk' ); ?>"><?php echo $course_start['sokbarTill']; ?></td>
                       <td data-of-tr="<?php _e( 'Ort', 'sk' ); ?>"><?php echo $course_start['ort']; ?></td>
 
                       <?php $course_starts_to_print .= sprintf( "<tr><td>%s</td><td>%s</td><td>%s</td></tr>", $course_start['ort'], $course_start['datum'], $course_start['sokbarTill'] ); ?>
