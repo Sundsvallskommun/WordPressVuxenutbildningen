@@ -1832,6 +1832,16 @@ select[multiple].input-lg {
   float: left;
   padding-right: 25px;
 }
+.single-kurs .sk-entry-content .textwrap-thumbnail {
+  width: 300px;
+  float: right;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+.single-kurs #single-course-back-button {
+  float: right;
+  margin-top: 10px;
+}
 .single-kurs .course-meta-data {
   width: 35%;
   float: right;
@@ -1848,7 +1858,66 @@ select[multiple].input-lg {
   padding-left: 25px;
   list-style-type: disc;
 }
+.single-kurs .printable {
+  display: none;
+}
 
+@media print {
+  #wpadminbar,
+  #sidebar {
+    display: none !important;
+  }
+
+  #content {
+    margin-left: 0;
+    float: none;
+    width: auto;
+  }
+
+  .single-kurs .printable img.header {
+    display: block !important;
+    position: relative;
+    top: 0px;
+  }
+  .single-kurs .printable .course-permalink {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .single-kurs .printable .course-meta {
+    width: 40% !important;
+    float: left !important;
+  }
+  .single-kurs .printable .course-meta p {
+    font-weight: normal !important;
+    margin: 0;
+    padding: 0;
+  }
+  .single-kurs .printable .course-meta p span {
+    font-weight: bold !important;
+  }
+  .single-kurs .printable .course-starts {
+    width: 40% !important;
+    float: left !important;
+    text-align: left;
+  }
+  .single-kurs .printable .course-starts table {
+    width: 100%;
+    text-align: left;
+  }
+  .single-kurs .printable .course-starts table tr td {
+    width: 30%;
+  }
+  .single-kurs .printable figure {
+    float: right;
+    margin-left: 10px;
+  }
+}
+@media (max-width: 700px) {
+  .single-kurs .sk-entry-content .textwrap-thumbnail {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
 /*
 	@import "bootstrap/variables";
 	@import "bootstrap/mixins";

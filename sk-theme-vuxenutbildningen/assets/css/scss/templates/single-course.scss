@@ -7,6 +7,19 @@
 		width: 65%; 
 		float:left; 
 		padding-right: 25px;
+
+		.textwrap-thumbnail {
+			width: 300px;
+			float: right;
+			margin-bottom: 10px;
+			padding-left: 10px;
+		}
+
+	}
+
+	#single-course-back-button {
+		float: right;
+		margin-top: 10px;
 	}
 
 	.course-meta-data{
@@ -25,6 +38,101 @@
 			font-size: 14px;
 			padding-left: 25px;
 			list-style-type: disc;
+		}
+
+	}
+
+	.printable {
+		display: none;
+	}
+
+}
+
+@media print {
+
+	#wpadminbar,
+	#sidebar {
+		display:none !important;
+	}
+
+	#content{
+		margin-left:0;
+		float:none;
+		width:auto;
+	}
+
+	.single-kurs {
+
+		.printable {
+
+			img.header {
+			  display: block !important;
+              position: relative;
+              top: 0px;
+			}
+
+
+			.course-permalink {
+				width: 100%;
+				margin-bottom: 10px;
+			}
+
+			.course-meta {
+				width: 40% !important;
+				float: left !important;
+
+				p {
+					font-weight: normal !important;
+					margin: 0;
+					padding: 0;
+
+					span {
+						font-weight: bold !important;
+					}
+				}
+
+			}
+
+			.course-starts {
+				width: 40% !important;
+				float: left !important;
+				text-align: left;
+
+				table {
+					width: 100%;
+					text-align: left;
+
+					tr {
+						td {
+							width: 30%;
+						}
+					}
+				}
+
+			}
+
+			figure {
+				float: right;
+				margin-left: 10px;
+			}
+
+		}
+
+
+	}
+
+}
+
+@media (max-width: 700px) {
+	.single-kurs {
+
+		.sk-entry-content{
+
+			.textwrap-thumbnail {
+				width: 100%;
+				margin-bottom: 10px;
+			}
+
 		}
 
 	}

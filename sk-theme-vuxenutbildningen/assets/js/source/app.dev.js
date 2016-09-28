@@ -15,7 +15,7 @@
     if( $('#course-occupation').is(':hidden') ) {  
       form.find('#course-occupation input[type=text]').val('');
       form.find('#course-occupation input[type=checkbox]').prop('checked', false);
-      form.find("#course-occupation select option").prop('selected', false);    
+      form.find("#course-occupation select option").prop('selected', false);
     }
 
     if( $('#course-single').is(':hidden') ) {
@@ -92,9 +92,9 @@
       var form = $(this).closest('form');
       form.find('input[type=text]').val('');
       form.find('input[type=checkbox]').prop('checked', false);
+      form.find('#show-only-appliable').prop('checked', true);
       form.find('#filter-taxonomy-amnesomrade option[value=""]').prop("selected", true);
       form.find('#filter-sortorder option[value="sort-alpha"]').prop("selected", true);
-
 
       // delete our transient
       var data = {
@@ -104,6 +104,8 @@
       }).error(function(){
         alert ("Problem calling: " + action + "\nCode: " + this.status + "\nException: " + this.statusText);
       });
+
+      form.find('input[id^="filter-ort"]').prop("checked", true);
 
       $( '#btn-courselist-filter' ).click();
 
@@ -132,9 +134,10 @@
 
       var form = $(this).closest('form');
       form.find('input[type=text]').val('');
-      form.find('input[type=checkbox]').prop('checked', false);
+      form.find('input[type=checkbox]:not("#show-only-appliable")').prop('checked', false);
       form.find('#filter-taxonomy-amnesomrade option[value=""]').prop("selected", true);
       form.find('#filter-sortorder option[value="sort-alpha"]').prop("selected", true);
+      form.find('input[id^="filter-ort"]').prop("checked", true);
       
       if( $(this).attr('id') == 'educations-tab' ) {
         $('#filter-search-type').val('educations');
@@ -144,7 +147,7 @@
 
       var post_object = $('#form-single-courses').serializeArray();
 
-      $('#course-occupation input[type=checkbox]').each( function( element ) {
+      $("#course-occupation input[type=checkbox]:not('input[id^=filter-ort]')").each( function( element ) {
 
         $(this).prop('checked', false );
 

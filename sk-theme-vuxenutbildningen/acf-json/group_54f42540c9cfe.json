@@ -1,0 +1,218 @@
+{
+    "key": "group_54f42540c9cfe",
+    "title": "Puff - Bild och l\u00e4nklista",
+    "fields": [
+        {
+            "key": "field_54f433cb1f5dc",
+            "label": "Titel",
+            "name": "box_image_and_textlist_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_54f425434f89b",
+            "label": "Bild",
+            "name": "box_image_and_textlist_image",
+            "type": "image",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_54f425924f89c",
+            "label": "L\u00e4nklista",
+            "name": "box_image_and_textlist_links",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "button_label": "L\u00e4gg till l\u00e4nk",
+            "min": "",
+            "max": "",
+            "layouts": [
+                {
+                    "key": "54f425af054d2",
+                    "name": "box_image_and_textlist_internal_link",
+                    "label": "Intern l\u00e4nk",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_54f435245d205",
+                            "label": "L\u00e4nktext",
+                            "name": "text",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_54f425e24f89e",
+                            "label": "L\u00e4nk",
+                            "name": "link",
+                            "type": "page_link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+
+                            ],
+                            "taxonomy": [
+
+                            ],
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "allow_archives": 1
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "54f5ad9efc9f4",
+                    "name": "box_image_and_textlist_external_link",
+                    "label": "Extern l\u00e4nk",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_54f5add5fc9f5",
+                            "label": "L\u00e4nktext",
+                            "name": "text",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_54f5adf3fc9f6",
+                            "label": "L\u00e4nk",
+                            "name": "link",
+                            "type": "url",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_54f5ae47fc9f7",
+                            "label": "\u00d6ppnas i nytt f\u00f6nster",
+                            "name": "new_window",
+                            "type": "checkbox",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "Ja": "Ja"
+                            },
+                            "default_value": [
+
+                            ],
+                            "layout": "vertical",
+                            "toggle": 0,
+                            "return_format": "value"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "boxes"
+            },
+            {
+                "param": "post_taxonomy",
+                "operator": "==",
+                "value": "box-type:bild-och-lanklista"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "local": "php",
+    "modified": 1473251571
+}

@@ -1,0 +1,195 @@
+{
+    "key": "group_546c6c3e516df",
+    "title": "Puff - L\u00e4nklista",
+    "fields": [
+        {
+            "key": "field_547f2ebd343f9",
+            "label": "Titel",
+            "name": "box_links_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_546eeb66612ac",
+            "label": "L\u00e4nk",
+            "name": "box_links",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "button_label": "L\u00e4gg till l\u00e4nk",
+            "min": 1,
+            "max": "",
+            "layouts": [
+                {
+                    "key": "546eeb6dd5595",
+                    "name": "external_link",
+                    "label": "Extern l\u00e4nk",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_546eebc1612ad",
+                            "label": "L\u00e4nktext",
+                            "name": "text",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_546eebcc612ae",
+                            "label": "L\u00e4nk",
+                            "name": "link",
+                            "type": "url",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "http:\/\/sundsvall.se"
+                        },
+                        {
+                            "key": "field_546eebd7612af",
+                            "label": "\u00d6ppna i nytt f\u00f6nster",
+                            "name": "new_window",
+                            "type": "checkbox",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "Ja": "Ja"
+                            },
+                            "default_value": [
+
+                            ],
+                            "layout": "vertical",
+                            "toggle": 0,
+                            "return_format": "value"
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                {
+                    "key": "546eebef612b0",
+                    "name": "internal_link",
+                    "label": "Intern l\u00e4nk",
+                    "display": "row",
+                    "sub_fields": [
+                        {
+                            "key": "field_546eec281eeb5",
+                            "label": "L\u00e4nktext",
+                            "name": "text",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_546eebf9612b1",
+                            "label": "L\u00e4nk",
+                            "name": "link",
+                            "type": "page_link",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [
+                                "post",
+                                "page"
+                            ],
+                            "taxonomy": [
+
+                            ],
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "allow_archives": 1
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "boxes"
+            },
+            {
+                "param": "post_taxonomy",
+                "operator": "==",
+                "value": "box-type:lanklista"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "local": "php",
+    "modified": 1473251571
+}

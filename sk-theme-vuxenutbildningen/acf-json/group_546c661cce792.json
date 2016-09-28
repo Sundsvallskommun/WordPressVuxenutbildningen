@@ -1,0 +1,177 @@
+{
+    "key": "group_546c661cce792",
+    "title": "Puff - Bild",
+    "fields": [
+        {
+            "key": "field_546c9ab844c0f",
+            "label": "Bild",
+            "name": "box_image_image",
+            "type": "image",
+            "instructions": "Bilden ska vara mins 540x405.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_546c662f06f82",
+            "label": "Text",
+            "name": "box_image_content",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_546c67b806f84",
+            "label": "Extern l\u00e4nk",
+            "name": "box_image_is_external",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Ja": "Ja"
+            },
+            "default_value": [
+
+            ],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value"
+        },
+        {
+            "key": "field_546c684906f86",
+            "label": "L\u00e4nk",
+            "name": "box_image_internal_link",
+            "type": "page_link",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_546c67b806f84",
+                        "operator": "!=",
+                        "value": "Ja"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "page",
+                "post"
+            ],
+            "taxonomy": [
+
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "allow_archives": 1
+        },
+        {
+            "key": "field_546c67fb06f85",
+            "label": "L\u00e4nk",
+            "name": "box_image_external_link",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_546c67b806f84",
+                        "operator": "==",
+                        "value": "Ja"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_546c6dacabbbc",
+            "label": "Nytt f\u00f6nster",
+            "name": "box_image_new_window",
+            "type": "checkbox",
+            "instructions": "Vill du att bes\u00f6karna ska \u00f6ppna l\u00e4nken i samma f\u00f6nster eller i ett nytt?",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Ja": "Ja"
+            },
+            "default_value": [
+
+            ],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "boxes"
+            },
+            {
+                "param": "post_taxonomy",
+                "operator": "==",
+                "value": "box-type:bild"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "local": "php",
+    "modified": 1473251571
+}

@@ -101,7 +101,7 @@ class SK_Course {
       'hierarchical'       => false,
       'menu_position'      => null,
       'menu_icon'          => 'dashicons-book-alt',
-      'supports'           => array( 'title', 'editor' )
+      'supports'           => array( 'title', 'editor', 'thumbnail' )
     );
 
     register_post_type( 'kurs', $args );
@@ -331,11 +331,17 @@ class SK_Course {
 
 
     return $_courses;
-    
 
+  }
 
+  public static function sort_by_column( &$array, $column, $direction = SORT_ASC ) {
+      $reference_array = array();
 
+      foreach($array as $key => $row) {
+        $reference_array[$key] = $row[$column];
+      }
 
+      array_multisort($reference_array, $direction, $array);
   }
 
 }

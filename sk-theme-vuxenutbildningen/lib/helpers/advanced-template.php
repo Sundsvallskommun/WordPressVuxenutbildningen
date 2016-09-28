@@ -370,11 +370,20 @@ function get_course_block( $postdata = array() ) {
   // delete session on reload.
   if(! get_query_var('page') ){
      unset( $_SESSION['postdata'] );
-   }
+  }
+
 
   $is_course_search = false;
   $is_points_order = false;
   $show_only_appliable = false;
+
+  if( !empty( $postdata ) ) {
+    foreach( $postdata as $data ) {
+      if( $data['name'] == 'show_only_appliable' && $data['value'] === true ) {
+        $show_only_appliable = true;
+      }
+    }
+  }
 
   $filter = array(
     'meta_key'      => array(),
@@ -450,7 +459,7 @@ function get_course_block( $postdata = array() ) {
          $filter['free_search_education'] = $value['value'];
       }
 
-    if( $value['name'] == 'filter-search-courses' ) {
+      if( $value['name'] == 'filter-search-courses' ) {
          $filter['free_search_courses'] = $value['value'];
       }
 
@@ -474,6 +483,15 @@ function get_course_block( $postdata = array() ) {
           $is_course_search = false;
         }
 
+      }
+
+      if ( $value['name'] == 'filter-ort' ) {
+	      if( !empty( $value['value'] ) ) {
+		      $term = get_term_by('name', $value['value'], 'kurskategorier');
+		      if( isset( $term ) && is_object( $term ) ) {
+			      $filter['ort'] []= $term->slug;
+		      }
+	      }
       }
 
       if( $value['name'] == 'show_only_appliable' && $value['value'] == 'true' ) {
@@ -562,6 +580,17 @@ function get_course_block( $postdata = array() ) {
 
   }
 
+  if( !empty( $filter['ort'] ) ) {
+
+	  $tax_query[] = array(
+		  'taxonomy' => 'kurskategorier',
+		  'field'     => 'slug',
+		  'terms'    => $filter['ort'],
+		  'operator' => 'IN',
+	  );
+
+  }
+
 
   if( $show_only_appliable === true ) {
     $meta_query []= array(
@@ -646,22 +675,25 @@ function the_courselist_filter(){
 
   }
 
-   $post_form_id = false;
-      if(isset($_SESSION['search_history'])){
-        foreach( $_SESSION['search_history'] as $key => $value ){
-          if( $value['name'] == 'post_id' ){
-            $post_form_id = $value['value'];
-          }
-        }
+  $post_form_id = false;
+  if(isset($_SESSION['search_history'])){
+    foreach( $_SESSION['search_history'] as $key => $value ){
+      if( $value['name'] == 'post_id' ){
+        $post_form_id = $value['value'];
       }
-        
+    }
+  }
+
 
   // no session set, check for default values for current page      
   if( isset( $post_form_id ) && $post_form_id != $post->ID ){
-    
     $defaults = array();
+	  $defaults['filter-ort'] = array(
+		  'sundsvall',
+		  'timra'
+	  );
     $in_categories = get_sub_field( 'courselist_categories', $post->ID );
-    
+
     // which tab is set as default for current search container.
     // get values and save as pre default settings
     
@@ -729,7 +761,6 @@ $ie_fix = false;
 if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
   $ie_fix = true;
 }
-
 ?>
 
 <?php if ( !empty( $title ) ) : ?>
@@ -769,9 +800,18 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
               <?php endif; ?>
               </div><!-- .form-group -->
 
+              <div class="form-group">
+                <h5><?php _e('Ort', 'sk'); ?></h5>
+                <label class="checkbox-inline"><input id="filter-ort-sundsvall-education" type="checkbox" <?php if( isset( $filter['filter-ort'] ) ) checked( in_array( 'sundsvall', $filter['filter-ort'] ) ? 'sundsvall' : '' , 'sundsvall' );?> value="sundsvall" name="filter-ort"> <?php _e('Sundsvall', 'sk'); ?></label>
+                <label class="checkbox-inline"><input id="filter-ort-timra-education" type="checkbox" <?php if( isset( $filter['filter-ort'] ) ) checked( in_array( 'timra', $filter['filter-ort'] ) ? 'timra' : '' , 'timra' );?> value="timra" name="filter-ort"> <?php _e('Timrå', 'sk'); ?></label>
+              </div><!-- .form-group -->
+
               <?php 
                 $exclude_niva_from_courses = array('grundskola');
-                foreach( $collected_terms['niva'] as $item ) : 
+              ?>
+                <h5><?php _e('Nivå', 'sk'); ?></h5>
+              <?php
+                foreach( $collected_terms['niva'] as $item ) :
                   if(! in_array( mb_strtolower( $item ), $exclude_niva_from_courses )) :
                   ?>
                 <label class="checkbox-inline"><input type="checkbox" <?php if( isset( $filter['filter-metapackage-skolform'] ) ) checked( in_array( $item, $filter['filter-metapackage-skolform'] ) ? $item : '' , $item );?> value="<?php echo $item ?>" name="filter-metapackage-skolform"> <?php echo $item ?></label>
@@ -787,6 +827,12 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
               <?php else : ?>
                 <input type="text" id="course-filter-search" class="filter-search" name="filter-search-courses" placeholder="<?php _e('Ange sökord', 'sk') ?>" value="<?php echo isset( $filter['filter-search-courses'][0] ) ? $filter['filter-search-courses'][0] : '' ?>">
               <?php endif; ?>
+              </div><!-- .form-group -->
+
+              <div class="form-group">
+                <h5><?php _e('Ort', 'sk'); ?></h5>
+                <label class="checkbox-inline"><input id="filter-ort-sundsvall-course" type="checkbox" <?php if( isset( $filter['filter-ort'] ) ) checked( in_array( 'sundsvall', $filter['filter-ort'] ) ? 'sundsvall' : '' , 'sundsvall' );?> value="sundsvall" name="filter-ort"> <?php _e('Sundsvall', 'sk'); ?></label>
+                <label class="checkbox-inline"><input id="filter-ort-timra-course" type="checkbox" <?php if( isset( $filter['filter-ort'] ) ) checked( in_array( 'timra', $filter['filter-ort'] ) ? 'timra' : '' , 'timra' );?> value="timra" name="filter-ort"> <?php _e('Timrå', 'sk'); ?></label>
               </div><!-- .form-group -->
 
               <?php if( !empty( $collected_terms['niva'] ) ) : ?>
@@ -837,7 +883,16 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
 
             <div class="form-group">
               <br />
-              <label class="checkbox-inline"><input type="checkbox" <?php isset( $filter['show_only_appliable'][0] ) ? checked( $filter['show_only_appliable'][0], 'true' ) : '';?> name="show_only_appliable" value="true"><?php _e( 'Visa endast sökbara', 'sk' ); ?></label>
+              <?php
+                if( isset( $filter['show_only_appliable'][0] ) && $filter['show_only_appliable'][0] == 'true' ) {
+                  $checked = 'checked';
+                } elseif( isset( $filter['show_only_appliable'][0] ) && $filter['show_only_appliable'][0] == 'false' ) {
+                  $checked = '';
+                } else {
+                  $checked = 'checked';
+                }
+              ?>
+              <label class="checkbox-inline"><input type="checkbox" id="show-only-appliable" <?php echo $checked; ?> name="show_only_appliable" value="true"><?php _e( 'Visa endast sökbara', 'sk' ); ?></label>
             </div>
 
           </div><!-- .tab-content -->
@@ -916,13 +971,7 @@ function the_courselist_block( $with_search_fields = false, $post_data = false )
           $terms_array = array();
         ?>
         <li>
-            <?php if ( has_post_thumbnail( $course->ID ) ) : ?>
-              <figure>
-                <?php echo get_the_post_thumbnail( $course->ID, 'thumbnail' ); ?>
-              </figure>
-            <?php endif; ?>
-            
-            <article<?php if ( has_post_thumbnail( $course->ID ) ) : ?> class="sk-narrow"<?php endif; ?>>
+            <article>
               <header>
                 <h5><a href="<?php echo get_permalink( $course->ID ); ?>"><?php echo $course->post_title; ?></a></h5>
               </header>
@@ -1071,8 +1120,8 @@ function the_image_and_textlist_box( $box ) {
   <?php
 }
 
-function custom_breadcrumbs() {
- 
+function custom_breadcrumbs( $extra_classes = null ) {
+
   $showOnHome = 0; // 1 - show breadcrumbs on the homepage, 0 - don't show
   $delimiter = ''; // delimiter between crumbs &raquo;
   $home = 'Hem'; // text for the 'Home' link
@@ -1086,10 +1135,14 @@ function custom_breadcrumbs() {
   if (is_home() || is_front_page()) {
  
     if ($showOnHome == 1) echo '<ul class="of-breadcrumbs"><li><a href="' . $homeLink . '">' . $home . '</a></li></ul>';
- 
+
   } else {
- 
-    echo '<ul class="of-breadcrumbs"><li><a href="' . $homeLink . '">' . $home . '</a></li> ' . $delimiter . ' ';
+
+    $classes = 'of-breadcrumbs';
+    if ( isset( $extra_classes ) ) {
+      $classes = "of-breadcrumbs $extra_classes";
+    }
+    echo '<ul class="' . $classes . '"><li><a href="' . $homeLink . '">' . $home . '</a></li> ' . $delimiter . ' ';
  
     if ( is_category() ) {
       $thisCat = get_category(get_query_var('cat'), false);
