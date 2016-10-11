@@ -46,6 +46,34 @@
 		display: none;
 	}
 
+	.morecontent span {
+		display: none;
+	}
+
+	.morelink {
+		display: block;
+	}
+
+	table {
+
+		tr {
+
+			td {
+
+				vertical-align: top;
+
+			}
+
+			td.course-description {
+
+				max-width: 300px !important;
+
+			}
+
+		}
+
+	}
+
 }
 
 @media print {

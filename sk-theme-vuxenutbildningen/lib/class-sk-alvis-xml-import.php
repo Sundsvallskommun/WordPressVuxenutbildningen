@@ -489,7 +489,6 @@
 
 				foreach( $course->kursstarter->kursstart as $course_start ) {
 
-					//echo '<pre>' . print_r( $course_start, true ) . '</pre>';
 					$tmp1 = $course_start->attributes();
 					$coursestart_id =  (int) $tmp1['id'];
 					$tmp2 = $course_start->attributes;
@@ -508,6 +507,7 @@
 					$start['veckor'] = (string) $course_start->veckor;
 					$start['terminer'] = (string) $course_start->terminer;
 					$start['maxantal'] = (string) $course_start->maxantal;
+					$start['kursstartBeskrivning'] = (string) $course_start->kursstartBeskrivning;
 
 					$course_starts []= $start;
 

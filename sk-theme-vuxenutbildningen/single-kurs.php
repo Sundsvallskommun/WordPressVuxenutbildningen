@@ -159,7 +159,7 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                   <th><?php _e( 'Startdatum', 'sk' ); ?></th>
                   <th><?php _e( 'Sökbar från', 'sk' ); ?></th>
                   <th><?php _e( 'Sökbar till', 'sk' ); ?></th>
-                  <th><?php _e( 'Ort', 'sk' ); ?></th>
+                  <th><?php _e( 'Beskrivning', 'sk' ); ?></th>
                   <th></th>
                 </tr>
               </thead>
@@ -177,7 +177,7 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                   $flag = false;
                   $course_added = false;
                   if(! empty( $course_starts ) ) :
-                      $course_starts_to_print = '<div class="course-starts"><h3>' . __('Kursstarter', 'sk') . '</h3><table><thead><tr><th>' . __('Ort', 'sk') . '</th><th>' . __('Startdatum', 'sk') . '</th><th>' . __('Sökbar till', 'sk') . '</th></tr></thead>';
+                      $course_starts_to_print = '<div class="course-starts"><h3>' . __('Kursstarter', 'sk') . '</h3><table><thead><tr><th>' . __('Startdatum', 'sk') . '</th><th>' . __('Sökbar till', 'sk') . '</th><th>' . __('Ort', 'sk') . '</th></tr></thead>';
                   foreach( $course_starts as $course_start ) :
 
 
@@ -189,16 +189,16 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                       }
                     }
 
-                    if( strtotime( $todays_date ) <= strtotime( $course_start['sokbarTill'] ) ) : 
+                    if( true/*strtotime( $todays_date ) <= strtotime( $course_start['sokbarTill'] )*/ ) :
                       $flag = true;
                   ?>
                     <tr>
                       <td data-of-tr="<?php _e( 'Startdatum', 'sk' ); ?>"><?php echo $course_start['datum']; ?></td>
                       <td data-of-tr="<?php _e( 'Sökbar från', 'sk' ); ?>"><?php echo $course_start['sokbar']; ?></td>
                       <td data-of-tr="<?php _e( 'Sökbar till', 'sk' ); ?>"><?php echo $course_start['sokbarTill']; ?></td>
-                      <td data-of-tr="<?php _e( 'Ort', 'sk' ); ?>"><?php echo $course_start['ort']; ?></td>
+                      <td class="course-description" data-of-tr="<?php _e( 'Ort', 'sk' ); ?>"><?php if( !empty( $course_start['kursstartBeskrivning'] ) ) echo '<span class="read-more">' . $course_start['kursstartBeskrivning']; ?></span></td>
 
-                      <?php $course_starts_to_print .= sprintf( "<tr><td>%s</td><td>%s</td><td>%s</td></tr>", $course_start['ort'], $course_start['datum'], $course_start['sokbarTill'] ); ?>
+                      <?php $course_starts_to_print .= sprintf( "<tr><td>%s</td><td>%s</td><td>%s</td></tr>", $course_start['datum'], $course_start['sokbarTill'], $course_start['ort'] ); ?>
 
                       <?php if( $type === 'YH') : ?>
                         <td>
