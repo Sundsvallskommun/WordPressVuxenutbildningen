@@ -189,7 +189,7 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                       }
                     }
 
-                    if( true/*strtotime( $todays_date ) <= strtotime( $course_start['sokbarTill'] )*/ ) :
+                    if( strtotime( $todays_date ) <= strtotime( $course_start['sokbarTill'] ) ) :
                       $flag = true;
                   ?>
                     <tr>
