@@ -277,11 +277,10 @@
 		public function get_xml() {
 
 			// Remove this in production
-			/*
 			if( file_exists( get_stylesheet_directory() . '/alvis/alvis_2016_02.xml' ) ) {
 				return file_get_contents( get_stylesheet_directory() . '/alvis/alvis_2016_02.xml' );
 			}
-			*/
+
 			
 			
 			// Load options
