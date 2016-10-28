@@ -1861,6 +1861,18 @@ select[multiple].input-lg {
 .single-kurs .printable {
   display: none;
 }
+.single-kurs .morecontent span {
+  display: none;
+}
+.single-kurs .morelink {
+  display: block;
+}
+.single-kurs table tr td {
+  vertical-align: top;
+}
+.single-kurs table tr td.course-description {
+  max-width: 300px !important;
+}
 
 @media print {
   #wpadminbar,
