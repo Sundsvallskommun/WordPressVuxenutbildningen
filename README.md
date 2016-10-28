@@ -5,12 +5,12 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 *Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar*
 
-####1.6.4
+####1.7.4
 #####Ändringsbegäran
-* Ny kolumn i tabell kursstarter
-* Skriv ut kurssida
-* Högerställd bild på enskild kurs
-* Ingen tumnagelbild på kurslistning vis sök
+* Ny kolumn i tabell kursstarter, hämta kursstartbeskrivning från Alvis vid import.
+* Skriv ut kurssida.
+* Högerställd bild på enskild kurs.
+* Ingen tumnagelbild på kurslistning vis sök.
 
 ####1.3.4
 #####Ändringsbegäran
