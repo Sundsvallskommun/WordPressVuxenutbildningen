@@ -277,11 +277,10 @@
 		public function get_xml() {
 
 			// Remove this in production
-			/*
-			if( file_exists( get_stylesheet_directory() . '/alvis/alvis_2016_02.xml' ) ) {
+			/*if( file_exists( get_stylesheet_directory() . '/alvis/alvis_2016_02.xml' ) ) {
 				return file_get_contents( get_stylesheet_directory() . '/alvis/alvis_2016_02.xml' );
-			}
-			*/
+			}*/
+
 			
 			
 			// Load options
@@ -489,7 +488,6 @@
 
 				foreach( $course->kursstarter->kursstart as $course_start ) {
 
-					//echo '<pre>' . print_r( $course_start, true ) . '</pre>';
 					$tmp1 = $course_start->attributes();
 					$coursestart_id =  (int) $tmp1['id'];
 					$tmp2 = $course_start->attributes;
@@ -508,6 +506,7 @@
 					$start['veckor'] = (string) $course_start->veckor;
 					$start['terminer'] = (string) $course_start->terminer;
 					$start['maxantal'] = (string) $course_start->maxantal;
+					$start['kursstartBeskrivning'] = (string) $course_start->kursstartBeskrivning;
 
 					$course_starts []= $start;
 
