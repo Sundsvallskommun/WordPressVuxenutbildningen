@@ -1183,11 +1183,7 @@ function custom_breadcrumbs( $extra_classes = null ) {
       echo $before . $post_type->labels->singular_name . $after;
  
     } elseif ( is_attachment() ) {
-      $parent = get_post($post->post_parent);
-      $cat = get_the_category($parent->ID); $cat = $cat[0];
-      echo get_category_parents($cat, TRUE, ' ' . $delimiter . ' ');
-      echo ' <li><a href="' . get_permalink($parent) . '">' . $parent->post_title . '</a></li>';
-      if ($showCurrent == 1) echo ' ' . $delimiter . ' ' . $before . get_the_title() . $after;
+      return false;
  
     } elseif ( is_page() && !$post->post_parent ) {
       if ($showCurrent == 1) echo $before . get_the_title() . $after;
