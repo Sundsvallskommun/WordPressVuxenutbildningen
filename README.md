@@ -5,6 +5,10 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 *Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar*
 
+####1.7.5
+#####Bugg
+* Error meddelande för bilagssidor åtgärdat.
+
 ####1.7.4
 #####Ändringsbegäran
 * Ny kolumn i tabell kursstarter, hämta kursstartbeskrivning från Alvis vid import.
