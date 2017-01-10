@@ -77,7 +77,7 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
     				<?php the_content(); ?>
 
 				<?php if( get_field( 'video_link' ) ): ?>
-                    <div class="single-course-video-row">
+                    <div class="single-course-video-row no-print">
                         <?php the_field('video_link'); ?>
                     </div>
                 <?php endif; ?>
