@@ -75,6 +75,12 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                         </div>
                     <?php endif; ?>
     				<?php the_content(); ?>
+
+				<?php if( get_field( 'video_link' ) ): ?>
+                    <div class="single-course-video-row">
+                        <?php the_field('video_link'); ?>
+                    </div>
+                <?php endif; ?>
                 <div class="single-course-button-row">
                     <div class="single-course-back-btn">
                         <a href="#" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced" onclick="window.print(); return false;">
