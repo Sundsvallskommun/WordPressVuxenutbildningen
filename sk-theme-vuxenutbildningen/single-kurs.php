@@ -138,6 +138,19 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
             $ci_school_form = !empty( $post_meta['skolform'][0] ) ? $post_meta['skolform'][0] : '';
             $ci_pre_knowledge = !empty( $post_meta['forkunskap'][0] ) ? wpautop( $post_meta['forkunskap'][0] ): '';
 
+            $ci_sub_courses = '';
+
+            if(! empty( $sub_courses ) ) {
+                $ci_sub_courses = sprintf( '<p><span class="course-meta-title">%s</span></p>', __( 'Inkluderade kurser: ', 'sk' ) );
+                $ci_sub_courses .= '<ul class="sub-courses-list">';
+
+                foreach ($sub_courses as $course ) {
+                    $ci_sub_courses .= sprintf( "<li>%s %s</li>", $course['name'], $course['code'] );
+                }
+
+                $ci_sub_courses .= '</ul>';
+            }
+
             $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Poäng: ', 'sk' ) . '</span>' . $ci_points . '</p>';
             $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Studieform: ', 'sk' ) .'</span>' . $ci_study_form .'</p>';
             $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Skolform: ', 'sk' ) . '</span>' . $ci_school_form . '</p>';
@@ -148,8 +161,11 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                 $ci_course_code = !empty( $post_meta['kurskod'][0] ) ? $post_meta['kurskod'][0] : '';
                 $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Anmälningskod: ', 'sk' ) . '</span>' . $ci_entry_code . '</p>';
                 $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Kurskod: ', 'sk' ) . '</span>' . $ci_course_code . '</p>';
+            } else {
+                if ( ! empty( $ci_sub_courses ) ) {
+	                $course_info_to_print .= $ci_sub_courses;
+                }
             }
-
 
             $course_info_to_print .= '</div>';
             ?>
