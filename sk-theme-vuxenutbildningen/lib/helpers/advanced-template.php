@@ -69,7 +69,7 @@ function the_campaign_block() {
       endif; ?>">
 
     <?php if( have_rows('campaign_content') ): ?>
-        
+
       <?php while( have_rows('campaign_content') ): the_row(); 
         $campaign_image = get_sub_field( 'campaign_image' );
         ?>
