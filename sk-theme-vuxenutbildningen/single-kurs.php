@@ -5,7 +5,7 @@
 
 get_header();
 
-$todays_date = current_time( 'mysql' );
+$todays_date = date( 'Y-m-d' );
 
 $nav_args = array(
   'theme_location' => 'main-menu',

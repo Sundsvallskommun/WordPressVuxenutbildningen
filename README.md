@@ -5,6 +5,10 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 *Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar*
 
+####1.11.6
+#####Bugg
+* Buggfix när vi jämför sökbar till datum mot dagens datum, kursernas sökbarhet försvann en dag för tidigt från webbplatsen. 
+
 ####1.11.5
 #####Ändringsbegäran
 * Filmer har nu eget fält i kurser och läggs sist i content vid visning. Detta för att undvika att de synkas bort.
