@@ -15,6 +15,27 @@
 			padding-left: 10px;
 		}
 
+		.single-course-video-row {
+			position: relative;
+			padding-bottom: 56.25%;
+			height: 0;
+			overflow: hidden;
+			max-width: 100%;
+			height: auto;
+			margin-bottom: 20px;
+
+			iframe,
+			object,
+			embed {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+
+		}
+
 	}
 
 	#single-course-back-button {

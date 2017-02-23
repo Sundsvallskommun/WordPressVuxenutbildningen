@@ -258,6 +258,14 @@
       }
     });
 
+    // Set a randow start image in the carousel
+    if ( $('.home').find('.owl-carousel.multiple').length ) {
+      var num_images = $('.home').find('.owl-carousel.multiple').find('.owl-dot').length;
+      var random_image = Math.floor(Math.random() * num_images);
+      var carousel = $('.home').find('.owl-carousel.multiple').owlCarousel();
+      carousel.trigger('to.owl.carousel', random_image);
+    }
+
     // Initialize sidebar menu advanced
     if($('.of-sidebar-menu-advanced').length > 0) {
       var sidebar_menu_advanced = new OF_Sidebar_Menu_Advanced('.of-sidebar-menu-advanced');

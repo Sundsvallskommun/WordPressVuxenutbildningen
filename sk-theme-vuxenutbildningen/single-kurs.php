@@ -5,7 +5,7 @@
 
 get_header();
 
-$todays_date = current_time( 'mysql' );
+$todays_date = date( 'Y-m-d' );
 
 $nav_args = array(
   'theme_location' => 'main-menu',
@@ -75,6 +75,12 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                         </div>
                     <?php endif; ?>
     				<?php the_content(); ?>
+
+				<?php if( get_field( 'video_link' ) ): ?>
+                    <div class="single-course-video-row no-print">
+                        <?php the_field('video_link'); ?>
+                    </div>
+                <?php endif; ?>
                 <div class="single-course-button-row">
                     <div class="single-course-back-btn">
                         <a href="#" class="of-btn of-btn-inline of-btn-vattjom of-btn-spaced" onclick="window.print(); return false;">
@@ -132,6 +138,19 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
             $ci_school_form = !empty( $post_meta['skolform'][0] ) ? $post_meta['skolform'][0] : '';
             $ci_pre_knowledge = !empty( $post_meta['forkunskap'][0] ) ? wpautop( $post_meta['forkunskap'][0] ): '';
 
+            $ci_sub_courses = '';
+
+            if(! empty( $sub_courses ) ) {
+                $ci_sub_courses = sprintf( '<p><span class="course-meta-title">%s</span></p>', __( 'Inkluderade kurser: ', 'sk' ) );
+                $ci_sub_courses .= '<ul class="sub-courses-list">';
+
+                foreach ($sub_courses as $course ) {
+                    $ci_sub_courses .= sprintf( "<li>%s %s</li>", $course['name'], $course['code'] );
+                }
+
+                $ci_sub_courses .= '</ul>';
+            }
+
             $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Poäng: ', 'sk' ) . '</span>' . $ci_points . '</p>';
             $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Studieform: ', 'sk' ) .'</span>' . $ci_study_form .'</p>';
             $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Skolform: ', 'sk' ) . '</span>' . $ci_school_form . '</p>';
@@ -142,8 +161,11 @@ $sub_courses = get_post_meta( $post->ID, 'included_courses', true );
                 $ci_course_code = !empty( $post_meta['kurskod'][0] ) ? $post_meta['kurskod'][0] : '';
                 $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Anmälningskod: ', 'sk' ) . '</span>' . $ci_entry_code . '</p>';
                 $course_info_to_print .= '<p><span class="course-meta-title">' . __( 'Kurskod: ', 'sk' ) . '</span>' . $ci_course_code . '</p>';
+            } else {
+                if ( ! empty( $ci_sub_courses ) ) {
+	                $course_info_to_print .= $ci_sub_courses;
+                }
             }
-
 
             $course_info_to_print .= '</div>';
             ?>

@@ -70,7 +70,6 @@ function the_campaign_block() {
 
     <?php if( have_rows('campaign_content') ): ?>
 
-   
       <?php while( have_rows('campaign_content') ): the_row(); 
         $campaign_image = get_sub_field( 'campaign_image' );
         ?>
@@ -853,8 +852,10 @@ if(preg_match('/(?i)msie [6-9]/', $_SERVER['HTTP_USER_AGENT']) ){
               <?php if( !empty( $collected_terms['studieform'] ) ) : ?>
                 <div class="form-group">
                 <h5><?php _e('Studieform', 'sk'); ?></h5>
+
+                <?php sort( $collected_terms['studieform'] ); ?>
+
                 <?php foreach( $collected_terms['studieform'] as $item ) : ?>
-                  
                   <?php if( ! in_array( $item, array( 'Distanskurs', 'Dagkurs' ) ) ) : // Ugly hack to remove old terms from displaying ?>
                     <label class="checkbox-inline"><input type="checkbox" <?php if( isset( $filter['filter-meta-kurskategori'] ) ) checked( in_array( $item, $filter['filter-meta-kurskategori'] ) ? $item : '' , $item );?> value="<?php echo $item ?>" name="filter-meta-kurskategori"> <?php echo $item ?></label>
                   <?php endif; ?>

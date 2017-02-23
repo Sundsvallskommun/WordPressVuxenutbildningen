@@ -5,6 +5,17 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 *Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar*
 
+####1.11.6
+#####Bugg
+* Buggfix när vi jämför sökbar till datum mot dagens datum, kursernas sökbarhet försvann en dag för tidigt från webbplatsen. 
+
+####1.11.5
+#####Ändringsbegäran
+* Filmer har nu eget fält i kurser och läggs sist i content vid visning. Detta för att undvika att de synkas bort.
+* Studieformer visas nu i bokstavsordning på kurssök.
+* Inkluderade kurser ta med vid utskrift av en yrkesutbildning.
+* Kampanjytan slumpar startbild i bildspel.
+
 ####1.7.5
 #####Bugg
 * Error meddelande för bilagssidor åtgärdat.
