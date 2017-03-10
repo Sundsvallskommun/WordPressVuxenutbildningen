@@ -278,43 +278,47 @@ class SK_Alvis_XML_Import {
 	 */
 	public function get_xml() {
 
+
 		set_include_path( get_stylesheet_directory() . '/lib/vendor/phpseclib' );
 		include( get_stylesheet_directory() . '/lib/vendor/phpseclib/Net/SSH2.php' );
 		include( get_stylesheet_directory() . '/lib/vendor/phpseclib/Net/SFTP.php' );
 
-		// Remove this in production
-		/*if( file_exists( get_stylesheet_directory() . '/alvis/AlvisKurskatalogvuxenutbildningen_i_sundsvall.xml' ) ) {
-			return file_get_contents( get_stylesheet_directory() . '/alvis/AlvisKurskatalogvuxenutbildningen_i_sundsvall.xml' );
-		}*/
 
+			// Load options
+		  	$options = get_option( 'sk_course_import_options' );
+		  	$ftp_address = isset( $options['ftp_address'] ) ? $options['ftp_address'] : '';
+		  	$ftp_port = isset( $options['ftp_port'] ) ? $options['ftp_port'] : 22;
+		  	$ftp_path = isset( $options['ftp_path'] ) ? $options['ftp_path'] : '';
+		  	$ftp_username = isset( $options['ftp_username'] ) ? $options['ftp_username'] : '';
+		  	$ftp_password = isset( $options['ftp_password'] ) ? $options['ftp_password'] : '';
 
-		// Load options
-		$options      = get_option( 'sk_course_import_options' );
-		$ftp_address  = isset( $options['ftp_address'] ) ? $options['ftp_address'] : '';
-		$ftp_port     = isset( $options['ftp_port'] ) ? $options['ftp_port'] : 22;
-		$ftp_path     = isset( $options['ftp_path'] ) ? $options['ftp_path'] : '';
-		$ftp_username = isset( $options['ftp_username'] ) ? $options['ftp_username'] : '';
-		$ftp_password = isset( $options['ftp_password'] ) ? $options['ftp_password'] : '';
+		  	// Do not proceed if we do not have the settings
+		  	if( empty( $ftp_address ) || empty( $ftp_port ) || empty( $ftp_username ) || empty( $ftp_password )) { 
+		  		return array( 'result' => 'false', 'message' => 'Missing connection parameters.' );
+		  	}
 
-		// Do not proceed if we do not have the settings
-		if ( empty( $ftp_address ) || empty( $ftp_port ) || empty( $ftp_username ) || empty( $ftp_password ) ) {
-			return array( 'result' => 'false', 'message' => 'Missing connection parameters.' );
-		}
+			try {
+				
+				$resource = "ssh2.sftp://$ftp_username:$ftp_password@$ftp_address:$ftp_port$ftp_path";
 
-		try {
+				// Check if this is dev environment and that ALVIS_XML_FILE_PATH is set
+				if (defined("SK_IS_DEV") && defined("ALVIS_XML_FILE_PATH") && SK_IS_DEV && !empty(ALVIS_XML_FILE_PATH)) {
 
-			$sftp = new \Net_SFTP( $ftp_address );
-			if ( ! $sftp->login( $ftp_username, $ftp_password ) ) {
-				error_log('Failed to login to ftp server, check your credentials. ' . __FILE__ . ' on line ' . __LINE__, 0);
-			}
+					if (file_exists(ALVIS_XML_FILE_PATH)) {
+						$resource = ALVIS_XML_FILE_PATH;
+					}
+					else {
+						error_log("Could not find file specified by ALVIS_XML_FILE_PATH. Value is: " . ALVIS_XML_FILE_PATH);
+					}
+				}
 
-			$xml_content = $sftp->get( $ftp_path );
+				//file_put_contents( '/tmp/path.txt', "ssh2.sftp://$ftp_username:$ftp_password@$ftp_address:$ftp_port$ftp_path" );
+				$xml_content = @file_get_contents($resource);
 
-
-			// If failed to load the file. The xml_content == false
-			if ( $xml_content === false ) {
-				throw new \Exception( 'Failed to read xml file' );
-			}
+				// If failed to load the file. The xml_content == false
+				if ( $xml_content === false ) {
+					throw new \Exception( 'Failed to read xml file' );
+				}
 
 		} catch ( \Exception $e ) {
 
