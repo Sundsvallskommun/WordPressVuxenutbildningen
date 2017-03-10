@@ -4,6 +4,10 @@
 Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera versionsnummer enligt nedan struktur.
 
 *Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar*
+####1.14.6
+#####Ändringsbegäran
+* Alvis import kan nu göras mot en konfigurerbar fil. Ange konstanterna SK_IS_DEV (bool) och ALVIS_XML_FILE_PATH (string, fullständig sökväg)
+
 ####1.13.6
 #####Ändringsbegäran
 * Lagt till wp standard CSS för att visa wp galleri korrekt.
