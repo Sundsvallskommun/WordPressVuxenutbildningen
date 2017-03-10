@@ -284,21 +284,35 @@
 			
 			
 			// Load options
-	  	$options = get_option( 'sk_course_import_options' );
-	  	$ftp_address = isset( $options['ftp_address'] ) ? $options['ftp_address'] : '';
-	  	$ftp_port = isset( $options['ftp_port'] ) ? $options['ftp_port'] : 22;
-	  	$ftp_path = isset( $options['ftp_path'] ) ? $options['ftp_path'] : '';
-	  	$ftp_username = isset( $options['ftp_username'] ) ? $options['ftp_username'] : '';
-	  	$ftp_password = isset( $options['ftp_password'] ) ? $options['ftp_password'] : '';
+		  	$options = get_option( 'sk_course_import_options' );
+		  	$ftp_address = isset( $options['ftp_address'] ) ? $options['ftp_address'] : '';
+		  	$ftp_port = isset( $options['ftp_port'] ) ? $options['ftp_port'] : 22;
+		  	$ftp_path = isset( $options['ftp_path'] ) ? $options['ftp_path'] : '';
+		  	$ftp_username = isset( $options['ftp_username'] ) ? $options['ftp_username'] : '';
+		  	$ftp_password = isset( $options['ftp_password'] ) ? $options['ftp_password'] : '';
 
-	  	// Do not proceed if we do not have the settings
-	  	if( empty( $ftp_address ) || empty( $ftp_port ) || empty( $ftp_username ) || empty( $ftp_password ) ) 
-	  		return array( 'result' => 'false', 'message' => 'Missing connection parameters.' );
+		  	// Do not proceed if we do not have the settings
+		  	if( empty( $ftp_address ) || empty( $ftp_port ) || empty( $ftp_username ) || empty( $ftp_password ) ) { 
+		  		return array( 'result' => 'false', 'message' => 'Missing connection parameters.' );
+		  	}
 
 			try {
 				
+				$resource = "ssh2.sftp://$ftp_username:$ftp_password@$ftp_address:$ftp_port$ftp_path";
+
+				// Check if this is dev environment and that ALVIS_XML_FILE_PATH is set
+				if (defined("SK_IS_DEV") && defined("ALVIS_XML_FILE_PATH") && SK_IS_DEV && !empty(ALVIS_XML_FILE_PATH)) {
+
+					if (file_exists(ALVIS_XML_FILE_PATH)) {
+						$resource = ALVIS_XML_FILE_PATH;
+					}
+					else {
+						error_log("Could not find file specified by ALVIS_XML_FILE_PATH. Value is: " . ALVIS_XML_FILE_PATH);
+					}
+				}
+
 				//file_put_contents( '/tmp/path.txt', "ssh2.sftp://$ftp_username:$ftp_password@$ftp_address:$ftp_port$ftp_path" );
-				$xml_content = @file_get_contents( "ssh2.sftp://$ftp_username:$ftp_password@$ftp_address:$ftp_port$ftp_path" );
+				$xml_content = @file_get_contents($resource);
 
 				// If failed to load the file. The xml_content == false
 				if( $xml_content === false ) {
