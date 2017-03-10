@@ -292,8 +292,15 @@ class SK_Alvis_XML_Import {
 		  	$ftp_username = isset( $options['ftp_username'] ) ? $options['ftp_username'] : '';
 		  	$ftp_password = isset( $options['ftp_password'] ) ? $options['ftp_password'] : '';
 
+		  	$is_dev_env = true;
+
+		  	if (!defined("SK_IS_DEV") || SK_IS_DEV === false) {
+		  		$is_dev_env = false;
+		  	}
+
+
 		  	// Do not proceed if we do not have the settings
-		  	if( empty( $ftp_address ) || empty( $ftp_port ) || empty( $ftp_username ) || empty( $ftp_password )) { 
+		  	if( (empty( $ftp_address ) || empty( $ftp_port ) || empty( $ftp_username ) || empty( $ftp_password )) && !$is_dev_env) { 
 		  		return array( 'result' => 'false', 'message' => 'Missing connection parameters.' );
 		  	}
 
@@ -302,7 +309,7 @@ class SK_Alvis_XML_Import {
 				$resource = "ssh2.sftp://$ftp_username:$ftp_password@$ftp_address:$ftp_port$ftp_path";
 
 				// Check if this is dev environment and that ALVIS_XML_FILE_PATH is set
-				if (defined("SK_IS_DEV") && defined("ALVIS_XML_FILE_PATH") && SK_IS_DEV && !empty(ALVIS_XML_FILE_PATH)) {
+				if ($is_dev_env && defined("ALVIS_XML_FILE_PATH") && !empty(ALVIS_XML_FILE_PATH)) {
 
 					if (file_exists(ALVIS_XML_FILE_PATH)) {
 						$resource = ALVIS_XML_FILE_PATH;
