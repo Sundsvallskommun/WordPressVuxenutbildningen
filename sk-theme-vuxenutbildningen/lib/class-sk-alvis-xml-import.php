@@ -272,57 +272,30 @@ class SK_Alvis_XML_Import {
 
 
 	/**
-	 * Get the xml file from the ftp server
+	 * Fetches xml file from drive
 	 *
 	 * @return bool|string $xml_content
 	 */
 	public function get_xml() {
 
 
-		set_include_path( get_stylesheet_directory() . '/lib/vendor/phpseclib' );
-		include( get_stylesheet_directory() . '/lib/vendor/phpseclib/Net/SSH2.php' );
-		include( get_stylesheet_directory() . '/lib/vendor/phpseclib/Net/SFTP.php' );
-
-
 			// Load options
 		  	$options = get_option( 'sk_course_import_options' );
-		  	$ftp_address = isset( $options['ftp_address'] ) ? $options['ftp_address'] : '';
-		  	$ftp_port = isset( $options['ftp_port'] ) ? $options['ftp_port'] : 22;
-		  	$ftp_path = isset( $options['ftp_path'] ) ? $options['ftp_path'] : '';
-		  	$ftp_username = isset( $options['ftp_username'] ) ? $options['ftp_username'] : '';
-		  	$ftp_password = isset( $options['ftp_password'] ) ? $options['ftp_password'] : '';
-
-		  	$is_dev_env = true;
-
-		  	if (!defined("SK_IS_DEV") || SK_IS_DEV === false) {
-		  		$is_dev_env = false;
-		  	}
+		  	$path = isset( $options['ftp_path'] ) ? $options['ftp_path'] : '';
 
 
 		  	// Do not proceed if we do not have the settings
-		  	if( (empty( $ftp_address ) || empty( $ftp_port ) || empty( $ftp_username ) || empty( $ftp_password )) && !$is_dev_env) { 
-		  		return array( 'result' => 'false', 'message' => 'Missing connection parameters.' );
+		  	if( empty( $path )) {
+		  		return array( 'result' => 'false', 'message' => 'Saknar sökvägen till filen' );
+		  	}
+		  	else if (!file_exists($path)) {
+		  		return array( 'result' => 'false', 'message' => "$path existerar inte, eller kan inte läsas" );
 		  	}
 
 			try {
 				
-				$resource = "ssh2.sftp://$ftp_username:$ftp_password@$ftp_address:$ftp_port$ftp_path";
+				$xml_content = @file_get_contents($path);
 
-				// Check if this is dev environment and that ALVIS_XML_FILE_PATH is set
-				if ($is_dev_env && defined("ALVIS_XML_FILE_PATH") && !empty(ALVIS_XML_FILE_PATH)) {
-
-					if (file_exists(ALVIS_XML_FILE_PATH)) {
-						$resource = ALVIS_XML_FILE_PATH;
-					}
-					else {
-						error_log("Could not find file specified by ALVIS_XML_FILE_PATH. Value is: " . ALVIS_XML_FILE_PATH);
-					}
-				}
-
-				//file_put_contents( '/tmp/path.txt', "ssh2.sftp://$ftp_username:$ftp_password@$ftp_address:$ftp_port$ftp_path" );
-				$xml_content = @file_get_contents($resource);
-
-				// If failed to load the file. The xml_content == false
 				if ( $xml_content === false ) {
 					throw new \Exception( 'Failed to read xml file' );
 				}
@@ -829,57 +802,15 @@ class SK_Alvis_XML_Import {
 				<form method="post" action="options.php">
 					<?php wp_nonce_field( 'update-options' ) ?>
 
-					<h3><?php _e( 'FTP', 'sk' ); ?></h3>
+					<h3><?php _e( 'Kursimport', 'sk' ); ?></h3>
 					<table class="form-table">
 						<tbody>
 						<tr class="option-course-import">
-							<th scope="row"><?php _e( 'FTP-adress', 'sk' ); ?></th>
-							<td>
-								<input type="text" id="sk_course_import_ftp_address"
-								       name="sk_course_import_options[ftp_address]"
-								       value="<?php echo $ftp_address; ?>"/>
-								<p class="description"><?php _e( 'Ange adressen till ftp:n', 'sk' ); ?></p>
-							</td>
-						</tr>
-						<tr class="option-course-import">
-							<th scope="row"><?php _e( 'FTP-port', 'sk' ); ?></th>
-							<td>
-								<input type="text" id="sk_course_import_ftp_port"
-								       name="sk_course_import_options[ftp_port]" value="<?php echo $ftp_port; ?>"/>
-								<p class="description"><?php _e( 'Ange port att använda vid anslutning till FTP', 'sk' ); ?></p>
-							</td>
-						</tr>
-						<tr class="option-course-import">
-							<th scope="row"><?php _e( 'Genväg och namn till filen', 'sk' ); ?></th>
+							<th scope="row"><?php _e( 'Fullständig sökväg till filen', 'sk' ); ?></th>
 							<td>
 								<input type="text" id="sk_course_import_ftp_path"
 								       name="sk_course_import_options[ftp_path]" value="<?php echo $ftp_path; ?>"/>
-								<p class="description"><?php _e( 'Ange komplett genväg och namn till filen på FTP:n', 'sk' ); ?></p>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-
-					<h3><?php _e( 'Användare', 'sk' ); ?></h3>
-
-					<table class="form-table">
-						<tbody>
-						<tr class="option-course-import">
-							<th scope="row"><?php _e( 'Användarnamn', 'sk' ); ?></th>
-							<td>
-								<input type="text" id="sk_course_import_ftp_username"
-								       name="sk_course_import_options[ftp_username]"
-								       value="<?php echo $ftp_username; ?>"/>
-								<p class="description"><?php _e( 'Ange användarnamn att använda vid anslutning till FTP', 'sk' ); ?></p>
-							</td>
-						</tr>
-						<tr class="option-course-import">
-							<th scope="row"><?php _e( 'Lösenord', 'sk' ); ?></th>
-							<td>
-								<input type="password" id="sk_course_import_ftp_password"
-								       name="sk_course_import_options[ftp_password]"
-								       value="<?php echo $ftp_password; ?>"/>
-								<p class="description"><?php _e( 'Ange lösenord att använda vid anslutning till FTP', 'sk' ); ?></p>
+								<p class="description"><?php _e( 'Ange komplett sökväg inklusive filnamn', 'sk' ); ?></p>
 							</td>
 						</tr>
 						</tbody>
