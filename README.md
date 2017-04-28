@@ -4,6 +4,13 @@
 Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera versionsnummer enligt nedan struktur.
 
 *Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar*
+
+####1.17.0
+#####Ändringsbegäran
+* Ändring av sökväg till xml fil för import. Sökväg till importfil anges under "Inställningar > Kursimport".
+* Borttagning av konstanterna SK_IS_DEV (bool) och ALVIS_XML_FILE_PATH (string, fullständig sökväg)
+* Borttagning av PHPSECLIB för att kunna använda sftp. 
+
 ####1.14.6
 #####Ändringsbegäran
 * Alvis import kan nu göras mot en konfigurerbar fil. Ange konstanterna SK_IS_DEV (bool) och ALVIS_XML_FILE_PATH (string, fullständig sökväg)
