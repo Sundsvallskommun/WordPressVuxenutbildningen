@@ -1879,7 +1879,7 @@ select[multiple].input-lg {
 .single-kurs .printable {
   display: none;
 }
-.single-kurs .morecontent span {
+.single-kurs .morecontent {
   display: none;
 }
 .single-kurs .morelink {

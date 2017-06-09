@@ -19,6 +19,7 @@
       var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
 
       $(this).html(html);
+
     }
 
   });
@@ -35,6 +36,9 @@
     $(this).prev().toggle();
     return false;
   });
+
+
+
 
   // needed to wrap inside a button, couldnt get it work. 
   var loading_html = '';
