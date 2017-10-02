@@ -12,7 +12,7 @@
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
-		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic,600italic' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic,600italic' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="<?php bloginfo( 'template_directory' ) ;?>/assets/css/style<?php if ( PRODUCTION_MODE ) echo '.min'; ?>.css">
 
 		<?php /*<script src="<?php bloginfo( 'template_directory' ) ;?>/assets/js/lib/modernizr-2.8.1.min.js"></script> Currently not used. Uncomment if needed. */ ?>
