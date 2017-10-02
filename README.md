@@ -5,6 +5,10 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 *Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar*
 
+####1.18.0
+#####Ändring
+* Ändrat cdn länk till ssl.
+
 ####1.17.2
 #####Bugg
 * Åtgärdat en bugg som skapade nollresultat vid sökning.
