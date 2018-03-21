@@ -467,7 +467,7 @@ class SK_Alvis_XML_Import {
 	 */
 	private function update_course_metadata( $post_id, $course, $course_id, $course_package ) {
 
-		$today = date_i18n( 'Y-m-d H:i:s' );
+		$today = date_i18n( 'Y-m-d' );
 
 		update_post_meta( $post_id, 'kursid', (int) $course_id );
 		update_post_meta( $post_id, 'kurspaket', (string) $course_package );
