@@ -5,6 +5,10 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 *Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar*
 
+####1.19.0
+#####Ändringsbegäran
+* Tagit bort kurslistning och import från Alvis.
+
 ####1.18.1
 #####Bugg
 * Åtgärdat ett fel i samband med datumjämförelse mot sista ansökningsdag vid import.
