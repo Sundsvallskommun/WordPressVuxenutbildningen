@@ -73,11 +73,6 @@ $menu = get_advanced_template_menu();
               
               <?php SKChildTheme\the_faq_block(); ?>
 
-            <?php elseif ( get_row_layout() == 'courselist_block' ) : ?>
-              
-              <?php SKChildTheme\the_courselist_filter(); ?>
-              <?php SKChildTheme\the_courselist_block(); ?>
-
             <?php endif; ?>
 
           <?php endwhile; ?>

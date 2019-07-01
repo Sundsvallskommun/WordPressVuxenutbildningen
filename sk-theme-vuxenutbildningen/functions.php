@@ -31,16 +31,6 @@ require_once( get_template_directory() . '/lib/class-sk-post-types.php' );
 require_once( get_stylesheet_directory() . '/lib/class-sk-short-url.php' );
 $sk_short_url = new SK_ShortURL();
 
-require_once( get_stylesheet_directory() . '/lib/class-sk-course.php' );
-$sk_course = new SK_Course();
-
-// Load the xml parser file
-require_once( get_stylesheet_directory() . '/lib/class-sk-alvis-xml-import.php' );
-$importer = new SKChildTheme\SK_Alvis_XML_Import();
-
-require_once( get_stylesheet_directory() . '/lib/class-sk-course-basket.php' );
-$course_basket = new SKChildTheme\SK_Course_Basket();
-
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 function theme_enqueue_styles() {
     // Style
@@ -73,25 +63,5 @@ add_action( 'admin_enqueue_scripts', 'sk_child_enque_admin_script' );
 function sk_child_enque_admin_script() {
 
   wp_enqueue_script( 'course-admin', get_stylesheet_directory_uri() . '/assets/js/admin.js', array( 'jquery' ), null, true );
-
-}
-
-// Adds a link to the local course basket if the user has any courses in basket
-add_filter( 'wp_nav_menu_items', 'my_nav_menu_profile_link');
-function my_nav_menu_profile_link($menu) {  
-    
-  $course_basket = new SKChildTheme\SK_Course_Basket();
-  if( $course_basket->has_courses() ) {
-
-    $li = '<li class="menu-course-basket-item">';
-    $li .= '<a href="/kurskorg" class="course-basket-link">';
-    $li .= __( 'Till kurskorgen', 'sk' );
-    $li .= '</a></li>';
-
-    $menu .= $li;
-
-  }
-
-  return $menu;
 
 }
