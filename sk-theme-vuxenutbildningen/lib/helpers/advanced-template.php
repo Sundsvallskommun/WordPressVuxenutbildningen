@@ -122,9 +122,8 @@ function the_campaign_block() {
                   <?php echo $post->post_title; ?>
                 </h5>
               </header>
-              
-              <?php if ( ! empty( $post->excerpt ) ) : ?>
-                <p><?php echo $post->excerpt; ?>...</p>
+              <?php if ( ! empty( get_the_excerpt( $post->ID ) ) ) : ?>
+                <p><?php echo  get_excerpt_max_charlength( '60', $post->ID ); ?>...</p>
               <?php endif; ?>
               <ul class="of-meta-line">
                 <li><?php echo get_the_time( 'j F H:i', $post->ID ); ?></li>
