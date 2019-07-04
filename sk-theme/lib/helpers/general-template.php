@@ -116,8 +116,12 @@ function get_image_alt( $image_id ) {
  *
  * @return string
  */
-function get_excerpt_max_charlength( $charlength ) {
-  $excerpt = get_the_excerpt();
+function get_excerpt_max_charlength( $charlength, $post_id = '' ) {
+  if( !empty( $post_id ) ){
+    $excerpt = get_the_excerpt( $post_id );
+  }else{
+    $excerpt = get_the_excerpt();
+  }
 
   $charlength++;
 
